@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Oxygen;
+    font-weight: 400;
+    src: url('./assets/fonts/Oxygen/Oxygen-Regular.ttf');
+};
+
+@font-face {
+    font-family: Oxygen;
+    font-weight: 700;
+    src: url('./assets/fonts/Oxygen/Oxygen-Bold.ttf');}
+
+@keyframes background-turner {
+    from {
+        // transform-origin: (-20% 50%);
+        transform:translateX(0);
+    }
+    55% {
+        // transform-origin: center;
+        transform:  scale(1.5) translateX(-25%);
+    } 
+    65% {
+        // transform-origin: center;
+        transform:  scale(2) translateX(-30%);
+    }
+    85% {
+        // transform-origin: center;
+        transform:  scale(1.5) translateX(-45%);
+    }
+    to {
+        transform: scale(1) translateX(-55%);
+    }
+}
+    
+html, body
+{  height: 100%;}
+
+body {
+  margin: 0;
+  font-family: Oxygen, sans-serif;
+}
+#space-background{
+  z-index: -100;
+  position: fixed;
+  top: 0;
+  width: 2788px;
+  height: 1052px;
+  background-image: url('./assets/images/background.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  animation: background-turner linear 50s both infinite alternate;
+}
+
+    
