@@ -1,0 +1,25 @@
+@keyframes fire {
+  from{transform: rotate(25deg) scale(0.5, 0.5);}
+  20%{transform: rotate(25deg) scale(0.25, 1);}
+  40%{transform: rotate(25deg) scale(0.5, 1.5);}
+  60%{transform: rotate(25deg) scale(0.75, 1);}
+  80%{transform: rotate(25deg) scale(0.5, 2.5);}
+  to{transform: rotate(25deg) scale(0.5, 0.5);}  
+}
+#logo-wrapper {
+  position: fixed;
+  width: min-content;
+  top: 0;
+  left:0
+}
+#logo {
+    position: relative;
+}
+#flamme {
+  z-index: -10;
+  position: absolute;
+  top: 34%;
+  left: 226px;
+  animation: fire linear 200ms both infinite alternate;
+  transform-origin: top;
+}
