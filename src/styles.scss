@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+// CONSTANTES SCSS
 @font-face {
   font-family: Oxygen;
   font-weight: 400;
@@ -32,7 +33,18 @@
     transform: scale(1.25) translateY(-3%);
   }
 }
+$breakpoints:(
+  mobile:480px,
+  tablet:960px,
+  desktop:1260px);
 
+@mixin mobile-only {
+  @media screen and (max-width: map-get($breakpoints, mobile)){
+      @content;
+  }
+}
+
+//       Valeurs CSS GLOBAL
 html,
 body {
   height: 100%;
@@ -43,7 +55,14 @@ body {
   font-family: Oxygen, sans-serif;
   color: white;
 }
-
+h1 {
+  @include mobile-only{  font-size: 1.5rem;}
+    font-size: 4rem;
+}
+h2 {
+  @include mobile-only{  font-size: 1rem;}
+    font-size: 3rem;
+}
 #space-background {
   z-index: -100;
   position: fixed;
