@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-base',
-  templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss']
+  selector: 'app-accueil',
+  templateUrl: './accueil.component.html',
+  styleUrls: ['./accueil.component.scss']
 })
-export class BaseComponent implements OnInit{
-selectedSection:string = "header"
+export class AccueilComponent implements OnInit{
+  selectedSection:string = "header"
   constructor(){}
   ngOnInit(): void {
     this.selectedSection='accueil'
