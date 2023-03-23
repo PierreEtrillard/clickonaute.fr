@@ -4,8 +4,11 @@ import { AccueilComponent } from './accueil/components/accueil/accueil.component
 
 const routes: Routes = [
 {path:'accueil', loadChildren: ()=>import('./accueil/accueil.module').then(m => m.AccueilModule)},
+{path:'sites', loadChildren: ()=>import('./sites/sites.module').then(m => m.SitesModule)},
+{path:'applications', loadChildren: ()=>import('./applications/applications.module').then(m => m.ApplicationsModule)},
+{path:'contact', loadChildren: ()=>import('./contact/contact.module').then(m => m.ContactModule)},
+{path:'jeux', loadChildren: ()=>import('./games/games.module').then(m => m.GamesModule)},
 {path: '**', redirectTo:'accueil'}
-// {path:"", component:AccueilComponent}
 ];
 
 @NgModule({

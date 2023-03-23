@@ -1,19 +1,4 @@
-<!-- masques d'arrière-plans -->
-<div class="mask mask-header"></div>
-<div
-  class="mask"
-  [ngClass]="selectedSection === 'accueil' ? 'mask-accueil' : 'mask-header'"
-></div>
-<div
-  class="mask"
-  [ngClass]="selectedSection === 'menu' ? 'mask-opened-menu' : 'mask-menu'"
-></div>
-<div
-  class="mask"
-  [ngClass]="selectedSection === 'faq' ? 'mask-opened-faq' : 'mask-faq'"
-></div>
-
-<main *ngIf="selectedSection === 'accueil'">
+<main *ngIf=" (selectedSection$ | async) === 'accueil'">
   <h1>Créateur Web indépendant</h1>
   <ul>
     <li>Conception de sites internet pour les tpe/Pme et associations</li>
@@ -22,7 +7,7 @@
 </main>
 
 <!-- section menu -->
-<nav id="menu" *ngIf="selectedSection === 'menu'; else iconMenu">
+<nav id="menu" *ngIf=" (selectedSection$ | async) === 'menu'; else iconMenu">
   <ul>
     <h2>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -33,10 +18,10 @@
       </svg>
       Menu
     </h2>
-    <li>Sites internet</li>
-    <li>Applications web</li>
-    <li>Contact</li>
-    <li>Mini-jeux</li>
+    <a routerLink="/sites"><li>Sites internet</li></a>
+    <a routerLink="/applications"><li>Applications web</li></a>
+    <a routerLink="/contact"><li>Contact</li></a>
+    <a routerLink="/games"><li>Mini-jeux</li></a>
   </ul>
   <button id="menuReducer" (click)="sectionSelector('accueil')">
     retour à l'accueil
@@ -54,7 +39,7 @@
 </ng-template>
 
 <!-- section foire aux questions -->
-<nav id="faq" *ngIf="selectedSection === 'faq'; else faqSelector">
+<nav id="faq" *ngIf="(selectedSection$ | async) === 'faq'; else faqSelector">
   <ul>
     <h2>Infos utiles</h2>
     <li>Tout sur les cookies</li>
