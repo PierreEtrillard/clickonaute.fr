@@ -11,7 +11,7 @@ export class MaskComponent {
   selectedSection$!: Observable<string>;
   constructor(private sectionSelService: SectionSelService) {}
   ngOnInit(): void {
-    this.selectedSection$ = this.sectionSelService.sectionChange;
+    this.selectedSection$ = this.sectionSelService.sectionSelected
     this.selectedSection$
       .pipe(
         tap((section) => console.log(`Sélection de la section: '${section}'`))

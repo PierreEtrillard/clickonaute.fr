@@ -6,9 +6,13 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class SectionSelService {
 
-@Input() sectionChange: EventEmitter<string> = new EventEmitter();
+private _sectionSelected$= new BehaviorSubject<string>("accueil")
 
-  sectionSwitcher(sectionName: string) {
-    this.sectionChange.emit(sectionName);
+get sectionSelected(): Observable<string>
+{
+  return this._sectionSelected$.asObservable()
+}
+sectionSwitcher(sectionName: string) {
+    this._sectionSelected$.next(sectionName);
   }
 }

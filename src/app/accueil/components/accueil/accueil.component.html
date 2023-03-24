@@ -1,3 +1,4 @@
+<app-mask></app-mask>
 <main *ngIf=" (selectedSection$ | async) === 'accueil'">
   <h1>Créateur Web indépendant</h1>
   <ul>
@@ -5,7 +6,6 @@
     <li>Développement d’applications Angular pour le web</li>
   </ul>
 </main>
-
 <!-- section menu -->
 <nav id="menu" *ngIf=" (selectedSection$ | async) === 'menu'; else iconMenu">
   <ul>
@@ -21,7 +21,7 @@
     <a routerLink="/sites"><li>Sites internet</li></a>
     <a routerLink="/applications"><li>Applications web</li></a>
     <a routerLink="/contact"><li>Contact</li></a>
-    <a routerLink="/games"><li>Mini-jeux</li></a>
+    <a routerLink="/jeux"><li>Mini-jeux</li></a>
   </ul>
   <button id="menuReducer" (click)="sectionSelector('accueil')">
     retour à l'accueil
