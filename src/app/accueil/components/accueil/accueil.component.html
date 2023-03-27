@@ -40,7 +40,7 @@
   </h2>
 </ng-template>
 <!-- accès au simulateur -->
-<app-sim-btn></app-sim-btn>
+<app-sim-btn *ngIf="(selectedSection$|async) !== 'faq'" (click)="sectionSelector('pages')" ></app-sim-btn>
 <!-- section foire aux questions -->
 <nav id="faq" *ngIf="(selectedSection$ | async) === 'faq'; else faqSelector">
   <ul>

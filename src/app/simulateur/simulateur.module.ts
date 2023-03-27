@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimulateurComponent } from './components/simulateur/simulateur.component';
+import { SimulateurRoutingModule } from './simulateur-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +11,9 @@ import { SimulateurComponent } from './components/simulateur/simulateur.componen
     SimulateurComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SimulateurRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class SimulateurModule { }

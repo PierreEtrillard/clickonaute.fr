@@ -1,1 +1,85 @@
-<p>simulateur works!</p>
+<main>
+  <h2>Estimez le coût de création de votre site en 3 clics !</h2>
+  <ul id="steps">
+    <li><div class="step space-button">1</div></li>
+    <li><div class="step space-button">2</div></li>
+    <li><div class="step space-button">3</div></li>
+  </ul>
+  <form [formGroup]="estimatorForm">
+    <!-- Types de projet -->
+    <fieldset formGroupName="scale">
+      <legend>Quel type de projet envisagez vous ?</legend>
+      <select name="type" id="type">
+        <option value="vitrine">
+          Un site simple pour être visible sur le net
+        </option>
+        <option value="e-commerce">
+          un site de e-commerce me permettant de développer mon activitée
+        </option>
+        <option value="appli">
+          Une application metier disponible hors ligne
+        </option></select
+      ><br />
+      <label for="pages">choisissez le nombre de pages de votre projet</label>
+      <input type="number" id="pages" formControlName="pages" value="1" /><br />
+    </fieldset>
+    <!-- Aspects Graphiques -->
+    <fieldset formGroupName="grapĥicalAspects">
+      <legend>Aspects graphiques</legend>
+      <label for="maquette">Je possède déja une maquette de mon projet</label>
+      <input
+        type="checkbox"
+        id="maquette"
+        formControlName="maquette"
+        value="oui"
+      /><br />
+      <label for="police">J'ai choisi une police d'écriture</label>
+      <input
+        type="checkbox"
+        id="police"
+        formControlName="police"
+        value="oui"
+      /><br />
+      <label for="color">J'ai déja défini les couleurs de mon projet</label>
+      <input type="checkbox" id="color" formControlName="colors" /><br />
+    </fieldset>
+    <!-- Fonctionnalités -->
+    <fieldset formGroupName="features">
+      <legend>Fonctionalités</legend>
+      <label for="payOnline">intégrer le paiemnent en ligne</label>
+      <input
+        type="checkbox"
+        id="payOnline"
+        formControlName="payOnline"
+        value="oui"
+      /><br />
+      <label for="location">un plan d'accés</label>
+      <input
+        type="checkbox"
+        id="location"
+        formControlName="location"
+        value="oui"
+      /><br />
+      <label for="cookies"
+        >mettre en place des cookies de ciblage
+        <a routerLink="/faq/cookies"
+          >(voir la pages tout sur les cookies)</a
+        ></label
+      >
+      <input
+        type="checkbox"
+        id="cookies"
+        formControlName="cookies"
+        value="oui"
+      /><br />
+      <label for="account">Création et gestion de comptes utilisateurs</label>
+      <input type="checkbox" id="account" formControlName="account" /><br />
+      <label for="other"
+        >J'ai besoin d'une fonctionalité spécifique dont voici les
+        détails</label
+      >
+      <textarea id="other" formControlName="other"></textarea><br />
+    </fieldset>
+    <button (click)="result()">estimation*</button>
+  </form>
+</main>

@@ -60,12 +60,20 @@ h1 {
     font-size: 2rem;
 }
 h2 {
-  @include mobile-only{  font-size: 1rem;}
+  @include mobile-only{  font-size: 0.5rem;}
     font-size: 1rem;
 }
 a {
   text-decoration: none;
   color: white;
+}
+li {
+  font-weight: lighter;
+  list-style-type: none;
+}
+.space-button{
+  background: radial-gradient(circle at left, #092145 0, #3632F1 57.81%, #011028 100%);
+  color:white;
 }
 #space-background {
   z-index: -100;

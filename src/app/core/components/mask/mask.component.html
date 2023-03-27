@@ -1,15 +1,24 @@
 <!-- masques d'arrière-plans -->
 <div class="mask mask-header"></div>
 
-<div
-  class="mask"
-  [ngClass]="(selectedSection$ | async )=== 'accueil' ? 'mask-accueil' : 'mask-pages'"
-></div>
-<div
-  class="mask"
-  [ngClass]="(selectedSection$ | async ) === 'menu' ? 'mask-menu-opened' : 'mask-menu'"
-></div>
-<div
-  class="mask"
-  [ngClass]="(selectedSection$ | async ) === 'faq' ? 'mask-faq-opened' : 'mask-faq'"
-></div>
+<div *ngIf="(selectedSection$ | async) !== 'pages'; else pagesMask">
+  <div
+    *ngIf="(selectedSection$ | async) === 'accueil'"
+    class="mask mask-accueil"
+  ></div>
+  <div
+    class="mask"
+    [ngClass]="
+      (selectedSection$ | async) === 'menu' ? 'mask-menu-opened' : 'mask-menu'
+    "
+  ></div>
+  <div
+    class="mask"
+    [ngClass]="
+      (selectedSection$ | async) === 'faq' ? 'mask-faq-opened' : 'mask-faq'
+    "
+  ></div>
+</div>
+<ng-template #pagesMask>
+  <div class="mask mask-pages"></div>
+</ng-template>
