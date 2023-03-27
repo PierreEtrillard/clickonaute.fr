@@ -2,22 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { AccueilRoutingModule } from './accueil-routing.module';
-import { MaskComponent } from './components/mask/mask.component';
+import { MaskComponent } from '../core/components/mask/mask.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
     AccueilComponent,
-    MaskComponent,
   ],
   imports: [
     CommonModule,
-    AccueilRoutingModule
+    AccueilRoutingModule,
+    SharedModule
   ],
   exports:[
     AccueilComponent,
-    MaskComponent,
   ]
 })
 export class AccueilModule { }

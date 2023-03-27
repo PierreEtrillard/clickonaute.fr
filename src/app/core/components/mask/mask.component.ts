@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { SectionSelService } from 'src/app/core/services/section-sel.service';
+import { SectionSelService } from '../../services/section-sel.service';
 
 @Component({
   selector: 'app-mask',

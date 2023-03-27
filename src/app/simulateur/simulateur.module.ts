@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SimulateurComponent } from './components/simulateur/simulateur.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SimulateurComponent
+  ],
   imports: [
     CommonModule
   ]

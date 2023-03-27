@@ -55,11 +55,6 @@
         font-weight: lighter;
         list-style-type: none;
       }
-      #faqReducer {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
     }
   }
   #menu {
@@ -85,4 +80,8 @@
     width: 45px;
     fill: white;
   }
-  
+  app-sim-btn{
+    position: fixed;
+    bottom: 15%;
+    left: 50%;
+  }
