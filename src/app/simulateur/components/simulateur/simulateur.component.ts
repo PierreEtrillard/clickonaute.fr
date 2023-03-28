@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-simulateur',
@@ -21,7 +22,7 @@ export class SimulateurComponent implements OnInit {
   colorCtrl!: FormControl;
   typeCtrl!: FormControl;
   pagesCtrl!: FormControl;
-
+  formFillStep$= new BehaviorSubject<number>(1)
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.initControlers();
@@ -71,7 +72,9 @@ export class SimulateurComponent implements OnInit {
     this.accountCtrl = this.formBuilder.control('');
     this.otherCtrl = this.formBuilder.control('');
   }
-
+  stepNav(step:number){
+    this.formFillStep$.next(step)
+  }
   result() {
     console.table(this.estimatorForm.value);
   }

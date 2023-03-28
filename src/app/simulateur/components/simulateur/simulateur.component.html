@@ -7,7 +7,7 @@
   </ul>
   <form [formGroup]="estimatorForm">
     <!-- Types de projet -->
-    <fieldset formGroupName="scale">
+    <fieldset formGroupName="scale" *ngIf="(formFillStep$ |async) === 1">
       <legend>Quel type de projet envisagez vous ?</legend>
       <select name="type" id="type">
         <option value="vitrine">
@@ -22,9 +22,10 @@
       ><br />
       <label for="pages">choisissez le nombre de pages de votre projet</label>
       <input type="number" id="pages" formControlName="pages" value="1" /><br />
+      <button class="space-button next"(click)="stepNav(2)">valider et passer à l'étape 2</button>
     </fieldset>
     <!-- Aspects Graphiques -->
-    <fieldset formGroupName="grapĥicalAspects">
+    <fieldset formGroupName="grapĥicalAspects" *ngIf="(formFillStep$ |async) === 2">
       <legend>Aspects graphiques</legend>
       <label for="maquette">Je possède déja une maquette de mon projet</label>
       <input
@@ -42,9 +43,11 @@
       /><br />
       <label for="color">J'ai déja défini les couleurs de mon projet</label>
       <input type="checkbox" id="color" formControlName="colors" /><br />
+      <button class="space-button preview"(click)="stepNav(1)">retour à l'étape 1</button>
+      <button class="space-button next"(click)="stepNav(3)">valider et passer à l'étape 3</button>
     </fieldset>
     <!-- Fonctionnalités -->
-    <fieldset formGroupName="features">
+    <fieldset formGroupName="features" *ngIf="(formFillStep$ |async) === 3">
       <legend>Fonctionalités</legend>
       <label for="payOnline">intégrer le paiemnent en ligne</label>
       <input
@@ -79,7 +82,8 @@
         détails</label
       >
       <textarea id="other" formControlName="other"></textarea><br />
+      <button class="space-button preview"(click)="stepNav(2)">retour à l'étape 2</button>
+      <button class="space-button next"(click)="result()">estimation*</button>
     </fieldset>
-    <button (click)="result()">estimation*</button>
   </form>
 </main>
