@@ -1,33 +1,14 @@
-.mask {
-    z-index: -50;
-    background-color: black;
-    opacity: 50%;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    transition: all ease-out 500ms;
-    &-header {
-      transform: rotate(336deg) translate(-40%, -100%);
-    }
-    &-accueil {
-      transform: translate(-50%, -20%) skew(316deg, 45deg);
-      border-top-right-radius: 30px;
-    }
-    &-menu {
-      transform: rotate(35deg) translate(0%, -110%);
-    }
-    &-faq {
-      transform: rotate(320deg) translate(0%, 120%);
-    }
-  }
   main {
     position: fixed;
     bottom: 25%;
-    left: 5%;
     display: flex;
     flex-direction: column;
+    h1{
+      margin-left: 2rem
+    }
     li {
       list-style-type: none;
+      text-align: left;
     }
   }
   nav {
@@ -41,11 +22,10 @@
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      font-size: 2.5rem;
       svg {
         fill: white;
-        height: 5rem;
-        width: 5rem;
+        height: 2rem;
+        width: 2rem;
       }
     }
     ul {
@@ -57,6 +37,12 @@
     right: 0;
     align-items: flex-end;
   }
+  #sectionMenuBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    fill: white;
+  }
   #faq {
     bottom: 0;
     left: 0;
@@ -67,16 +53,10 @@
     bottom: 0;
     right: 0;
   }
-  #sectionMenuBtn {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    height: 45px;
-    width: 45px;
-    fill: white;
-  }
   app-sim-btn{
     position: fixed;
     bottom: 15%;
-    left: 50%;
+    &.left{  left: 50%;}
+    &.right{  right: 50%;}
+  
   }
