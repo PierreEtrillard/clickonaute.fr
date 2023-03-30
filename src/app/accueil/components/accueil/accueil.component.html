@@ -49,11 +49,11 @@
 <nav id="faq" *ngIf="(selectedSection$ | async) === 'faq'; else faqSelector">
   <ul>
     <h2>Infos utiles</h2>
-    <li>Tout sur les cookies</li>
-    <li>Créer son site soi même ?</li>
-    <li>Qu'es-ce que l'accéssibilitée ?</li>
-    <li>Combien coûte un site internet en 2023</li>
-    <li>Qu'es ce que le référencement naturel (ou SEO) ?</li>
+    <li><a routerLink="/faq/cookies"> Tout sur les cookies</a></li>
+    <li><a routerLink="/faq/diy"> Créer son site soi même ?</a></li>
+    <li><a routerLink="/faq/accessibilité"> Qu'es-ce que l'accéssibilitée ?</a></li>
+    <li><a routerLink="/faq/coût"> Combien coûte un site internet en 2023</a></li>
+    <li><a routerLink="/faq/seo"> Qu'es ce que le référencement naturel (ou SEO) ?</a></li>
     <li>
       <button class="reducer" (click)="sectionSelector('accueil')">
         retour à l'accueil

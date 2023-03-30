@@ -9,6 +9,7 @@ const routes: Routes = [
 {path:'contact', loadChildren: ()=>import('./contact/contact.module').then(m => m.ContactModule)},
 {path:'jeux', loadChildren: ()=>import('./games/games.module').then(m => m.GamesModule)},
 {path:'simulateur', loadChildren: ()=>import('./simulateur/simulateur.module').then(m => m.SimulateurModule)},
+{path:'faq', loadChildren: ()=>import('./faq/faq.module').then(m => m.FaqModule)},
 {path: '**', redirectTo:'accueil'}
 ];
 

@@ -15,7 +15,7 @@
   height: 100%;
   transition: all ease-out 500ms;
   &-header {
-    transform: rotate(60deg) translate(-120%, -25%);
+    transform: rotate(60deg) translate(-83%, 23%);
     opacity: 75%;
   }
   &-accueil {
@@ -25,7 +25,8 @@
   &-pages {
     animation: maskPagesOpening 0.3s ease-in forwards;
     border-radius: 30px;
-    color: red;
+    position: absolute;
+    height: 100%;
   }
   &-menu {
     transform: rotate(35deg) translate(0%, -120%);

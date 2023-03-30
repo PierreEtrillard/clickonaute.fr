@@ -1,11 +1,30 @@
+@keyframes rotateNfade {
+  from{transform:rotateY(90deg); opacity:0}
+  60%{transform:rotateY(45deg);opacity:1}
+  to{transform:rotateY();opacity:1}
+
+}
 main {
-  margin-top: 90px;
+  padding-top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   h2 {
     text-align: center;
+    animation: rotateNfade 0.5s 2s  linear reverse forwards;
+    position: relative;
   }
+  nav{
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    animation: rotateNfade 0.5s 2.2s linear both;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+  }
+
 }
 ul {
   display: flex;
@@ -20,7 +39,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+    }
 }
 form {
   display: flex;
@@ -29,19 +48,24 @@ form {
 }
 fieldset {
   display: flex;
-  font-size: small;
+  font-size: x-small;
   flex-direction: column;
-  width: 70%;
   border-radius: 10px;
   position: relative;
+  p.sel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content:space-between
+  }
   button {
     position: absolute;
-    bottom: -15px;
+    bottom: -25px;
+    font-size: xx-small;
     &.preview {
-      left: -15px;;
+      left: -15px;
     }
     &.next {
-      right: -15px;;
+      right: -15px;
     }
   }
   input,
@@ -55,7 +79,10 @@ fieldset {
     width: 100%;
   }
   input {
-    text-align: center;
-    max-width: 45px;
+    text-align: right;
+    max-width: 33px;
+  }
+  a{
+    color: darkmagenta;
   }
 }

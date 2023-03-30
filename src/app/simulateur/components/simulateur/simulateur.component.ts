@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
@@ -21,8 +21,10 @@ export class SimulateurComponent implements OnInit {
   policeCtrl!: FormControl;
   colorCtrl!: FormControl;
   typeCtrl!: FormControl;
+  hebergementCtrl!: FormControl;
   pagesCtrl!: FormControl;
   formFillStep$= new BehaviorSubject<number>(1)
+  
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.initControlers();
@@ -31,6 +33,7 @@ export class SimulateurComponent implements OnInit {
     this.initFeaturesForm();
     this.initEstimatorForm();
   }
+  // initialisation du form parent
   private initEstimatorForm() {
     this.estimatorForm = this.formBuilder.group({
       grapĥicalAspects: this.grapĥicalAspectsForm,
@@ -38,6 +41,7 @@ export class SimulateurComponent implements OnInit {
       features: this.featuresForm,
     });
   }
+  // initialisation des sections enfants
   private initGraphicalAspectsForm() {
     this.grapĥicalAspectsForm = this.formBuilder.group({
       maquette: this.maquetteCtrl,
@@ -48,6 +52,7 @@ export class SimulateurComponent implements OnInit {
   private initScaleForm() {
     this.scaleForm = this.formBuilder.group({
       type: this.typeCtrl,
+      hebergement: this.hebergementCtrl,
       pages: this.pagesCtrl,
     });
   }
@@ -60,12 +65,13 @@ export class SimulateurComponent implements OnInit {
       other: this.otherCtrl,
     });
   }
+  // initialisation des controllers
   initControlers() {
-    this.maquetteCtrl = this.formBuilder.control('');
+    this.maquetteCtrl = this.formBuilder.control('',Validators.required);
     this.colorCtrl = this.formBuilder.control('');
     this.policeCtrl = this.formBuilder.control('');
-    this.typeCtrl = this.formBuilder.control('');
-    this.pagesCtrl = this.formBuilder.control('1');
+    this.typeCtrl = this.formBuilder.control('',Validators.required);
+    this.pagesCtrl = this.formBuilder.control('1',Validators.required);
     this.payOnlineCtrl = this.formBuilder.control('');
     this.locationCtrl = this.formBuilder.control('');
     this.cookiesCtrl = this.formBuilder.control('');
@@ -76,6 +82,10 @@ export class SimulateurComponent implements OnInit {
     this.formFillStep$.next(step)
   }
   result() {
-    console.table(this.estimatorForm.value);
+    if (this.estimatorForm.valid){    console.table(this.estimatorForm.value);}
+    else{
+      console.error("form invalid");
+    }
+
   }
 }
