@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { state } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-simulateur',
@@ -23,8 +29,12 @@ export class SimulateurComponent implements OnInit {
   typeCtrl!: FormControl;
   hebergementCtrl!: FormControl;
   pagesCtrl!: FormControl;
-  formFillStep$= new BehaviorSubject<number>(1)
-  
+  formFillStep$ = new BehaviorSubject<number>(1);
+  isSection1filled$!: Observable<boolean>;
+  isSection2filled$!: Observable<boolean>;
+  isSection3filled$!: Observable<boolean>;
+  isAllfilled$!: Observable<boolean>;
+  @Input()result!: any;
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.initControlers();
@@ -32,6 +42,7 @@ export class SimulateurComponent implements OnInit {
     this.initScaleForm();
     this.initFeaturesForm();
     this.initEstimatorForm();
+    this.initFilledSectionObserver();
   }
   // initialisation du form parent
   private initEstimatorForm() {
@@ -67,25 +78,42 @@ export class SimulateurComponent implements OnInit {
   }
   // initialisation des controllers
   initControlers() {
-    this.maquetteCtrl = this.formBuilder.control('',Validators.required);
+    this.hebergementCtrl = this.formBuilder.control('', Validators.required);
+    this.maquetteCtrl = this.formBuilder.control('', Validators.required);
     this.colorCtrl = this.formBuilder.control('');
     this.policeCtrl = this.formBuilder.control('');
-    this.typeCtrl = this.formBuilder.control('',Validators.required);
-    this.pagesCtrl = this.formBuilder.control('1',Validators.required);
+    this.typeCtrl = this.formBuilder.control('', Validators.required);
+    this.pagesCtrl = this.formBuilder.control('1', Validators.required);
     this.payOnlineCtrl = this.formBuilder.control('');
     this.locationCtrl = this.formBuilder.control('');
     this.cookiesCtrl = this.formBuilder.control('');
     this.accountCtrl = this.formBuilder.control('');
     this.otherCtrl = this.formBuilder.control('');
   }
-  stepNav(step:number){
-    this.formFillStep$.next(step)
+  initFilledSectionObserver() {
+    this.isSection1filled$ = this.scaleForm.statusChanges.pipe(
+      map((status) => status === 'VALID')
+    );
+    this.isSection2filled$ = this.grapĥicalAspectsForm.statusChanges.pipe(
+      map((status) => status === 'VALID')
+    );
+    this.isSection3filled$ = this.featuresForm.statusChanges.pipe(
+      map((status) => status === 'VALID')
+    );
+    this.isAllfilled$ = this.estimatorForm.statusChanges.pipe(
+      map((status) => status === 'VALID')
+    );
   }
-  result() {
-    if (this.estimatorForm.valid){    console.table(this.estimatorForm.value);}
-    else{
-      console.error("form invalid");
+  stepNav(step: number) {
+      this.formFillStep$.next(step);
+  }
+  resultBuilder() {
+    if (this.estimatorForm.valid) {
+      this.formFillStep$.next(4);
+      this.result=this.estimatorForm.value;
+      console.table(this.result)
+    } else {
+      console.error('form invalid');
     }
-
   }
 }

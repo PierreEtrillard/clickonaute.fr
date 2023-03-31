@@ -67,6 +67,9 @@ fieldset {
     &.next {
       right: -15px;
     }
+    &.space-button-disabled{
+      cursor: not-allowed;
+    }
   }
   input,
   textarea,

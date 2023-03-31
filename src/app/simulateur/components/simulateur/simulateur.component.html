@@ -1,13 +1,13 @@
 <main>
   <h2>Estimez le coût de création de votre site en 3 clics !</h2>
-  <nav>
+  <nav *ngIf="(formFillStep$ | async) !== 4">
     <h3>Etape {{ formFillStep$ | async }}</h3>
     <ul id="steps">
       <li>
         <div
           class="step"
           [ngClass]="
-            (formFillStep$ | async) === 1
+            (isSection1filled$ | async)
               ? 'space-button'
               : 'space-button space-button-disabled'
           "
@@ -17,10 +17,30 @@
         </div>
       </li>
       <li>
-        <div class="step space-button" [ngClass]="" (click)="stepNav(2)">2</div>
+        <div
+          class="step"
+          [ngClass]="
+            (isSection2filled$ | async)
+              ? 'space-button'
+              : 'space-button space-button-disabled'
+          "
+          (click)="stepNav(2)"
+        >
+          2
+        </div>
       </li>
       <li>
-        <div class="step space-button" [ngClass]="" (click)="stepNav(3)">3</div>
+        <div
+          class="step"
+          [ngClass]="
+            (isSection3filled$ | async)
+              ? 'space-button'
+              : 'space-button space-button-disabled'
+          "
+          (click)="stepNav(3)"
+        >
+          3
+        </div>
       </li>
     </ul>
   </nav>
@@ -74,7 +94,7 @@
           formControlName="hebergement"
           id="hebYes"
           type="radio"
-          value=true
+          value="true"
         />
         <label for="hebYes">oui</label>
         <input
@@ -82,32 +102,45 @@
           formControlName="hebergement"
           id="hebNo"
           type="radio"
-          value=false
+          value="false"
         />
         <label for="hebNo">non</label>
       </p>
-      <button class="space-button next" (click)="stepNav(2)">suivant</button>
+      <button
+        class="next"
+        [ngClass]="
+          (isSection1filled$ | async)
+            ? 'space-button'
+            : 'space-button space-button-disabled'
+        "
+        (click)="stepNav(2)"
+      >
+        suivant
+      </button>
     </fieldset>
     <!-- Aspects Graphiques -->
     <fieldset
       formGroupName="grapĥicalAspects"
       *ngIf="(formFillStep$ | async) === 2"
     >
-      <legend>Aspects graphiques</legend>Votre projet est il déja déssiné ?
+      <legend>Aspects graphiques</legend>
+      Votre projet est il déja déssiné ?
       <p class="sel-wrapper">
-        <label for="avec-maquette">Oui, je possède déja une maquette de mon projet</label>
+        <label for="avec-maquette"
+          >Oui, je possède déja une maquette de mon projet</label
+        >
         <input
           type="radio"
           id="avec-maquette"
           formControlName="maquette"
-          value=false
-          />
-          <label for="sans-maquette">Non</label>
-          <input
+          value="false"
+        />
+        <label for="sans-maquette">Non</label>
+        <input
           type="radio"
           id="sansmaquette"
           formControlName="maquette"
-          value=true
+          value="true"
         />
       </p>
 
@@ -122,12 +155,24 @@
       </p>
 
       <p class="sel-wrapper">
-        <label for="color">Je possède les logos et illustrations nécessaires à mon projet</label>
+        <label for="color"
+          >Je possède les logos et illustrations nécessaires à mon projet</label
+        >
         <input type="checkbox" id="color" formControlName="colors" />
       </p>
 
       <button class="space-button preview" (click)="stepNav(1)">retour</button>
-      <button class="space-button next" (click)="stepNav(3)">suivant</button>
+      <button
+        class="next"
+        [ngClass]="
+          (isSection2filled$ | async)
+            ? 'space-button'
+            : 'space-button space-button-disabled'
+        "
+        (click)="stepNav(3)"
+      >
+        suivant
+      </button>
     </fieldset>
     <!-- Fonctionnalités -->
     <fieldset formGroupName="features" *ngIf="(formFillStep$ | async) === 3">
@@ -181,10 +226,21 @@
         <button class="space-button preview" (click)="stepNav(2)">
           retour
         </button>
-        <button class="space-button next" (click)="result()">
+        <button
+          class="space-button next"
+          [ngClass]="
+            (isAllfilled$ | async)
+              ? 'space-button'
+              : 'space-button space-button-disabled'
+          "
+          (click)="resultBuilder()"
+        >
           estimation*
         </button>
       </p>
     </fieldset>
   </form>
+  <div id="result" *ngIf="(formFillStep$ | async) === 4">
+    <app-result [quote]="result"></app-result>
+  </div>
 </main>
