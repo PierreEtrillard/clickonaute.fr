@@ -47,24 +47,24 @@ export class SimulateurComponent implements OnInit {
   // initialisation du form parent
   private initEstimatorForm() {
     this.estimatorForm = this.formBuilder.group({
-      grapĥicalAspects: this.grapĥicalAspectsForm,
       scale: this.scaleForm,
+      grapĥicalAspects: this.grapĥicalAspectsForm,
       features: this.featuresForm,
     });
   }
   // initialisation des sections enfants
-  private initGraphicalAspectsForm() {
-    this.grapĥicalAspectsForm = this.formBuilder.group({
-      maquette: this.maquetteCtrl,
-      colors: this.colorCtrl,
-      police: this.policeCtrl,
-    });
-  }
   private initScaleForm() {
     this.scaleForm = this.formBuilder.group({
       type: this.typeCtrl,
       hebergement: this.hebergementCtrl,
       pages: this.pagesCtrl,
+    });
+  }
+  private initGraphicalAspectsForm() {
+    this.grapĥicalAspectsForm = this.formBuilder.group({
+      maquette: this.maquetteCtrl,
+      colors: this.colorCtrl,
+      police: this.policeCtrl,
     });
   }
   private initFeaturesForm() {
@@ -78,17 +78,17 @@ export class SimulateurComponent implements OnInit {
   }
   // initialisation des controllers
   initControlers() {
-    this.hebergementCtrl = this.formBuilder.control('', Validators.required);
-    this.maquetteCtrl = this.formBuilder.control('', Validators.required);
-    this.colorCtrl = this.formBuilder.control('');
-    this.policeCtrl = this.formBuilder.control('');
-    this.typeCtrl = this.formBuilder.control('', Validators.required);
-    this.pagesCtrl = this.formBuilder.control('1', Validators.required);
-    this.payOnlineCtrl = this.formBuilder.control('');
-    this.locationCtrl = this.formBuilder.control('');
-    this.cookiesCtrl = this.formBuilder.control('');
-    this.accountCtrl = this.formBuilder.control('');
-    this.otherCtrl = this.formBuilder.control('');
+    this.typeCtrl = this.formBuilder.control("", Validators.required);
+    this.hebergementCtrl = this.formBuilder.control(false, Validators.required);
+    this.pagesCtrl = this.formBuilder.control(1, Validators.required);
+    this.maquetteCtrl = this.formBuilder.control("", Validators.required);
+    this.colorCtrl = this.formBuilder.control(false);
+    this.policeCtrl = this.formBuilder.control(false);
+    this.payOnlineCtrl = this.formBuilder.control(false);
+    this.locationCtrl = this.formBuilder.control(false);
+    this.cookiesCtrl = this.formBuilder.control(false);
+    this.accountCtrl = this.formBuilder.control(false);
+    this.otherCtrl = this.formBuilder.control(false);
   }
   initFilledSectionObserver() {
     this.isSection1filled$ = this.scaleForm.statusChanges.pipe(
@@ -111,7 +111,6 @@ export class SimulateurComponent implements OnInit {
     if (this.estimatorForm.valid) {
       this.formFillStep$.next(4);
       this.result=this.estimatorForm.value;
-      console.table(this.result)
     } else {
       console.error('form invalid');
     }
