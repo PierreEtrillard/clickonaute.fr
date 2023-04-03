@@ -82,29 +82,29 @@
           value="appli"
         />
       </p>
-
       <p class="sel-wrapper">
         <label for="pages">Choisissez le nombre de pages de votre projet</label>
-        <input type="number" id="pages" formControlName="pages" value=1 />
+        <input type="number" id="pages" formControlName="pages" value="1" />
       </p>
-      Souhaitez vous une assistance pour heberger votre site ? <br />
-      <p class="sel-wrapper">
-        <input
-          name="hebergement"
-          formControlName="hebergement"
-          id="hebYes"
-          type="radio"
-          value=true
-        />
-        <label for="hebYes">oui</label>
-        <input
-          name="hebergement"
-          id="hebNo"
-          type="radio"
-          value=false
-        />
-        <label for="hebNo">non</label>
-      </p>
+        <div>
+        Souhaitez vous une assistance pour choisir et gérer
+        <a routerLink="/faq/coût">
+          l'hebergement
+        </a>
+        de votre projet ?
+      </div>
+      <p class="radio-wrapper">
+      <input
+        name="hebergement"
+        formControlName="hebergement"
+        id="hebYes"
+        type="radio"
+        value="true"
+      />
+      <label for="hebYes">oui</label>
+      <input name="hebergement" id="hebNo" type="radio" value="false" />
+      <label for="hebNo">non</label>
+    </p>
       <button
         class="next"
         [ngClass]="
@@ -119,45 +119,47 @@
     </fieldset>
     <!-- Aspects Graphiques -->
     <fieldset
-      formGroupName="grapĥicalAspects"
+      formGroupName="graphicalsAspects"
       *ngIf="(formFillStep$ | async) === 2"
     >
       <legend>Aspects graphiques</legend>
       Le visuel de votre projet est il défini ?
       <p class="sel-wrapper">
-        <label for="avec-maquette"
-          >Oui, je possède déja une maquette de mon projet</label
-        >
+        <label for="avec-maquette">Oui</label>
         <input
           type="radio"
           id="avec-maquette"
           formControlName="maquette"
-          value = true
+          value="false"
         />
-        <label for="sans-maquette">Non</label>
+        <label for="sans-maquette"
+          >Non, je souhaite faire réaliser une maquette de mon projet</label
+        >
         <input
           type="radio"
           id="sansmaquette"
           formControlName="maquette"
-          value = false
+          value="true"
         />
       </p>
 
       <p class="sel-wrapper">
-        <label for="police">J'ai choisi les couleurs et police d'écritures du projet.</label>
+        <label for="police"
+          >J'ai choisi les couleurs et police d'écritures du projet.</label
+        >
         <input
           type="checkbox"
           id="police"
           formControlName="police"
-          value = true
+          value=false
         />
       </p>
 
       <p class="sel-wrapper">
-        <label for="color"
+        <label for="pics"
           >Je possède les logos et illustrations nécessaires à mon projet</label
         >
-        <input type="checkbox" id="color" formControlName="colors" />
+        <input type="checkbox" id="pics" formControlName="pics" value=false unchecked/>
       </p>
 
       <button class="space-button preview" (click)="stepNav(1)">retour</button>
@@ -182,7 +184,7 @@
           type="checkbox"
           id="payOnline"
           formControlName="payOnline"
-          value = true
+          value="true"
         />
       </p>
 
@@ -192,7 +194,7 @@
           type="checkbox"
           id="location"
           formControlName="location"
-          value = true
+          value="true"
         />
       </p>
 
@@ -207,7 +209,7 @@
           type="checkbox"
           id="cookies"
           formControlName="cookies"
-          value=true
+          value="true"
         />
       </p>
 
@@ -215,11 +217,17 @@
         <label for="account">Création et gestion de comptes utilisateurs</label>
         <input type="checkbox" id="account" formControlName="account" />
       </p>
+      <p class="sel-wrapper">
+        <label for="noFeature"
+          >Je souhaite créer un site basique sans fonctionalitées</label
+        >
+        <input type="checkbox" id="noFeature" formControlName="noFeature" />
+      </p>
 
       <p class="sel-wrapper">
         <label for="other"
-          >J'ai besoin d'une fonctionalité spécifique dont voici les
-          détails</label
+          >J'ai besoin d'une fonctionalité spécifique qui n'est pas dans la
+          liste</label
         >
         <input id="other" type="checkbox" formControlName="other" />
         <button class="space-button preview" (click)="stepNav(2)">

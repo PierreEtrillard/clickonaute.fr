@@ -57,6 +57,10 @@ fieldset {
     align-items: center;
     justify-content:space-between
   }
+  p.radio-wrapper{
+    display: flex;
+    align-items: center;
+  }
   button {
     position: absolute;
     bottom: -25px;

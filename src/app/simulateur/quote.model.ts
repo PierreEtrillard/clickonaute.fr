@@ -31,3 +31,7 @@ export class Quote {
    account?:{description:string,price:number};
    other?:{description:string,price:number};
 }
+export class prestation {
+   description!:string;
+   price!:number
+}

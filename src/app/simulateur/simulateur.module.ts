@@ -4,6 +4,7 @@ import { SimulateurComponent } from './components/simulateur/simulateur.componen
 import { SimulateurRoutingModule } from './simulateur-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResultComponent } from './components/result/result.component';
+import { QuoteService } from './services/quote.service';
 
 
 
@@ -16,6 +17,7 @@ import { ResultComponent } from './components/result/result.component';
     CommonModule,
     SimulateurRoutingModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[QuoteService]
 })
 export class SimulateurModule { }

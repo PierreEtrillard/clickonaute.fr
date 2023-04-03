@@ -16,29 +16,31 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 export class SimulateurComponent implements OnInit {
   estimatorForm!: FormGroup;
   scaleForm!: FormGroup;
-  grapĥicalAspectsForm!: FormGroup;
+  graphicalsAspectsForm!: FormGroup;
   featuresForm!: FormGroup;
+  typeCtrl!: FormControl;
+  pagesCtrl!: FormControl;
+  hebergementCtrl!: FormControl;
+  maquetteCtrl!: FormControl;
+  policeCtrl!: FormControl;
+  picsCtrl!: FormControl;
   payOnlineCtrl!: FormControl;
   locationCtrl!: FormControl;
   cookiesCtrl!: FormControl;
   accountCtrl!: FormControl;
+  noFeatureCtrl!: FormControl;
   otherCtrl!: FormControl;
-  maquetteCtrl!: FormControl;
-  policeCtrl!: FormControl;
-  colorCtrl!: FormControl;
-  typeCtrl!: FormControl;
-  hebergementCtrl!: FormControl;
-  pagesCtrl!: FormControl;
   formFillStep$ = new BehaviorSubject<number>(1);
   isSection1filled$!: Observable<boolean>;
   isSection2filled$!: Observable<boolean>;
   isSection3filled$!: Observable<boolean>;
   isAllfilled$!: Observable<boolean>;
-  @Input()result!: any;
+  result!: any;
+
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.initControlers();
-    this.initGraphicalAspectsForm();
+    this.initGraphicalsAspectsForm();
     this.initScaleForm();
     this.initFeaturesForm();
     this.initEstimatorForm();
@@ -48,7 +50,7 @@ export class SimulateurComponent implements OnInit {
   private initEstimatorForm() {
     this.estimatorForm = this.formBuilder.group({
       scale: this.scaleForm,
-      grapĥicalAspects: this.grapĥicalAspectsForm,
+      graphicalsAspects: this.graphicalsAspectsForm,
       features: this.featuresForm,
     });
   }
@@ -60,10 +62,10 @@ export class SimulateurComponent implements OnInit {
       pages: this.pagesCtrl,
     });
   }
-  private initGraphicalAspectsForm() {
-    this.grapĥicalAspectsForm = this.formBuilder.group({
+  private initGraphicalsAspectsForm() {
+    this.graphicalsAspectsForm = this.formBuilder.group({
       maquette: this.maquetteCtrl,
-      colors: this.colorCtrl,
+      pics: this.picsCtrl,
       police: this.policeCtrl,
     });
   }
@@ -73,28 +75,30 @@ export class SimulateurComponent implements OnInit {
       location: this.locationCtrl,
       cookies: this.cookiesCtrl,
       account: this.accountCtrl,
+      noFeature: this.noFeatureCtrl,
       other: this.otherCtrl,
     });
   }
   // initialisation des controllers
   initControlers() {
     this.typeCtrl = this.formBuilder.control("", Validators.required);
-    this.hebergementCtrl = this.formBuilder.control(false, Validators.required);
+    this.hebergementCtrl = this.formBuilder.control("", Validators.required);
     this.pagesCtrl = this.formBuilder.control(1, Validators.required);
     this.maquetteCtrl = this.formBuilder.control("", Validators.required);
-    this.colorCtrl = this.formBuilder.control(false);
-    this.policeCtrl = this.formBuilder.control(false);
+    this.policeCtrl = this.formBuilder.control(true);
+    this.picsCtrl = this.formBuilder.control(true);
     this.payOnlineCtrl = this.formBuilder.control(false);
     this.locationCtrl = this.formBuilder.control(false);
     this.cookiesCtrl = this.formBuilder.control(false);
     this.accountCtrl = this.formBuilder.control(false);
+    this.noFeatureCtrl = this.formBuilder.control(false);
     this.otherCtrl = this.formBuilder.control(false);
   }
   initFilledSectionObserver() {
     this.isSection1filled$ = this.scaleForm.statusChanges.pipe(
       map((status) => status === 'VALID')
     );
-    this.isSection2filled$ = this.grapĥicalAspectsForm.statusChanges.pipe(
+    this.isSection2filled$ = this.graphicalsAspectsForm.statusChanges.pipe(
       map((status) => status === 'VALID')
     );
     this.isSection3filled$ = this.featuresForm.statusChanges.pipe(
