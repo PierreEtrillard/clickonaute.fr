@@ -1,0 +1,34 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Oxygen, sans-serif;
+  color: white;
+  // padding-top: 80px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+li {
+  font-weight: lighter;
+  list-style-type: none;
+}
+
+#space-background {
+  z-index: -100;
+  position: fixed;
+  top: 0;
+  min-width: 100%;
+  width: fit-content;
+  min-height: 100%;
+  height: auto;
+  background-image: url("../../assets/images/background.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  animation: background-animator ease-in-out 60s both infinite alternate;
+}

@@ -1,0 +1,13 @@
+<table>
+  <caption>
+    La simulation suivante ne constitue pas un devis officielle, merci de me
+    contacter pour un estimation plus précise de votre projet
+  </caption>
+  <th>prestations</th>
+  <th>prix unitaire</th>
+  <tr *ngFor="let presta of quote">
+    <td>{{presta.description}} :</td>
+    <td>{{presta.price}} €</td>
+  </tr>
+  <tr *ngIf="formValues.features.other"><td>Vous souhaitez intégrer une fonctionalité supplémentaire ? merci de me contacter pour ne discuter:</td></tr>
+</table>
