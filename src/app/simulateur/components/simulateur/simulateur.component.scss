@@ -71,9 +71,6 @@ fieldset {
     &.next {
       right: -15px;
     }
-    &.space-button-disabled{
-      cursor: not-allowed;
-    }
   }
   input,
   textarea,
@@ -92,4 +89,9 @@ fieldset {
   a{
     color: darkmagenta;
   }
+}
+app-result{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

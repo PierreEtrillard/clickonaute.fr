@@ -22,5 +22,6 @@ button {
   cursor: pointer;
   &-disabled {
     filter: grayscale(1);
+    cursor: not-allowed;
   }
 }

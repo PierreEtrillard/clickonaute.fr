@@ -1,13 +1,24 @@
 <table>
   <caption>
-    La simulation suivante ne constitue pas un devis officielle, merci de me
-    contacter pour un estimation plus précise de votre projet
+    La simulation suivante ne constitue pas un devis officiel, merci de me
+    contacter pour une estimation plus précise de votre projet
   </caption>
-  <th>prestations</th>
-  <th>prix unitaire</th>
+  <div id="header-table">
+    <th class="description">prestations</th>
+    <th class="price">prix</th>
+  </div>
   <tr *ngFor="let presta of quote">
-    <td>{{presta.description}} :</td>
-    <td>{{presta.price}} €</td>
+    <td class="description">{{ presta.description }} :</td>
+    <td class="price">{{ presta.price }} €</td>
   </tr>
-  <tr *ngIf="formValues.features.other"><td>Vous souhaitez intégrer une fonctionalité supplémentaire ? merci de me contacter pour ne discuter:</td></tr>
+  <p *ngIf="formValues.features.other">
+    Vous souhaitez intégrer une fonctionalité supplémentaire ? merci de me
+    contacter pour en discuter/p>
+  </p>
 </table>
+<div id="button-wrapper">
+  <button class="space-button" (click)="reinitializer()">réinitialiser</button>
+  <button class="space-button">
+    <a href="mailto:contact@clickonaute.fr">contact</a>
+  </button>
+</div>

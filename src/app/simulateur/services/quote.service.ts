@@ -96,7 +96,7 @@ export class QuoteService {
       }
       this.prestations.forEach(presta=>this.totalCost += presta.price)
       this.prestations.push({
-        description: "prix total du projet",
+        description: "coût estimé du projet",
         price: this.totalCost
       })
       return this.prestations;

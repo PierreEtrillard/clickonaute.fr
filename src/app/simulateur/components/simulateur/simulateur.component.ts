@@ -35,7 +35,7 @@ export class SimulateurComponent implements OnInit {
   isSection2filled$!: Observable<boolean>;
   isSection3filled$!: Observable<boolean>;
   isAllfilled$!: Observable<boolean>;
-  result!: any;
+  result: any={};
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
@@ -115,6 +115,7 @@ export class SimulateurComponent implements OnInit {
     if (this.estimatorForm.valid) {
       this.formFillStep$.next(4);
       this.result=this.estimatorForm.value;
+      this.estimatorForm.reset()
     } else {
       console.error('form invalid');
     }

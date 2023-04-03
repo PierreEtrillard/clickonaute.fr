@@ -94,17 +94,17 @@
         de votre projet ?
       </div>
       <p class="radio-wrapper">
-      <input
-        name="hebergement"
-        formControlName="hebergement"
-        id="hebYes"
-        type="radio"
-        value="true"
-      />
-      <label for="hebYes">oui</label>
-      <input name="hebergement" id="hebNo" type="radio" value="false" />
-      <label for="hebNo">non</label>
-    </p>
+        <input
+          name="hebergement"
+          formControlName="hebergement"
+          id="hebYes"
+          type="radio"
+          value= true
+        />
+        <label for="hebYes">oui</label>
+        <input name="hebergement" formControlName="hebergement" id="hebNo" type="radio" value=false />
+        <label for="hebNo">non</label>
+      </p>
       <button
         class="next"
         [ngClass]="
@@ -130,7 +130,7 @@
           type="radio"
           id="avec-maquette"
           formControlName="maquette"
-          value="false"
+          value= false
         />
         <label for="sans-maquette"
           >Non, je souhaite faire réaliser une maquette de mon projet</label
@@ -139,7 +139,7 @@
           type="radio"
           id="sansmaquette"
           formControlName="maquette"
-          value="true"
+          value= true
         />
       </p>
 
@@ -151,7 +151,7 @@
           type="checkbox"
           id="police"
           formControlName="police"
-          value=false
+          value= false
         />
       </p>
 
@@ -248,6 +248,6 @@
     </fieldset>
   </form>
   <div id="result" *ngIf="(formFillStep$ | async) === 4">
-    <app-result [formValues]="result"></app-result>
+    <app-result [formValues]="result" (backToSimulator$)="stepNav(1)"></app-result>
   </div>
 </main>

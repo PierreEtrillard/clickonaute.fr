@@ -1,0 +1,38 @@
+// display-flex; flex direction:column align-item:center hérité de app-result déclaré dans simulateur.component.scss
+table{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 90%;
+  font-size: x-small;
+}
+#header-table,tr {
+  margin: 10px;
+  display: flex;
+}
+.description {
+  width: 80%;
+  padding-left: 15px;
+}
+.price {
+  width: 20%;
+  text-align: right;
+  padding-right: 15px;
+}
+tr:last-child {
+  margin: 10px 0 0 0;
+  padding-left: 9px;
+  padding-right:9px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+  color: black;
+}
+#button-wrapper{
+  width: 100%;
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+
+}
