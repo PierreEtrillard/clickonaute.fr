@@ -4,10 +4,10 @@ button {
   border-left: #011028;
   padding: 0.5rem;
   transition: all 150ms;
+  cursor: pointer;
   &:hover {
     transform: scale(0.95);
     box-shadow: grey -1px -1px;
-    cursor: pointer;
   }
 }
 .space-button {
@@ -19,7 +19,6 @@ button {
   );
   color: white;
   border-radius: 10px;
-  cursor: pointer;
   &-disabled {
     filter: grayscale(1);
     cursor: not-allowed;

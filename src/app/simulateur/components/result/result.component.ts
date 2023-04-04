@@ -22,7 +22,7 @@ export class ResultComponent implements OnInit, OnDestroy{
      
   }
   reinitializer(){
-    this.quote = []
+    // this.quote = []
     this.backToSimulator$.emit(1)
   }
 }

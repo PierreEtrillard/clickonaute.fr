@@ -3,7 +3,7 @@ import { prestation } from '../quote.model';
 
 @Injectable()
 export class QuoteService {
-  prestations: prestation[] = [];
+  prestations!: prestation[];
   baseSite: number = 800;
   baseEcom: number = 1150;
   baseAppli: number = 1300;
@@ -17,6 +17,7 @@ export class QuoteService {
   accountCost: number = 520;
   totalCost:number = 0;
   quoteBuilder(formVal: any): prestation[] {
+    this.prestations = [];// remise à zéro du tableau pour eviter une aglomerations des prestations précédemment éditées.
    switch (formVal.scale.type) {
         case 'vitrine':
           this.prestations.push({

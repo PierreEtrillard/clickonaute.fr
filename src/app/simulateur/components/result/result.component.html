@@ -9,7 +9,7 @@
   </div>
   <tr *ngFor="let presta of quote">
     <td class="description">{{ presta.description }} :</td>
-    <td class="price">{{ presta.price }} €</td>
+    <td class="price">{{ presta.price | currency:'EUR'}}</td>
   </tr>
   <p *ngIf="formValues.features.other">
     Vous souhaitez intégrer une fonctionalité supplémentaire ? merci de me

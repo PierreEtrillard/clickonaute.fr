@@ -1,11 +1,4 @@
-@keyframes maskPagesOpening {
-  from {
-    transform: scale(0, 0.8);
-  }
-  to {
-    transform: scale(0.8, 0.8);
-  }
-}
+
 .mask {
   z-index: -50;
   background-color: black;

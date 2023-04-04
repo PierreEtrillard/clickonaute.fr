@@ -30,11 +30,13 @@ export class SimulateurComponent implements OnInit {
   accountCtrl!: FormControl;
   noFeatureCtrl!: FormControl;
   otherCtrl!: FormControl;
+  //surveillants de section valide
   formFillStep$ = new BehaviorSubject<number>(1);
   isSection1filled$!: Observable<boolean>;
   isSection2filled$!: Observable<boolean>;
   isSection3filled$!: Observable<boolean>;
   isAllfilled$!: Observable<boolean>;
+  //formData:
   result: any={};
 
   constructor(private formBuilder: FormBuilder) {}
@@ -115,7 +117,6 @@ export class SimulateurComponent implements OnInit {
     if (this.estimatorForm.valid) {
       this.formFillStep$.next(4);
       this.result=this.estimatorForm.value;
-      this.estimatorForm.reset()
     } else {
       console.error('form invalid');
     }

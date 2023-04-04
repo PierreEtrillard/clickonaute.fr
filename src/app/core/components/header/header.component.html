@@ -1,10 +1,11 @@
 <a (click)="retourAccueil()"
-  ><div id="logo-wrapper">
+  ><div id="logo-wrapper" [ngClass]="(hideHeader$|async)?'hide':'reveal'">
     <img
       id="logo"
       src="../../../../assets/images/logo_blanc_sansFlamme.webp"
       alt="clickonaute.fr"
       aria-describedby="logo clickonaute.fr avec fusée au décolage"
+      
     />
     <img
       id="flamme"
@@ -13,3 +14,9 @@
     />
   </div>
 </a>
+<div id="go-top" (click)="onTheTop()" [ngClass]="(hideHeader$|async)?'reveal':'hide'">
+<img
+src="../../../../assets/images/flamme.webp"
+alt="flamme de la fusée"
+/>
+</div>
