@@ -31,15 +31,17 @@ ul {
   align-items: center;
   justify-content: space-evenly;
   .step {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    font-size: smaller;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;;
+    min-width: 33%;
+    height: 5px;
+    background-color: aqua;
+    cursor: pointer;
     }
+  .stepUnFilled{
+    min-width: 33%;
+    height: 5px;
+    background-color: grey;
+    cursor: pointer;
+  }
 }
 form {
   display: flex;

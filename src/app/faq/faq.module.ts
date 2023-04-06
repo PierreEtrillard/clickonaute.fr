@@ -6,8 +6,8 @@ import { DiyComponent } from './components/diy/diy.component';
 import { AccessibiliteComponent } from './components/accessibilite/accessibilite.component';
 import { CoutComponent } from './components/cout/cout.component';
 import { SeoComponent } from './components/seo/seo.component';
+import { FormsModule } from '@angular/forms';
 import { WhatCookiesComponent } from './components/what-cookies/what-cookies.component';
-
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { WhatCookiesComponent } from './components/what-cookies/what-cookies.com
   ],
   imports: [
     CommonModule,
-    FaqRoutingModule
-  ]
+    FaqRoutingModule,
+    FormsModule
+  ],
 })
 export class FaqModule { }

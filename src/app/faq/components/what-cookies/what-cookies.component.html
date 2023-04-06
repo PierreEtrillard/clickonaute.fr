@@ -1,5 +1,66 @@
 <main>
-  <p>{{ connection}}</p>
-  <p>{{ informations.platform }}</p>
-  <p>{{ informations.language }}</p>
+  <p>
+    Les images de ce site et le texte que vous lisez actuellement sont stockées
+    sur un appareil quelque part sur terre.
+  </p>
+  <ul>
+    Votre navigateur (FireFox,Chrome,Opera,Edge,Safari...) récuppère ces
+    informations et les traduit sur votre écran mais il peux faire bien plus
+    pour vous faciliter la vie.
+    <br />
+    En effet votre appareil partage des informations à votre navigateur telles
+    que:
+    <li>la date et l'heure : {{ date }}</li>
+    <li>votre langue préférée: {{ informations.language }}</li>
+    <li>
+      Ou encore quel systéme d'exploitation vous utilisez :
+      {{ informations.platform }}
+    </li>
+  </ul>
+  <p>
+    Mais il peut également obtenir des informations jugées plus sensible comme
+    votre localisation. <br />
+    Dans ce cas il vous demandera votre autorisation, faites l'essai, cliquez
+    sur le boutton ci-dessous:
+  </p>
+  <button (click)="askPosition()">cliquez puis autorisez</button>
+  <ul *ngIf="showPostion$ | async">
+    Selon votre navigateur vous vous trouvez à
+    <li>{{ position.longitude }} de longitude</li>
+    <li>{{ position.latitude }} de latitude</li>
+    <li *ngIf="showDirection$ | async">
+      et vous vous déplacez à {{ position.speed }} métres/secondes à
+      {{ position.heading }} degrés par rapport au nord.
+    </li>
+  </ul>
+
+  <form textSaver="ngForm" (ngSubmit)="saveMyData()">
+    <p>
+      Comme vous l'avez compris, votre navigateur peux emettre et recevoir des
+      données venant de votre appareil ou d'un serveur de paqe web mais aussi
+      recevoir des informations de vous-même. <br />
+    </p>
+    <label for="data"
+      >Par exemple, faite l'essai, écrivez le plus beau poême de votre vie dans
+      le champs ci dessous</label
+    >
+    <textarea
+      [(ngModel)]="myText"
+      name="myText"
+      id="data"
+      cols="30"
+      rows="10"
+    >{{myText}}</textarea>
+    <p>
+      A présent, que ce passerait-il si vous quittiez la page ou que
+      l'actualisiez ? <br />
+      Et oui le navigateur effacerait toutes données reçu que ce soit par votre
+      appareil, l'appareil distant qui fournis cette page web ou vous même !
+      <br />
+      Un beau poême comme celui ci meriterait d'être sauvegardé, heureusement votre navigateur dispose d'une mémoire de stockage dans
+      laquelle il peux sauvegarder des données.
+    </p>
+    <button type="submit">Sauvegarder mon texte dans un cookie</button>
+  </form>
+  <button (click)="reloadPage()">recharger la page</button>
 </main>

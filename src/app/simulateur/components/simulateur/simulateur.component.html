@@ -3,45 +3,24 @@
   <nav *ngIf="(formFillStep$ | async) !== 4">
     <h3>Etape {{ formFillStep$ | async }}</h3>
     <ul id="steps">
-      <li>
-        <div
-          class="step"
-          [ngClass]="
-            (isSection1filled$ | async)
-              ? 'space-button'
-              : 'space-button space-button-disabled'
-          "
-          (click)="stepNav(1)"
-        >
-          1
-        </div>
-      </li>
-      <li>
-        <div
-          class="step"
-          [ngClass]="
-            (isSection2filled$ | async)
-              ? 'space-button'
-              : 'space-button space-button-disabled'
-          "
-          (click)="stepNav(2)"
-        >
-          2
-        </div>
-      </li>
-      <li>
-        <div
-          class="step"
-          [ngClass]="
-            (isSection3filled$ | async)
-              ? 'space-button'
-              : 'space-button space-button-disabled'
-          "
-          (click)="stepNav(3)"
-        >
-          3
-        </div>
-      </li>
+      <li
+        [ngClass]="
+          (isSection1filled$ | async) ? 'step' : 'stepUnFilled'
+        "
+        (click)="stepNav(1)"
+      ></li>
+      <li
+        [ngClass]="
+          (isSection2filled$ | async) ? 'step' : 'stepUnFilled'
+        "
+        (click)="stepNav(2)"
+      ></li>
+      <li
+        [ngClass]="
+          (isSection3filled$ | async) ? 'step' : 'stepUnFilled'
+        "
+        (click)="stepNav(3)"
+      ></li>
     </ul>
   </nav>
 
@@ -86,11 +65,9 @@
         <label for="pages">Choisissez le nombre de pages de votre projet</label>
         <input type="number" id="pages" formControlName="pages" value="1" />
       </p>
-        <div>
+      <div>
         Souhaitez vous une assistance pour choisir et gérer
-        <a routerLink="/faq/coût">
-          l'hebergement
-        </a>
+        <a routerLink="/faq/coût"> l'hebergement </a>
         de votre projet ?
       </div>
       <p class="radio-wrapper">
@@ -99,10 +76,16 @@
           formControlName="hebergement"
           id="hebYes"
           type="radio"
-          value= true
+          value="true"
         />
         <label for="hebYes">oui</label>
-        <input name="hebergement" formControlName="hebergement" id="hebNo" type="radio" value=false />
+        <input
+          name="hebergement"
+          formControlName="hebergement"
+          id="hebNo"
+          type="radio"
+          value="false"
+        />
         <label for="hebNo">non</label>
       </p>
       <button
@@ -130,7 +113,7 @@
           type="radio"
           id="avec-maquette"
           formControlName="maquette"
-          value= false
+          value="false"
         />
         <label for="sans-maquette"
           >Non, je souhaite faire réaliser une maquette de mon projet</label
@@ -139,7 +122,7 @@
           type="radio"
           id="sansmaquette"
           formControlName="maquette"
-          value= true
+          value="true"
         />
       </p>
 
@@ -151,7 +134,7 @@
           type="checkbox"
           id="police"
           formControlName="police"
-          value= false
+          value="false"
         />
       </p>
 
@@ -159,7 +142,13 @@
         <label for="pics"
           >Je possède les logos et illustrations nécessaires à mon projet</label
         >
-        <input type="checkbox" id="pics" formControlName="pics" value=false unchecked/>
+        <input
+          type="checkbox"
+          id="pics"
+          formControlName="pics"
+          value="false"
+          unchecked
+        />
       </p>
 
       <button class="space-button preview" (click)="stepNav(1)">retour</button>
@@ -248,6 +237,9 @@
     </fieldset>
   </form>
   <div id="result" *ngIf="(formFillStep$ | async) === 4">
-    <app-result [formValues]="result" (backToSimulator$)="stepNav(1)"></app-result>
+    <app-result
+      [formValues]="result"
+      (backToSimulator$)="stepNav(1)"
+    ></app-result>
   </div>
 </main>
