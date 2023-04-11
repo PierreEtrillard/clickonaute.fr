@@ -39,6 +39,7 @@ export class ResultComponent implements OnInit {
         return aglomerat+letter
       })
     );
+    this.quote = []
     this.quote = this.quoteService.quoteBuilder(this.formValues);
   }
   reinitializer() {

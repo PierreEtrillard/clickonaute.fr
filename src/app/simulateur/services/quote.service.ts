@@ -15,8 +15,9 @@ export class QuoteService {
   mapCost: number = 120;
   cookiesCost: number = 320;
   accountCost: number = 520;
-  totalCost:number = 0;
+  totalCost!:number;
   quoteBuilder(formVal: any): prestation[] {
+    this.totalCost = 0;
     this.prestations = [];// remise à zéro du tableau pour eviter une aglomerations des prestations précédemment éditées.
    switch (formVal.scale.type) {
         case 'vitrine':
