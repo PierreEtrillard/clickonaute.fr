@@ -1,8 +1,16 @@
 @keyframes rotateNfade {
-  from{transform:rotateY(90deg); opacity:0}
-  60%{transform:rotateY(45deg);opacity:1}
-  to{transform:rotateY();opacity:1}
-
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  60% {
+    transform: rotateY(45deg);
+    opacity: 1;
+  }
+  to {
+    transform: rotateY();
+    opacity: 1;
+  }
 }
 main {
   display: flex;
@@ -10,20 +18,19 @@ main {
   align-items: center;
   h2 {
     text-align: center;
-    animation: rotateNfade 0.5s 2s  linear reverse forwards;
+    animation: rotateNfade 0.5s 2s linear reverse forwards;
     position: relative;
   }
-  nav{
+  nav {
     position: absolute;
     top: 55px;
     width: 100%;
     animation: rotateNfade 0.5s 2.2s linear both;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
 }
 ul {
   display: flex;
@@ -35,8 +42,8 @@ ul {
     height: 5px;
     background-color: aqua;
     cursor: pointer;
-    }
-  .stepUnFilled{
+  }
+  .stepUnFilled {
     min-width: 33%;
     height: 5px;
     background-color: grey;
@@ -57,9 +64,9 @@ fieldset {
   p.sel-wrapper {
     display: flex;
     align-items: center;
-    justify-content:space-between
+    justify-content: space-between;
   }
-  p.radio-wrapper{
+  p.radio-wrapper {
     display: flex;
     align-items: center;
   }
@@ -88,12 +95,13 @@ fieldset {
     text-align: right;
     max-width: 33px;
   }
-  a{
+  a {
     color: darkmagenta;
   }
 }
-app-result{
+#result, app-result {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 100%;
 }

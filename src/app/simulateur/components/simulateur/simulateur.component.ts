@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, take } from 'rxjs';
 
 @Component({
   selector: 'app-simulateur',
@@ -37,7 +37,7 @@ export class SimulateurComponent implements OnInit {
   isSection3filled$!: Observable<boolean>;
   isAllfilled$!: Observable<boolean>;
   //formData:
-  result: any={};
+  result: any = {};
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
@@ -83,10 +83,10 @@ export class SimulateurComponent implements OnInit {
   }
   // initialisation des controllers
   initControlers() {
-    this.typeCtrl = this.formBuilder.control("", Validators.required);
-    this.hebergementCtrl = this.formBuilder.control("", Validators.required);
+    this.typeCtrl = this.formBuilder.control('', Validators.required);
+    this.hebergementCtrl = this.formBuilder.control('', Validators.required);
     this.pagesCtrl = this.formBuilder.control(1, Validators.required);
-    this.maquetteCtrl = this.formBuilder.control("", Validators.required);
+    this.maquetteCtrl = this.formBuilder.control('', Validators.required);
     this.policeCtrl = this.formBuilder.control(true);
     this.picsCtrl = this.formBuilder.control(true);
     this.payOnlineCtrl = this.formBuilder.control(false);
@@ -98,25 +98,36 @@ export class SimulateurComponent implements OnInit {
   }
   initFilledSectionObserver() {
     this.isSection1filled$ = this.scaleForm.statusChanges.pipe(
-      map((status) => status === 'VALID')
+      map((status) => status === 'VALID'),
+      take(1)
     );
     this.isSection2filled$ = this.graphicalsAspectsForm.statusChanges.pipe(
-      map((status) => status === 'VALID')
+      map((status) => status === 'VALID'),
+      take(1)
     );
     this.isSection3filled$ = this.featuresForm.statusChanges.pipe(
-      map((status) => status === 'VALID')
+      map((status) => status === 'VALID'),
+      take(1)
     );
     this.isAllfilled$ = this.estimatorForm.statusChanges.pipe(
-      map((status) => status === 'VALID')
+      map((status) => status === 'VALID'),
+      take(1)
     );
   }
+  noFeature(){
+    this.featuresForm.reset()
+    this.noFeatureCtrl.setValue(true)
+  }
   stepNav(step: number) {
-      this.formFillStep$.next(step);
+        this.formFillStep$.next(step)     
+  }
+  showUnFilled(section:number){
+    alert(`Finalisez l'étape ${section} avant de passer à la suivante `)
   }
   resultBuilder() {
     if (this.estimatorForm.valid) {
       this.formFillStep$.next(4);
-      this.result=this.estimatorForm.value;
+      this.result = this.estimatorForm.value;
     } else {
       console.error('form invalid');
     }

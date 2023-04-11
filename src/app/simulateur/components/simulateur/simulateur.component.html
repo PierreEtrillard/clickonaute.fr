@@ -1,29 +1,23 @@
 <main>
   <h2>Estimez le coût de création de votre site en 3 clics !</h2>
-  <nav *ngIf="(formFillStep$ | async) !== 4">
+  <nav *ngIf="(formFillStep$ | async) !== 4" else resultat>
     <h3>Etape {{ formFillStep$ | async }}</h3>
     <ul id="steps">
       <li
-        [ngClass]="
-          (isSection1filled$ | async) ? 'step' : 'stepUnFilled'
-        "
+        [ngClass]="(isSection1filled$ | async) ? 'step' : 'stepUnFilled'"
         (click)="stepNav(1)"
       ></li>
       <li
-        [ngClass]="
-          (isSection2filled$ | async) ? 'step' : 'stepUnFilled'
-        "
+        [ngClass]="(isSection2filled$ | async) ? 'step' : 'stepUnFilled'"
         (click)="stepNav(2)"
       ></li>
       <li
-        [ngClass]="
-          (isSection3filled$ | async) ? 'step' : 'stepUnFilled'
-        "
+        [ngClass]="(isSection3filled$ | async) ? 'step' : 'stepUnFilled'"
         (click)="stepNav(3)"
       ></li>
     </ul>
   </nav>
-
+  <ng-template #resultat><h2>Cout estimé du projet</h2> </ng-template>
   <form [formGroup]="estimatorForm">
     <!-- Types de projet -->
     <fieldset formGroupName="scale" *ngIf="(formFillStep$ | async) === 1">
@@ -89,16 +83,20 @@
         <label for="hebNo">non</label>
       </p>
       <button
-        class="next"
-        [ngClass]="
-          (isSection1filled$ | async)
-            ? 'space-button'
-            : 'space-button space-button-disabled'
-        "
+        class="next space-button"
+        *ngIf="(isSection1filled$ | async)" else fill1
         (click)="stepNav(2)"
       >
         suivant
       </button>
+      <ng-template #fill1>
+        <button
+          (click)="showUnFilled(1)"
+          class="next space-button-disabled'"
+        >
+          suivant
+        </button></ng-template
+      >
     </fieldset>
     <!-- Aspects Graphiques -->
     <fieldset
@@ -210,7 +208,7 @@
         <label for="noFeature"
           >Je souhaite créer un site basique sans fonctionalitées</label
         >
-        <input type="checkbox" id="noFeature" formControlName="noFeature" />
+        <input type="checkbox" id="noFeature" formControlName="noFeature" (click)="noFeature()" />
       </p>
 
       <p class="sel-wrapper">
