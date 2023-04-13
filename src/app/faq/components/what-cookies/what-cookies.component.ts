@@ -14,10 +14,11 @@ export class WhatCookiesComponent implements OnInit{
   showPostion$ = new BehaviorSubject<boolean>(false);
   showDirection$ = new BehaviorSubject<boolean>(false);
   showDatas$ = new BehaviorSubject<boolean>(false);
-
+  savedCookie = false
   ngOnInit(): void {
     if (document.cookie.includes("text")){
       this.myText = document.cookie.split("=")[1]
+      this.savedCookie = true
     }
     console.log(document.cookie);    
   }
@@ -31,7 +32,7 @@ export class WhatCookiesComponent implements OnInit{
     });
   }
   saveMyData() {
-    document.cookie = `text=${this.myText}`
+    document.cookie = `text=${this.myText}; max-age= 86400`
   }
   reloadPage() {
     window.location.reload();

@@ -44,21 +44,24 @@
       >Par exemple, faite l'essai, écrivez le plus beau poême de votre vie dans
       le champs ci dessous</label
     >
+    <p *ngIf="savedCookie">Magnifique mon poême à été sauvegardé !</p>
     <textarea
       [(ngModel)]="myText"
       name="myText"
       id="data"
       cols="30"
       rows="10"
-    >{{myText}}</textarea>
+      >{{ myText }}</textarea
+    >
     <p>
       A présent, que ce passerait-il si vous quittiez la page ou que
       l'actualisiez ? <br />
       Et oui le navigateur effacerait toutes données reçu que ce soit par votre
       appareil, l'appareil distant qui fournis cette page web ou vous même !
       <br />
-      Un beau poême comme celui ci meriterait d'être sauvegardé, heureusement votre navigateur dispose d'une mémoire de stockage dans
-      laquelle il peux sauvegarder des données.
+      Un beau poême comme celui ci meriterait d'être sauvegardé, heureusement
+      votre navigateur dispose d'une mémoire de stockage dans laquelle il peux
+      sauvegarder des données.
     </p>
     <button type="submit">Sauvegarder mon texte dans un cookie</button>
   </form>

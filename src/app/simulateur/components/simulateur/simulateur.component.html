@@ -1,6 +1,6 @@
 <main>
   <h2>Estimez le coût de création de votre site en 3 clics !</h2>
-  <nav *ngIf="(formFillStep$ | async) !== 4" else resultat>
+    <nav *ngIf="(formFillStep$ | async) !== 4; else resultat">
     <h3>Etape {{ formFillStep$ | async }}</h3>
     <ul id="steps">
       <li
@@ -16,8 +16,11 @@
         (click)="stepNav(3)"
       ></li>
     </ul>
+    <p class="messages">{{progressiveMessage$ | async}}</p>
   </nav>
-  <ng-template #resultat><h2>Cout estimé du projet</h2> </ng-template>
+  <ng-template #resultat
+    ><h2 id="resultTitle">Cout estimé du projet</h2>
+  </ng-template>
   <form [formGroup]="estimatorForm">
     <!-- Types de projet -->
     <fieldset formGroupName="scale" *ngIf="(formFillStep$ | async) === 1">
@@ -84,15 +87,15 @@
       </p>
       <button
         class="next space-button"
-        *ngIf="(isSection1filled$ | async)" else fill1
+        *ngIf="(isSection1filled$ | async); else unfilledBtn1"
         (click)="stepNav(2)"
       >
         suivant
       </button>
-      <ng-template #fill1>
+      <ng-template #unfilledBtn1>
         <button
           (click)="showUnFilled(1)"
-          class="next space-button-disabled'"
+          class="next space-button space-button-disabled"
         >
           suivant
         </button></ng-template
@@ -149,18 +152,22 @@
         />
       </p>
 
-      <button class="space-button preview" (click)="stepNav(1)">retour</button>
+      <button class="space-button preview" (click)="stepBackward(1)">retour</button>
       <button
-        class="next"
-        [ngClass]="
-          (isSection2filled$ | async)
-            ? 'space-button'
-            : 'space-button space-button-disabled'
-        "
+        class="next space-button"
+        *ngIf="(isSection2filled$ | async); else unfilledBtn2"
         (click)="stepNav(3)"
       >
         suivant
       </button>
+      <ng-template #unfilledBtn2>
+        <button
+          (click)="showUnFilled(2)"
+          class="next space-button space-button-disabled"
+        >
+          suivant
+        </button></ng-template
+      >
     </fieldset>
     <!-- Fonctionnalités -->
     <fieldset formGroupName="features" *ngIf="(formFillStep$ | async) === 3">
@@ -172,6 +179,7 @@
           id="payOnline"
           formControlName="payOnline"
           value="true"
+          (click)="noFeatureClosed()"
         />
       </p>
 
@@ -182,6 +190,7 @@
           id="location"
           formControlName="location"
           value="true"
+          (click)="noFeatureClosed()"
         />
       </p>
 
@@ -197,18 +206,29 @@
           id="cookies"
           formControlName="cookies"
           value="true"
+          (click)="noFeatureClosed()"
         />
       </p>
 
       <p class="sel-wrapper">
         <label for="account">Création et gestion de comptes utilisateurs</label>
-        <input type="checkbox" id="account" formControlName="account" />
+        <input
+          type="checkbox"
+          id="account"
+          formControlName="account"
+          (click)="noFeatureClosed()"
+        />
       </p>
       <p class="sel-wrapper">
         <label for="noFeature"
           >Je souhaite créer un site basique sans fonctionalitées</label
         >
-        <input type="checkbox" id="noFeature" formControlName="noFeature" (click)="noFeature()" />
+        <input
+          type="checkbox"
+          id="noFeature"
+          formControlName="noFeature"
+          (click)="noFeature()"
+        />
       </p>
 
       <p class="sel-wrapper">
@@ -216,8 +236,13 @@
           >J'ai besoin d'une fonctionalité spécifique qui n'est pas dans la
           liste</label
         >
-        <input id="other" type="checkbox" formControlName="other" />
-        <button class="space-button preview" (click)="stepNav(2)">
+        <input
+          id="other"
+          type="checkbox"
+          formControlName="other"
+          (click)="noFeatureClosed()"
+        />
+        <button class="space-button preview" (click)="stepBackward(2)">
           retour
         </button>
         <button

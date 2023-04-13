@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class SectionSelService {
 
-private _sectionSelected$= new BehaviorSubject<string>("accueil")
+private _sectionSelected$= new BehaviorSubject<string>("page")
 
 get sectionSelected(): Observable<string>
 {

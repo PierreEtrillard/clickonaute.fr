@@ -6,7 +6,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { BehaviorSubject, map, Observable, take } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, take, tap } from 'rxjs';
+import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
 
 @Component({
   selector: 'app-simulateur',
@@ -36,10 +37,15 @@ export class SimulateurComponent implements OnInit {
   isSection2filled$!: Observable<boolean>;
   isSection3filled$!: Observable<boolean>;
   isAllfilled$!: Observable<boolean>;
+  errorMessage: string = '';
+  progressiveMessage$!: Observable<string>;
   //formData:
   result: any = {};
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private progressiveDisplayService: ProgressiveDisplayService
+  ) {}
   ngOnInit(): void {
     this.initControlers();
     this.initGraphicalsAspectsForm();
@@ -98,38 +104,60 @@ export class SimulateurComponent implements OnInit {
   }
   initFilledSectionObserver() {
     this.isSection1filled$ = this.scaleForm.statusChanges.pipe(
-      map((status) => status === 'VALID'),
-      take(1)
+      map((status) => status === 'VALID')
     );
     this.isSection2filled$ = this.graphicalsAspectsForm.statusChanges.pipe(
-      map((status) => status === 'VALID'),
-      take(1)
+      map((status) => status === 'VALID')
     );
     this.isSection3filled$ = this.featuresForm.statusChanges.pipe(
-      map((status) => status === 'VALID'),
-      take(1)
+      map((status) => status === 'VALID')
     );
     this.isAllfilled$ = this.estimatorForm.statusChanges.pipe(
-      map((status) => status === 'VALID'),
-      take(1)
+      map((status) => status === 'VALID')
     );
   }
-  noFeature(){
-    this.featuresForm.reset()
-    this.noFeatureCtrl.setValue(true)
+  noFeature() {
+    this.featuresForm.reset();
+    this.noFeatureCtrl.setValue(true);
+  }
+  noFeatureClosed() {
+    this.noFeatureCtrl.setValue(false);
+  }
+  stepBackward(step: number) {
+    this.formFillStep$.next(step);
+    if (step == 1) {
+      this.scaleForm.reset();
+      this.pagesCtrl.setValue(1);
+    }
+    if (step == 2) {
+      this.graphicalsAspectsForm.reset();
+    }
+    this.progressiveMessage$ =
+      this.progressiveDisplayService.progressiveMessage$(
+        `Sélectionnez vos besoins avant de revenir à l'étape ${step + 1}`
+      );
   }
   stepNav(step: number) {
-        this.formFillStep$.next(step)     
+    this.progressiveMessage$ = of();
+    this.formFillStep$.next(step);
   }
-  showUnFilled(section:number){
-    alert(`Finalisez l'étape ${section} avant de passer à la suivante `)
+  showUnFilled(section: number) {
+    this.progressiveMessage$ =
+      this.progressiveDisplayService.progressiveMessage$(
+        `Finalisez l'étape ${section} avant de passer à la suivante `
+      );
   }
   resultBuilder() {
     if (this.estimatorForm.valid) {
-      this.formFillStep$.next(4);
       this.result = this.estimatorForm.value;
+      this.estimatorForm.reset();
+      this.pagesCtrl.setValue(1);
+      this.formFillStep$.next(4);
     } else {
-      console.error('form invalid');
+      this.progressiveMessage$ =
+        this.progressiveDisplayService.progressiveMessage$(
+          "Merci de compléter toutes les étapes avant l'édition du devis"
+        );
     }
   }
 }

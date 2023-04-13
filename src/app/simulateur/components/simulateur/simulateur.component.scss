@@ -15,15 +15,17 @@
 main {
   display: flex;
   flex-direction: column;
-  align-items: center;
   h2 {
     text-align: center;
     animation: rotateNfade 0.5s 2s linear reverse forwards;
     position: relative;
+    &#resultTitle {
+      animation: rotateNfade 0.5s linear both;
+    }
   }
   nav {
     position: absolute;
-    top: 55px;
+    top: 60px;
     width: 100%;
     animation: rotateNfade 0.5s 2.2s linear both;
     display: flex;
@@ -37,6 +39,7 @@ ul {
   width: 80%;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0;
   .step {
     min-width: 33%;
     height: 5px;
@@ -57,7 +60,9 @@ form {
 }
 fieldset {
   display: flex;
-  font-size: x-small;
+  width: 85%;
+  margin-top:20px;
+  font-size: 10px;
   flex-direction: column;
   border-radius: 10px;
   position: relative;
@@ -96,7 +101,7 @@ fieldset {
     max-width: 33px;
   }
   a {
-    color: darkmagenta;
+    color:aqua;
   }
 }
 #result, app-result {
