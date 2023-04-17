@@ -13,7 +13,7 @@ export class HeaderComponent {
   hideHeader$= new BehaviorSubject<boolean>(false)
   @HostListener('document:scroll', ['$event'])
   onScroll(e:Event) {
-    // this.hideHeader$.next(true)
+    this.hideHeader$.next(true)
     console.log(this.getYPosition(e));
     
   }

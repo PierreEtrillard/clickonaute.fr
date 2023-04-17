@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, interval, map } from 'rxjs';
 
 @Component({
   selector: 'app-what-cookies',
@@ -9,13 +9,14 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 export class WhatCookiesComponent implements OnInit{
   informations: Navigator = navigator;
   position!: GeolocationCoordinates;
-  date: string = new Date().toLocaleString('fr');
+  date$!:Observable<string> 
   myText!: string;
   showPostion$ = new BehaviorSubject<boolean>(false);
   showDirection$ = new BehaviorSubject<boolean>(false);
   showDatas$ = new BehaviorSubject<boolean>(false);
   savedCookie = false
   ngOnInit(): void {
+    this.date$ = interval(1000).pipe(map(()=> new Date().toLocaleString('fr')))
     if (document.cookie.includes("text")){
       this.myText = document.cookie.split("=")[1]
       this.savedCookie = true

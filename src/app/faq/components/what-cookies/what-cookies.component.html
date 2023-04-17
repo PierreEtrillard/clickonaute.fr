@@ -1,16 +1,25 @@
 <main>
+  <h1>Tout sur les cookies</h1>
+  <sup>Dans cet article, je vais vous expliquer ce que sont</sup>
+  <ul>
+    <li><a href="/faq/cookies#talk">les cookies de fonctionalité</a></li>
+    <li><a href="/faq/cookies#targeting">les cookies de ciblage</a></li>
+    <li><a href="/faq/cookies#audits">les cookies d'audience</a></li>
+  </ul>
+  <h2></h2>
+  <h3>Votre navigateur écoute !</h3>
   <p>
     Les images de ce site et le texte que vous lisez actuellement sont stockées
-    sur un appareil quelque part sur terre.
+    sur un appareil quelque part sur terre.<br />
+    Votre navigateur* récuppère ces informations et les traduit sur votre écran
+    mais il peux faire bien plus pour vous faciliter la vie.
+    <sub>*FireFox,Chrome,Opera,Edge,Safari...</sub>
   </p>
+  <h3 id="talk">Votre navigateur parle !</h3>
   <ul>
-    Votre navigateur (FireFox,Chrome,Opera,Edge,Safari...) récuppère ces
-    informations et les traduit sur votre écran mais il peux faire bien plus
-    pour vous faciliter la vie.
-    <br />
-    En effet votre appareil partage des informations à votre navigateur telles
-    que:
-    <li>la date et l'heure : {{ date }}</li>
+    En effet votre navigateur peut diffuser des informations provenant de votre
+    appareil telles que:
+    <li>la date et l'heure : {{ date$ | async }}</li>
     <li>votre langue préférée: {{ informations.language }}</li>
     <li>
       Ou encore quel systéme d'exploitation vous utilisez :
@@ -38,21 +47,18 @@
     <p>
       Comme vous l'avez compris, votre navigateur peux emettre et recevoir des
       données venant de votre appareil ou d'un serveur de paqe web mais aussi
-      recevoir des informations de vous-même. <br />
+      recevoir des informations de votre part. <br />
     </p>
     <label for="data"
       >Par exemple, faite l'essai, écrivez le plus beau poême de votre vie dans
       le champs ci dessous</label
     >
-    <p *ngIf="savedCookie">Magnifique mon poême à été sauvegardé !</p>
-    <textarea
-      [(ngModel)]="myText"
-      name="myText"
-      id="data"
-      cols="30"
-      rows="10"
-      >{{ myText }}</textarea
-    >
+    <sup class="messages" *ngIf="savedCookie">
+      Magnifique mon poême à été sauvegardé !
+    </sup>
+    <textarea [(ngModel)]="myText" name="myText" id="data" cols="40" rows="5">{{
+      myText
+    }}</textarea>
     <p>
       A présent, que ce passerait-il si vous quittiez la page ou que
       l'actualisiez ? <br />
@@ -66,4 +72,59 @@
     <button type="submit">Sauvegarder mon texte dans un cookie</button>
   </form>
   <button (click)="reloadPage()">recharger la page</button>
+  <ul>
+    En resumé, un navigateur:
+    <li>
+      reçois des informations d'appareils distants, de l'appareil sur lequel il
+      s'execute ou de l'utilisateur
+    </li>
+    <li>
+      peux stocker ces informations dans des cookies en vue de les réutiliser
+    </li>
+  </ul>
+  <h2 id="targeting">Les cookies de ciblage</h2>
+  <p>
+    Comme nous l'avons vu préccedemment les cookies sont très utiles à
+    l'utilisateur. C'est ce qui permet à l'utilisateur de concerver une liste
+    d'article dans un pannier sur un site marchand, un identifiant pour se
+    connecter à un compte ou encore une copie crypté de son mot de passe sans
+    avoir à tous réécrire à chaque connexion. <br />
+    Merci les cookies !
+  </p>
+  <h3>du contenu personalisé</h3>
+  <p>
+    Certain sites internet vous proposent également de stocker dans votre
+    navigateurs des informations personnels afin de vous proposer du contenu
+    adapté à votre âge, vos centres d'intêrets ou encore votre localité. <br />
+    <cite
+      >Bien pratique tout ça mais ces informations peuvent elles être revendu à
+      des tiers ?</cite
+    ><br />
+    Oui c'est informations pourais être revendu ou mise à disposition de
+    partenaires en vue d'un ciblage marketing, cependant dans ce cas,
+    <a href="https://www.cnil.fr/fr/la-loi-informatique-et-libertes#article82"
+      >la loi informatique et liberté
+    </a>
+    impose le consentement explicite de l'utilisateur, sans quoi le propriétaire
+    du site s'exposerait à
+    <a
+      href="https://www.cnil.fr/fr/cookies-sanction-de-60-millions-deuros-lencontre-de-microsoft-ireland-operations-limited"
+      >une amende</a
+    >
+    pouvant atteindre plusieurs milliers d'euros ! <br />
+    On ne rigole pas avec les données personnels !
+  </p>
+  <h2 id="audits">Les cookies d'audience, comme à la télé</h2>
+  <p>
+    <em
+      ><b>Le saviez vous ?</b> pour mesurer l'audience d'une chaine, les
+      instituts de mediametrie insèrent une marque – un tatouage - inaudible
+      dans le flux audio émis par les chaînes de télévision ; cette marque porte
+      un identifiant unique propre à chaque chaîne ainsi que l’heure et la date
+      de diffusion du programme émis en direct ou regardé en Replay.
+    </em>
+    Comme pour la télévision connaitre l'audience d'un site, voir même d'une
+    partie spécifique d'un site internet est essentiel à son optimisation. <a href="/faq/cookies#talk"></a> Comme
+    expliquer préccedemment
+  </p>
 </main>
