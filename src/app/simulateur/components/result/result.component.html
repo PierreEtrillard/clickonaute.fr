@@ -10,9 +10,8 @@
     <td class="description">{{ presta.description }} :</td>
     <td class="price">{{ presta.price | currency:'EUR'}}</td>
   </tr>
-  <p *ngIf="formValues.features.other">
-    Vous souhaitez intégrer une fonctionalité supplémentaire ? merci de me
-    contacter pour en discuter
+  <p class="messages" *ngIf="formValues.features.other">
+    Vous avez souhaitez intégrer une fonctionalité non répertoriée, contactez-moi pour en discuter.
   </p>
 </table>
 <div id="button-wrapper">

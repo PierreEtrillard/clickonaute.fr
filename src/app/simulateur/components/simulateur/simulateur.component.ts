@@ -37,6 +37,7 @@ export class SimulateurComponent implements OnInit {
   isSection2filled$!: Observable<boolean>;
   isSection3filled$!: Observable<boolean>;
   isAllfilled$!: Observable<boolean>;
+  maxPageReached$!:Observable<boolean>;
   errorMessage: string = '';
   progressiveMessage$!: Observable<string>;
   //formData:
@@ -110,6 +111,9 @@ export class SimulateurComponent implements OnInit {
     this.isSection1filled$ = this.scaleForm.statusChanges.pipe(
       map((status) => status === 'VALID')
     );
+    this.maxPageReached$ = this.pagesCtrl.statusChanges.pipe(
+      map((status) => status === 'INVALID')
+    );
     this.isSection2filled$ = this.graphicalsAspectsForm.statusChanges.pipe(
       map((status) => status === 'VALID')
     );
@@ -138,7 +142,7 @@ export class SimulateurComponent implements OnInit {
     }
     this.progressiveMessage$ =
       this.progressiveDisplayService.progressiveMessage$(
-        `Sélectionnez vos besoins avant de revenir à l'étape ${step + 1}`
+        `Sélectionnez vos nouveau choix avant de revenir à l'étape ${step + 1}`
       );
   }
   stepNav(step: number) {
