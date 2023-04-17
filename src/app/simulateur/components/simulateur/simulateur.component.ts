@@ -91,7 +91,11 @@ export class SimulateurComponent implements OnInit {
   initControlers() {
     this.typeCtrl = this.formBuilder.control('', Validators.required);
     this.hebergementCtrl = this.formBuilder.control('', Validators.required);
-    this.pagesCtrl = this.formBuilder.control(1, Validators.required);
+    this.pagesCtrl = this.formBuilder.control(1, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(50),
+    ]);
     this.maquetteCtrl = this.formBuilder.control('', Validators.required);
     this.policeCtrl = this.formBuilder.control(true);
     this.picsCtrl = this.formBuilder.control(true);
