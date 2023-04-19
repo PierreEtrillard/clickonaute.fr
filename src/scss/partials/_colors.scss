@@ -1,0 +1,29 @@
+$primary-color: white;
+$secondary-color: aqua;
+$bg-section: (
+  dark: black,
+  light: rgba(102, 102, 102, 0.85),
+);
+@mixin dark-mask {
+    background-color: map-get($bg-section, dark);
+    opacity: 60%;
+  }
+  @mixin light-mask{
+    background-color: map-get($bg-section, light);
+    opacity: 1;
+  }
+
+#space-background {
+  z-index: -100;
+  position: fixed;
+  top: 0;
+  min-width: 100%;
+  width: fit-content;
+  min-height: 100%;
+  height: auto;
+  background-image: url("../../assets/images/background.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  animation: background-animator ease-in-out 60s both infinite alternate;
+}

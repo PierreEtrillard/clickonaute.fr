@@ -38,4 +38,8 @@ export class WhatCookiesComponent implements OnInit{
   reloadPage() {
     window.location.reload();
   }
+  deleteCookie(){
+    document.cookie = `text=suprimed cookie; max-age= 0`;
+    window.location.reload();
+  }
 }

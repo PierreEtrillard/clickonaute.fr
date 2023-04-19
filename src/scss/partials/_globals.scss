@@ -12,14 +12,9 @@ body {
 h1{
   font-size: 2rem;
 }
-.messages{
-  font-family: Galactic-Font;
-  font-weight: 100;
-  color: aqua;
-  font-size: 0.55rem;
-  margin: 0;
-}
+
 main{
+  margin: 4%;
   padding: 90px 15px 15px 15px;
   display: flex;
   flex-direction: column;
@@ -35,17 +30,3 @@ li {
   list-style-type: none;
 }
 
-#space-background {
-  z-index: -100;
-  position: fixed;
-  top: 0;
-  min-width: 100%;
-  width: fit-content;
-  min-height: 100%;
-  height: auto;
-  background-image: url("../../assets/images/background.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  animation: background-animator ease-in-out 60s both infinite alternate;
-}

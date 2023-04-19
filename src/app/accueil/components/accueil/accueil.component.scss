@@ -63,7 +63,9 @@
   }
   .reducer{
     margin-top: 1rem;
-    font-size: x-small;
+    &:hover{
+      box-shadow: aqua 0px 0px 10px;
+    }
   }
   app-sim-btn{
     position: fixed;
