@@ -43,7 +43,7 @@
     </li>
   </ul>
 
-  <form textSaver="ngForm" (ngSubmit)="saveMyData()">
+  <form textSaver="ngForm">
     <p>
       Comme vous l'avez compris, votre navigateur peut émettre et recevoir des
       données venant de votre appareil ou d'un serveur de page web mais aussi
@@ -60,21 +60,31 @@
       myText
     }}</textarea>
     <p>
-      A présent, que ce passe t-il si vous quittez la page ou que
-      l'actualisez ? <br />
-      Et oui, le navigateur efface toutes données reçues, que ce soit par votre
-      appareil, l'appareil distant qui fourni cette page web ou émise par vous même !
+      A présent, que ce passe t-il si vous quittez la page ou que l'actualisez ?
       <br />
-      Un beau poême comme celui ci merite d'être sauvegardé, heureusement
-      votre navigateur dispose d'une mémoire de stockage dans laquelle il peut
+      Et oui, le navigateur efface toutes données reçues, que ce soit par votre
+      appareil, l'appareil distant qui fourni cette page web ou émise par vous
+      même !
+      <br />
+      Un beau poême comme celui ci merite d'être sauvegardé, heureusement votre
+      navigateur dispose d'une mémoire de stockage dans laquelle il peut
       sauvegarder des données.
     </p>
-    <button type="submit">Sauvegarder mon texte dans un cookie</button>
   </form>
-  <button (click)="reloadPage()">recharger la page</button>
-  <button (click)="deleteCookie()">effacer le cookie</button>
-  <ul>
-    En resumé, un navigateur:
+  <ol>
+    Testez :
+    <li>
+      <button (click)="saveMyData()">
+        Sauvegardez votre texte dans un cookie
+      </button>
+      <p *ngIf="cookieCreated$ | async" class="messages">cookie créé !</p>
+    </li>
+    <li><button (click)="reloadPage()">Rechargez la page</button></li>
+    <li><button (click)="deleteCookie()">Effacez le cookie</button></li>
+  </ol>
+
+  <ul class="summary">
+    En resumé, un navigateur :
     <li>
       reçoit des informations d'appareils distants, de l'appareil sur lequel il
       s'execute ou venant de l'utilisateur
@@ -85,7 +95,7 @@
   </ul>
   <h2 id="targeting">Les cookies de ciblage</h2>
   <p>
-    Comme nous l'avons vu préccedemment les cookies sont très utiles à
+    Comme nous l'avons vu précédemment les cookies sont très utiles à
     l'utilisateur. C'est ce qui permet à l'utilisateur de conserver une liste
     d'articles dans un panier sur un site marchand, un identifiant pour se
     connecter à un compte ou encore une copie cryptée de son mot de passe sans
@@ -97,14 +107,13 @@
     Certains sites internet vous proposent également de stocker dans votre
     navigateur des informations personnelles afin de vous proposer du contenu
     adapté à votre âge, vos centres d'intêrets ou encore votre localité. <br />
-    
+
     <cite>
-      <hr>
-      Bien pratique tout ça mais ces informations peuvent elles être revendu à
+      <hr />
+      Bien pratique tout ça mais ces informations peuvent elles être communiquées à
       des tiers ?</cite
     ><br />
-    Oui, ces informations pourraient être revendues ou mise à disposition de
-    partenaires en vue d'un ciblage marketing, cependant dans ce cas,
+    Oui, ces informations stocker dans votre navigateur pourraient être luent par des sites partenaires en vue d'un ciblage marketing, cependant dans ce cas,
     <a href="https://www.cnil.fr/fr/la-loi-informatique-et-libertes#article82"
       >la loi informatique et liberté
     </a>
@@ -118,16 +127,31 @@
     On ne rigole pas avec les données personnelles !
   </p>
   <h2 id="audits">Les cookies d'audience, comme à la télé</h2>
-  <p>
-    <em
+
+  <div class="info">
+    <i
       ><b>Le saviez vous ?</b> pour mesurer l'audience d'une chaine, les
       instituts de médiametrie insèrent une marque – un tatouage - inaudible
       dans le flux audio émis par les chaînes de télévision ; cette marque porte
       un identifiant unique propre à chaque chaîne ainsi que l’heure et la date
       de diffusion du programme émis en direct ou regardé en Replay.
-    </em>
+    </i>
+  </div>
+  <p>
     Comme pour la télévision, connaitre l'audience d'un site, voir même d'une
     partie spécifique d'un site internet est essentiel à son optimisation.
-    <a href="/faq/cookies#talk"></a> Comme expliqué préccedemment
   </p>
+  <p>
+    <a href="/faq/cookies#talk">Précedemment</a> je vous expliquais que votre
+    navigateur peut emettre précisemnet ce type d'informations.
+  </p>
+  <ul>
+    Il est très utiles au propriétaires de sites de savoir :
+    <li>à qu'elle heure les personnes consulte leurs sites ?</li>
+    <li>de quelle endroit du globe viennent t-elles ?</li>
+    <li>sur qu'elle partie de leur site restent t-elles le plus longtemps ?</li>
+    <li>Consultent t'elle le site depuis un ordinateur ou un smartphone ?</li>
+    <li>Ou encore depuis quel autre site ou moteur de recherche viennent t-elles ?</li>
+  </ul>
+  <p>Bien qu'annonyme </p>
 </main>

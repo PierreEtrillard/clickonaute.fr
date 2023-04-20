@@ -8,15 +8,21 @@
 .table-of-content {
   @include light-mask;
   border-radius: 20px;
-  border: solid 2px black;
-  padding: 1rem;
   li {
     list-style: inside;
   }
 }
 .summary {
   @include light-mask;
-  border-radius: 20px;
+
+  li {
+    list-style: square;
+    margin: .5rem;
+  }
+}
+.info {
+    @include light-mask;
+    font-style: italic;
 }
 .mask {
   z-index: -50;

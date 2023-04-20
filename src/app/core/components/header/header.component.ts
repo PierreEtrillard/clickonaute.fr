@@ -10,11 +10,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 
 export class HeaderComponent {
+  
   hideHeader$= new BehaviorSubject<boolean>(false)
+  takeOff$= new BehaviorSubject<boolean>(false)
+
   @HostListener('document:scroll', ['$event'])
   onScroll(e:Event) {
-    this.hideHeader$.next(true)
-    console.log(this.getYPosition(e));
+    (window.scrollY > 60 ) ?  this.hideHeader$.next(true):this.hideHeader$.next(false)
     
   }
   constructor(
@@ -26,12 +28,12 @@ export class HeaderComponent {
     return (e.target as Element).scrollTop;
   }
   onTheTop() {
+    this.takeOff$.next(true)
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    this.hideHeader$.next(false)
   }
   retourAccueil() {
     this.sectionSelService.sectionSwitcher('accueil');

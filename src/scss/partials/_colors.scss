@@ -5,13 +5,14 @@ $bg-section: (
   light: rgba(102, 102, 102, 0.85),
 );
 @mixin dark-mask {
-    background-color: map-get($bg-section, dark);
-    opacity: 60%;
-  }
-  @mixin light-mask{
-    background-color: map-get($bg-section, light);
-    opacity: 1;
-  }
+  background-color: map-get($bg-section, dark);
+  opacity: 60%;
+}
+@mixin light-mask {
+  background-color: map-get($bg-section, light);
+  border: double 3px black;
+  padding: 1rem;
+}
 
 #space-background {
   z-index: -100;

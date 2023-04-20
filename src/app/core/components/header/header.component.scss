@@ -16,18 +16,35 @@
   left: 169px;
   animation: fire linear 200ms both infinite alternate;
   transform-origin: top;
+  transform: rotate(25deg) ;
 }
 #go-top{
   position: fixed;
-  background-image: url("../../../../assets/images/rocket.jpg");
   width: 40px;
   height: auto;
-  bottom: 10px;
+  bottom: 72px;
   right: 5px;
+  animation: clickMe ease-in 400ms both infinite alternate;
+  transition: all 0.5s;
+  #rocket{
+    position: absolute;
+    top: 0;
+  }
+  #fire{
+    z-index: -10;
+    position: absolute;
+    bottom: -75px;
+    left: 13px;
+    animation: fire linear 800ms both infinite alternate;
+  }
 }
 .hide{
  opacity: 0;
 }
 .reveal{
   opacity: 1;
+}
+.take-off{
+  // animation: takeOff ease-in 400ms backwards;
+  animation: fire linear 800ms both infinite alternate;
 }

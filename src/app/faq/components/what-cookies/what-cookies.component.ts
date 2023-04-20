@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, interval, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, interval, map } from 'rxjs';
 
 @Component({
   selector: 'app-what-cookies',
@@ -14,6 +14,7 @@ export class WhatCookiesComponent implements OnInit{
   showPostion$ = new BehaviorSubject<boolean>(false);
   showDirection$ = new BehaviorSubject<boolean>(false);
   showDatas$ = new BehaviorSubject<boolean>(false);
+  cookieCreated$ = new Subject<boolean>();
   savedCookie = false
   ngOnInit(): void {
     this.date$ = interval(1000).pipe(map(()=> new Date().toLocaleString('fr')))
@@ -33,7 +34,8 @@ export class WhatCookiesComponent implements OnInit{
     });
   }
   saveMyData() {
-    document.cookie = `text=${this.myText}; max-age= 86400`
+    document.cookie = `text=${this.myText}; max-age= 86400`;
+    this.cookieCreated$.next(true)
   }
   reloadPage() {
     window.location.reload();
@@ -41,5 +43,6 @@ export class WhatCookiesComponent implements OnInit{
   deleteCookie(){
     document.cookie = `text=suprimed cookie; max-age= 0`;
     window.location.reload();
+
   }
 }

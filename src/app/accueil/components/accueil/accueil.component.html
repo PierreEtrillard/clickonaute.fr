@@ -1,7 +1,7 @@
 <main *ngIf="(selectedSection$ | async) === 'accueil'">
   <h1>Créateur Web indépendant</h1>
   <ul>
-    <li>Conception de sites internet pour les tpe/Pme et associations</li>
+    <li>Conception de sites internet pour les Tpe/Pme et associations</li>
     <li>Développement d’applications Angular pour le web</li>
   </ul>
 </main>
@@ -20,7 +20,7 @@
     <li><a routerLink="/sites" (click)="sectionSelector('pages')">Sites internet</a></li>
     <li><a routerLink="/applications" (click)="sectionSelector('pages')">Applications web</a></li>
     <li><a routerLink="/contact" (click)="sectionSelector('pages')">Contact</a></li>
-    <li><a routerLink="/jeux" (click)="sectionSelector('pages')">Mini-jeux</a></li>
+    <!-- <li><a routerLink="/jeux" (click)="sectionSelector('pages')">Mini-jeux</a></li> -->
     <li>
       <button class="reducer" (click)="sectionSelector('accueil')">
         retour à l'accueil

@@ -22,22 +22,44 @@
 //animations de la fusée:
 @keyframes fire {
   from {
-    transform: rotate(25deg) scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
   }
   20% {
-    transform: rotate(25deg) scale(0.25, 1);
+    transform: scale(0.25, 1);
   }
   40% {
-    transform: rotate(25deg) scale(0.5, 1.5);
+    transform: scale(0.5, 1.5);
   }
   60% {
-    transform: rotate(25deg) scale(0.75, 1);
+    transform: scale(0.75, 1);
   }
   80% {
-    transform: rotate(25deg) scale(0.5, 2.5);
+    transform: scale(0.5, 2.5);
   }
   to {
-    transform: rotate(25deg) scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+  }
+}
+@keyframes takeOff {
+  from {
+    transform:  scale(1, 1);
+  }
+  5%{
+    transform: scale(1.2, 0.98) translateY(-3px);
+  }
+  98% {
+    transform: scale(1, 1,2) translateY(350px);
+  }
+  to {
+    transform: scale(3, 0) translateY(350px);
+  }
+}
+@keyframes clickMe {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(5px);
   }
 }
 //animations sur elements
