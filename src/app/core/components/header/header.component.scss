@@ -4,21 +4,34 @@
   top: 0;
   left: 0;
   transition: all 1s;
+  cursor: pointer;
 }
 #logo {
-  cursor: pointer;
+  margin: 2rem;
   position: relative;
+  width: 300px;
 }
-#flamme {
-  z-index: -10;
-  position: absolute;
-  top: 34%;
-  left: 169px;
-  animation: fire linear 200ms both infinite alternate;
-  transform-origin: top;
-  transform: rotate(25deg) ;
+#header-rocket {
+  position: fixed;
+  transform: rotate(33deg);
+  top: 10px;
+  left: 375px;
+  #rocket-core {
+    right: 3px;
+    position: absolute;
+    z-index: -10;
+    width: 30px;
+  }
+  #flamme {
+    z-index: -100;
+    position: absolute;
+    top:44px;
+    right: 10px;
+    transform-origin: top;
+    animation: fire linear 200ms both infinite alternate;
+  }
 }
-#go-top{
+#go-top {
   position: fixed;
   width: 40px;
   height: auto;
@@ -26,25 +39,26 @@
   right: 5px;
   animation: clickMe ease-in 400ms both infinite alternate;
   transition: all 0.5s;
-  #rocket{
+  #rocket {
     position: absolute;
+    width: 35px;
     top: 0;
   }
-  #fire{
+  #fire {
     z-index: -10;
     position: absolute;
-    bottom: -75px;
-    left: 13px;
+    bottom: -70px;
+    left: 10.5px;
     animation: fire linear 800ms both infinite alternate;
   }
 }
-.hide{
- opacity: 0;
+.hide {
+  opacity: 0;
 }
-.reveal{
+.reveal {
   opacity: 1;
 }
-.take-off{
+.take-off {
   // animation: takeOff ease-in 400ms backwards;
   animation: fire linear 800ms both infinite alternate;
 }

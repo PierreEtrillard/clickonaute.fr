@@ -2,15 +2,18 @@
   ><div id="logo-wrapper" [ngClass]="(hideHeader$ | async) ? 'hide' : 'reveal'">
     <img
       id="logo"
-      src="../../../../assets/images/logo_blanc_sansFlamme.webp"
+      src="../../../../assets/images/logo-Clickonaute.svg"
       alt="clickonaute.fr"
       aria-describedby="logo clickonaute.fr avec fusée au décolage"
     />
-    <img
-      id="flamme"
-      src="../../../../assets/images/flamme.webp"
-      alt="flamme de la fusée"
-    />
+    <div id="header-rocket">
+      <img id="rocket-core" src="../../../../assets/images/rocket.svg" alt="fusée" />
+      <img
+        id="flamme"
+        src="../../../../assets/images/flamme.webp"
+        alt="flamme de la fusée"
+      />
+    </div>
   </div>
 </a>
 <div
@@ -19,6 +22,10 @@
   [ngClass]="(hideHeader$ | async) ? 'reveal' : 'hide'"
   [class.take-off]="takeOff$ | async"
 >
-  <img id="rocket" src="../../../../assets/images/rocket.webp" alt="fusée" />
-  <img id="fire" src="../../../../assets/images/flamme.webp" alt="flamme de la fusée" />
+  <img id="rocket" src="../../../../assets/images/rocket.svg" alt="fusée" />
+  <img
+    id="fire"
+    src="../../../../assets/images/flamme.webp"
+    alt="flamme de la fusée"
+  />
 </div>

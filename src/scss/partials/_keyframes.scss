@@ -22,22 +22,22 @@
 //animations de la fusée:
 @keyframes fire {
   from {
-    transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5)  ;
   }
   20% {
-    transform: scale(0.25, 1);
+    transform: scale(0.25, 1) ;
   }
   40% {
-    transform: scale(0.5, 1.5);
+    transform: scale(0.5, 1.5) ;
   }
   60% {
-    transform: scale(0.75, 1);
+    transform: scale(0.75, 1) ;
   }
   80% {
-    transform: scale(0.5, 2.5);
+    transform: scale(0.5, 2.5) ;
   }
   to {
-    transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5) ;
   }
 }
 @keyframes takeOff {
