@@ -1,5 +1,4 @@
-<a (click)="retourAccueil()"
-  ><div id="logo-wrapper" [ngClass]="(hideHeader$ | async) ? 'hide' : 'reveal'">
+<a (click)="retourAccueil()" id="logo-wrapper" [ngClass]="(hideHeader$ | async) ? 'hide' : 'reveal'">
     <img
       id="logo"
       src="../../../../assets/images/logo-Clickonaute.svg"
@@ -14,7 +13,6 @@
         alt="flamme de la fusée"
       />
     </div>
-  </div>
 </a>
 <div
   id="go-top"

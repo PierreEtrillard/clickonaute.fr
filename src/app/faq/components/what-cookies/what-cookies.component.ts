@@ -6,23 +6,29 @@ import { BehaviorSubject, Observable, Subject, interval, map } from 'rxjs';
   templateUrl: './what-cookies.component.html',
   styleUrls: ['./what-cookies.component.scss'],
 })
-export class WhatCookiesComponent implements OnInit{
+export class WhatCookiesComponent implements OnInit {
   informations: Navigator = navigator;
   position!: GeolocationCoordinates;
-  date$!:Observable<string> 
+  date$!: Observable<string>;
   myText!: string;
   showPostion$ = new BehaviorSubject<boolean>(false);
   showDirection$ = new BehaviorSubject<boolean>(false);
   showDatas$ = new BehaviorSubject<boolean>(false);
   cookieCreated$ = new Subject<boolean>();
-  savedCookie = false
+  savedCookie = false;
   ngOnInit(): void {
-    this.date$ = interval(1000).pipe(map(()=> new Date().toLocaleString('fr')))
-    if (document.cookie.includes("text")){
-      this.myText = document.cookie.split("=")[1]
-      this.savedCookie = true
+    this.date$ = interval(1000).pipe(
+      map(() => new Date().toLocaleString('fr'))
+    );
+    if (document.cookie.includes('text')) {
+      this.myText = document.cookie.split('=')[1];
+      this.savedCookie = true;
+      if (this.myText === 'undefined') {
+        this.savedCookie = false;
+        this.myText = '';
+      }
     }
-    console.log(document.cookie);    
+    console.log(document.cookie);
   }
   askPosition() {
     navigator.geolocation.getCurrentPosition((positionFromNav) => {
@@ -35,14 +41,13 @@ export class WhatCookiesComponent implements OnInit{
   }
   saveMyData() {
     document.cookie = `text=${this.myText}; max-age= 86400`;
-    this.cookieCreated$.next(true)
+    this.cookieCreated$.next(true);
   }
   reloadPage() {
     window.location.reload();
   }
-  deleteCookie(){
+  deleteCookie() {
     document.cookie = `text=suprimed cookie; max-age= 0`;
     window.location.reload();
-
   }
 }

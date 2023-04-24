@@ -1,21 +1,5 @@
-@keyframes rotateNfade {
-  from {
-    transform: rotateY(90deg);
-    opacity: 0;
-  }
-  60% {
-    transform: rotateY(45deg);
-    opacity: 1;
-  }
-  to {
-    transform: rotateY();
-    opacity: 1;
-  }
-}
-main {
-  display: flex;
-  flex-direction: column;
-  h2 {
+@import "../../../../scss/partials/breakpoints";
+ h2 {
     text-align: center;
     animation: rotateNfade 0.5s 2s linear reverse forwards;
     position: relative;
@@ -33,7 +17,7 @@ main {
     align-items: center;
     text-align: center;
   }
-}
+//Progress Bar
 ul {
   display: flex;
   width: 80%;
@@ -57,12 +41,12 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 3rem;
 }
 fieldset {
   display: flex;
   width: 85%;
   margin-top:20px;
-  font-size: 10px;
   flex-direction: column;
   border-radius: 10px;
   position: relative;
@@ -78,7 +62,6 @@ fieldset {
   button {
     position: absolute;
     bottom: -25px;
-    font-size: xx-small;
     &.preview {
       left: -15px;
     }
@@ -92,9 +75,11 @@ fieldset {
     background-color: rgb(31, 29, 29);
     color: white;
     margin: 0.25rem;
-    font-size: smaller;
     text-overflow: ellipsis;
     width: 100%;
+    @include mobile-only{
+
+    }
   }
   input {
     text-align: right;
