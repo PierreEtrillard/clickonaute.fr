@@ -1,22 +1,22 @@
 @import "../../../../scss/partials/breakpoints";
- h2 {
-    text-align: center;
-    animation: rotateNfade 0.5s 2s linear reverse forwards;
-    position: relative;
-    &#resultTitle {
-      animation: rotateNfade 0.5s linear both;
-    }
+h2 {
+  text-align: center;
+  animation: rotateNfade 0.5s 2s linear reverse forwards;
+  position: relative;
+  &#resultTitle {
+    animation: rotateNfade 0.5s linear both;
   }
-  nav {
-    position: absolute;
-    top: 60px;
-    width: 100%;
-    animation: rotateNfade 0.5s 2.2s linear both;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+}
+nav {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  animation: rotateNfade 0.5s 2.2s linear both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 //Progress Bar
 ul {
   display: flex;
@@ -46,7 +46,7 @@ form {
 fieldset {
   display: flex;
   width: 85%;
-  margin-top:20px;
+  margin-top: 20px;
   flex-direction: column;
   border-radius: 10px;
   position: relative;
@@ -77,8 +77,9 @@ fieldset {
     margin: 0.25rem;
     text-overflow: ellipsis;
     width: 100%;
-    @include mobile-only{
-
+    min-width: 20px;
+    min-height: 20px;
+    @include mobile-only {
     }
   }
   input {
@@ -86,10 +87,11 @@ fieldset {
     max-width: 33px;
   }
   a {
-    color:aqua;
+    color: aqua;
   }
 }
-#result, app-result {
+#result,
+app-result {
   display: flex;
   flex-direction: column;
   align-items: center;

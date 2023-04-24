@@ -1,22 +1,19 @@
 @keyframes background-animator {
   from {
-    transform: translateX(0);
+    transform: scale(1.25);
   }
   35% {
-    // transform-origin: center;
-    transform: scale(1.25) translateY(-2%);
+    transform: scale(1.5) translateY(-2%);
   }
   55% {
-    // transform-origin: center;
-    transform: scale(1.75) translateY(-7%);
+    transform: scale(2) translateY(-7%);
   }
 
   70% {
-    // transform-origin: center;
     transform: scale(1.5) translateY(-10%);
   }
   to {
-    transform: scale(1.25) translateY(-3%);
+    transform: scale(1.25);
   }
 }
 //animations de la fusée:
