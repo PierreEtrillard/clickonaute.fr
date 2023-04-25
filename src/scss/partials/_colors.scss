@@ -2,8 +2,8 @@ $primary-color: white;
 $secondary-color: aqua;
 $bg-section: (
   dark: black,
-  light: rgba(102, 102, 102, 0.85),
-  vert:#607d8b,
+  light: rgba(102, 102, 102, 0.95),
+  bleu:rgb(7, 1, 36)
 );
 @mixin dark-mask {
   background-color: map-get($bg-section, dark);
@@ -14,7 +14,7 @@ $bg-section: (
   border: double 3px black;
   }
   @mixin blue-mask {
-  background-color: map-get($bg-section,vert);
+  background-color: map-get($bg-section,bleu);
   opacity: 40%;
   }
 

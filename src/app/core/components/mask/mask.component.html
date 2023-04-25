@@ -2,24 +2,25 @@
 
 <div class="mask mask-header"></div>
 
-<div *ngIf="(selectedSection$ | async) !== 'pages'; else pagesMask">
-  <div
-    *ngIf="(selectedSection$ | async) === 'accueil'"
-    class="mask mask-accueil"
-  ></div>
-  <div
-    class="mask"
-    [ngClass]="
-      (selectedSection$ | async) === 'menu' ? 'mask-menu-opened' : 'mask-menu'
-    "
-  ></div>
-  <div
-    class="mask"
-    [ngClass]="
-      (selectedSection$ | async) === 'faq' ? 'mask-faq-opened' : 'mask-faq'
-    "
-  ></div>
-</div>
-<ng-template #pagesMask>
-  <div class="mask mask-pages"></div>
-</ng-template>
+<div
+  *ngIf="(selectedSection$ | async) === 'accueil'"
+  class="mask mask-accueil"
+></div>
+<div
+*ngIf="(selectedSection$ | async) !== 'pages'"
+  class="mask"
+  [ngClass]="
+    (selectedSection$ | async) === 'menu' ? 'mask-menu-opened' : 'mask-menu'
+  "
+></div>
+<div
+*ngIf="(selectedSection$ | async) !== 'pages'"
+  class="mask"
+  [ngClass]="
+    (selectedSection$ | async) === 'faq' ? 'mask-faq-opened' : 'mask-faq'
+  "
+></div>
+<div
+  *ngIf="(selectedSection$ | async) === 'pages'"
+  class="mask mask-pages"
+></div>

@@ -8,13 +8,15 @@
 .table-of-content {
   @include light-mask;
   border-radius: 20px;
+  padding: 2rem;
   li {
     list-style: inside;
+    padding: 0.5rem
   }
 }
 .summary {
   @include light-mask;
-  padding: 3rem;
+  padding: 2rem;
   li {
     list-style: square;
     margin: 0.5rem;
@@ -52,8 +54,9 @@
       transform: rotate(25deg) translate(22%, -91%);
     }
     &-opened {
-      transform: rotate(310deg) skewY(20deg) translate(218%, 417%) scale(3.5);
-      border-top-left-radius: 30px;
+        transform: rotate(310deg) skewY(20deg) translate(35%, 153%) scale(3.5);
+        border-top-left-radius: 30px;
+        right: 0;
       @include mobile-only {
         transform: rotate(295deg) translate(10%, 35%) scale(1.5);
       }

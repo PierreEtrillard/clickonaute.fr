@@ -24,7 +24,7 @@
   position: fixed;
   transform: rotate(33deg);
   top: 10px;
-  left: 377px;
+  left: 380px;
   #rocket-core {
     right: 3px;
     position: absolute;
@@ -33,11 +33,12 @@
   }
   #flamme {
     z-index: -100;
+    width: 16px;
     position: absolute;
-    top: 44px;
+    top: 30px;
     right: 10px;
     transform-origin: top;
-    animation: fire linear 200ms both infinite alternate;
+    animation: fire linear 400ms both infinite alternate;
   }
 }
 #go-top {
@@ -57,9 +58,10 @@
   }
   #fire {
     z-index: -10;
+    width: 16px;
     position: absolute;
     bottom: -70px;
-    left: 10.5px;
+    left: 9.5px;
     animation: fire linear 800ms both infinite alternate;
   }
 }
