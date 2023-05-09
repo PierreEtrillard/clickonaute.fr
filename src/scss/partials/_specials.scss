@@ -11,7 +11,7 @@
   padding: 2rem;
   li {
     list-style: inside;
-    padding: 0.5rem
+    padding: 0.5rem;
   }
 }
 .summary {
@@ -26,6 +26,20 @@
   @include light-mask;
   font-style: italic;
 }
+.card {
+  border-radius: 10px;
+  border: solid white 2px;
+  box-shadow: aqua 5px 5px 20px;
+  display: flex;
+  &-creusard {
+    width: fit-content;
+    background-color: #ffd740;
+  }
+  &-wul {
+    width: fit-content;
+    background-color: white;
+  }
+}
 .mask {
   z-index: -50;
   @include blue-mask;
@@ -36,7 +50,7 @@
   &-header {
     @include dark-mask;
     z-index: -10;
-    transform: rotate(68deg) translate(-74%, -63%) scale(1.5,3.5);
+    transform: rotate(68deg) translate(-74%, -63%) scale(1.5, 3.5);
     @include mobile-only {
       transform: rotate(65deg) translate(-71%, 18%) scaleY(1.5);
     }
@@ -54,9 +68,9 @@
       transform: rotate(25deg) translate(22%, -91%);
     }
     &-opened {
-        transform: rotate(310deg) skewY(20deg) translate(35%, 153%) scale(3.5);
-        border-top-left-radius: 30px;
-        right: 0;
+      transform: rotate(310deg) skewY(20deg) translate(35%, 153%) scale(3.5);
+      border-top-left-radius: 30px;
+      right: 0;
       @include mobile-only {
         transform: rotate(295deg) translate(10%, 35%) scale(1.5);
       }
