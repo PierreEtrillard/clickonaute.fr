@@ -41,6 +41,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: left;
   margin-bottom: 3rem;
 }
 fieldset {
@@ -50,12 +51,25 @@ fieldset {
   flex-direction: column;
   border-radius: 10px;
   position: relative;
-  p.sel-wrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
+  .sel-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+    margin: 1rem 0;
+    #pages {
+      font-size: 1rem;
+      padding-left: 1rem;
+      line-height: 2;
+      border: double 0.2rem;
+      border-radius: 0.2rem;
+    }
   }
-  p.radio-wrapper {
+  a {
+    color: aqua;
+  }
+  .radio-wrapper {
     display: flex;
     align-items: center;
   }
@@ -69,26 +83,7 @@ fieldset {
       right: -15px;
     }
   }
-  input,
-  textarea,
-  select {
-    background-color: rgb(31, 29, 29);
-    color: white;
-    margin: 0.25rem;
-    text-overflow: ellipsis;
-    width: 100%;
-    min-width: 20px;
-    min-height: 20px;
-    @include mobile-only {
-    }
-  }
-  input {
-    text-align: right;
-    max-width: 33px;
-  }
-  a {
-    color: aqua;
-  }
+
 }
 #result,
 app-result {

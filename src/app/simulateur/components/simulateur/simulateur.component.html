@@ -16,7 +16,7 @@
         (click)="stepNav(3)"
       ></li>
     </ul>
-    <p class="messages">{{ progressiveMessage$ | async }}</p>
+    <div class="messages">{{ progressiveMessage$ | async }}</div>
   </nav>
   <ng-template #resultat
     ><h2 id="resultTitle">Cout estimé du projet</h2>
@@ -25,8 +25,7 @@
     <!-- Types de projet -->
     <fieldset formGroupName="scale" *ngIf="(formFillStep$ | async) === 1">
       <legend>Quel type de projet envisagez vous ?</legend>
-      <p class="sel-wrapper">
-        <label for="vitrine">Un site simple pour être visible sur le net</label>
+      <div class="sel-wrapper">
         <input
           name="type"
           formControlName="type"
@@ -34,12 +33,9 @@
           type="radio"
           value="vitrine"
         />
-      </p>
-      <p class="sel-wrapper">
-        <label for="e-commerce"
-          >un site de e-commerce me permettant de développer mon activitée en
-          ligne
-        </label>
+        <label for="vitrine">Un site simple pour être visible sur le net</label>
+      </div>
+      <div class="sel-wrapper">
         <input
           name="type"
           formControlName="type"
@@ -47,9 +43,12 @@
           type="radio"
           value="e-commerce"
         />
-      </p>
-      <p class="sel-wrapper">
-        <label for="appli">Une application metier disponible hors ligne</label>
+        <label for="e-commerce"
+          >Un site de e-commerce me permettant de développer mon activitée en
+          ligne
+        </label>
+      </div>
+      <div class="sel-wrapper">
         <input
           name="type"
           formControlName="type"
@@ -57,8 +56,9 @@
           type="radio"
           value="appli"
         />
-      </p>
-      <p class="sel-wrapper">
+        <label for="appli">Une application metier disponible hors ligne</label>
+      </div>
+      <div class="sel-wrapper">
         <label for="pages"
           >Choisissez le nombre de pages de votre projet (50 maximum)</label
         >
@@ -73,13 +73,14 @@
           min="1"
           max="50"
         />
-      </p>
+      </div>
       <div>
         Souhaitez vous une assistance pour choisir et gérer
         <a routerLink="/faq/coût"> l'hebergement </a>
         de votre projet ?
       </div>
-      <p class="radio-wrapper">
+      <div class="radio-wrapper">
+        <label for="hebYes">oui</label>
         <input
           name="hebergement"
           formControlName="hebergement"
@@ -87,7 +88,7 @@
           type="radio"
           value="true"
         />
-        <label for="hebYes">oui</label>
+        <label for="hebNo">non</label>
         <input
           name="hebergement"
           formControlName="hebergement"
@@ -95,8 +96,7 @@
           type="radio"
           value="false"
         />
-        <label for="hebNo">non</label>
-      </p>
+      </div>
       <button
         class="next space-button"
         *ngIf="isSection1filled$ | async; else unfilledBtn1"
@@ -120,49 +120,49 @@
     >
       <legend>Aspects graphiques</legend>
       Le visuel de votre projet est il défini ?
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="radio"
+        id="avec-maquette"
+        formControlName="maquette"
+        value="false"
+        />
         <label for="avec-maquette">Oui</label>
         <input
-          type="radio"
-          id="avec-maquette"
-          formControlName="maquette"
-          value="false"
+        type="radio"
+        id="sansmaquette"
+        formControlName="maquette"
+        value="true"
         />
         <label for="sans-maquette"
           >Non, je souhaite faire réaliser une maquette de mon projet</label
         >
-        <input
-          type="radio"
-          id="sansmaquette"
-          formControlName="maquette"
-          value="true"
-        />
-      </p>
+      </div>
 
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="checkbox"
+        id="police"
+        formControlName="police"
+        value="false"
+        />
         <label for="police"
           >J'ai choisi les couleurs et police d'écritures du projet.</label
         >
-        <input
-          type="checkbox"
-          id="police"
-          formControlName="police"
-          value="false"
-        />
-      </p>
+      </div>
 
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="checkbox"
+        id="pics"
+        formControlName="pics"
+        value="false"
+        unchecked
+        />
         <label for="pics"
           >Je possède les logos et illustrations nécessaires à mon projet</label
         >
-        <input
-          type="checkbox"
-          id="pics"
-          formControlName="pics"
-          value="false"
-          unchecked
-        />
-      </p>
+      </div>
 
       <button class="space-button preview" (click)="stepBackward(1)">
         retour
@@ -186,76 +186,76 @@
     <!-- Fonctionnalités -->
     <fieldset formGroupName="features" *ngIf="(formFillStep$ | async) === 3">
       <legend>Fonctionalités</legend>
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="checkbox"
+        id="payOnline"
+        formControlName="payOnline"
+        value="true"
+        (click)="noFeatureClosed()"
+        />
         <label for="payOnline">intégrer le paiement en ligne</label>
-        <input
-          type="checkbox"
-          id="payOnline"
-          formControlName="payOnline"
-          value="true"
-          (click)="noFeatureClosed()"
-        />
-      </p>
+      </div>
 
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="checkbox"
+        id="location"
+        formControlName="location"
+        value="true"
+        (click)="noFeatureClosed()"
+        />
         <label for="location">un plan d'accés</label>
-        <input
-          type="checkbox"
-          id="location"
-          formControlName="location"
-          value="true"
-          (click)="noFeatureClosed()"
-        />
-      </p>
+      </div>
 
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="checkbox"
+        id="cookies"
+        formControlName="cookies"
+        value="true"
+        (click)="noFeatureClosed()"
+        />
         <label for="cookies"
           >mettre en place des cookies de ciblage
           <a routerLink="/faq/cookies"
             >(voir la pages tout sur les cookies)</a
           ></label
         >
-        <input
-          type="checkbox"
-          id="cookies"
-          formControlName="cookies"
-          value="true"
-          (click)="noFeatureClosed()"
-        />
-      </p>
+      </div>
 
-      <p class="sel-wrapper">
+      <div class="sel-wrapper">
+        <input
+        type="checkbox"
+        id="account"
+        formControlName="account"
+        (click)="noFeatureClosed()"
+        />
         <label for="account">Création et gestion de comptes utilisateurs</label>
+      </div>
+      <div class="sel-wrapper">
         <input
-          type="checkbox"
-          id="account"
-          formControlName="account"
-          (click)="noFeatureClosed()"
+        type="checkbox"
+        id="noFeature"
+        formControlName="noFeature"
+        (click)="noFeature()"
         />
-      </p>
-      <p class="sel-wrapper">
         <label for="noFeature"
-          >Je souhaite créer un site basique sans fonctionalitées</label
+        >Je souhaite créer un site basique sans fonctionalitées</label
         >
+        
+      </div>
+      <div class="sel-wrapper">
         <input
-          type="checkbox"
-          id="noFeature"
-          formControlName="noFeature"
-          (click)="noFeature()"
+        id="other"
+        type="checkbox"
+        formControlName="other"
+        (click)="noFeatureClosed()"
         />
-      </p>
-
-      <p class="sel-wrapper">
         <label for="other"
           >J'ai besoin d'une fonctionalité spécifique qui n'est pas dans la
           liste</label
         >
-        <input
-          id="other"
-          type="checkbox"
-          formControlName="other"
-          (click)="noFeatureClosed()"
-        />
         <button class="space-button preview" (click)="stepBackward(2)">
           retour
         </button>
@@ -270,7 +270,7 @@
         >
           estimation*
         </button>
-      </p>
+      </div>
     </fieldset>
   </form>
   <div id="result" *ngIf="(formFillStep$ | async) === 4">
