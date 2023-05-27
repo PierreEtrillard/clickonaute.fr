@@ -1,15 +1,15 @@
 <a (click)="retourAccueil()" id="logo-wrapper" [ngClass]="(hideHeader$ | async) ? 'hide' : 'reveal'">
     <img
       id="logo"
-      src="/src/assets/images/logo-Clickonaute.svg"
+      src="assets/images/logo-Clickonaute.svg"
       alt="clickonaute.fr"
       aria-describedby="logo clickonaute.fr avec fusée au décolage"
     />
     <div id="header-rocket">
-      <img id="rocket-core" src="/src/assets/images/rocket.svg" alt="fusée" />
+      <img id="rocket-core" src="assets/images/rocket.svg" alt="fusée" />
       <img
         id="flamme"
-        src="/src/assets/images/flamme.svg"
+        src="assets/images/flamme.svg"
         alt="flamme de la fusée"
       />
     </div>
@@ -20,10 +20,10 @@
   [ngClass]="(hideHeader$ | async) ? 'reveal' : 'hide'"
   [class.take-off]="takeOff$ | async"
 >
-  <img id="rocket" src="/src/assets/images/rocket.svg" alt="fusée" />
+  <img id="rocket" src="assets/images/rocket.svg" alt="fusée" />
   <img
     id="fire"
-    src="/src/assets/images/flamme.svg"
+    src="assets/images/flamme.svg"
     alt="flamme de la fusée"
   />
 </div>
