@@ -9,6 +9,13 @@ import { SectionSelService } from '../../services/section-sel.service';
 })
 export class MaskComponent {
   selectedSection$!: Observable<string>;
+  svgWidth :number = window.innerWidth;
+  svgHeight: number = window.innerHeight;
+  // maskHeaderCoor = signal({
+  //   x1:0,y1:0
+  // })
+  
+
   constructor(private sectionSelService: SectionSelService) {}
   ngOnInit(): void {
     this.selectedSection$ = this.sectionSelService.sectionSelected
@@ -19,3 +26,4 @@ export class MaskComponent {
       .subscribe();
   }
 }
+

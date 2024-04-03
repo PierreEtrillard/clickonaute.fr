@@ -1,8 +1,6 @@
 <!-- masques d'arrière-plans -->
-
-<div class="mask mask-header"></div>
-
-<div
+<div id="mask-container">
+<!-- <div
   *ngIf="(selectedSection$ | async) === 'accueil'"
   class="mask mask-accueil"
 ></div>
@@ -12,7 +10,14 @@
   [ngClass]="
     (selectedSection$ | async) === 'menu' ? 'mask-menu-opened' : 'mask-menu'
   "
-></div>
+></div> -->
+<svg [attr.width]="svgWidth" [attr.height]="svgHeight">
+  <polygon class="mask2 mask-header2" points="00,00 00,250 550,0" />
+  <polygon class="mask2 mask-menu2" points="500,00 00,250 0,0" />
+  <polygon class="mask2 mask-faq2" points="00,92% 90%,0 100%,100%" />
+   <polygon class="mask2 mask-faq2" points="00,92% 90%,0 100%,100%" />
+</svg>
+<!-- 
 <div
 *ngIf="(selectedSection$ | async) !== 'pages'"
   class="mask"
@@ -23,4 +28,5 @@
 <div
   *ngIf="(selectedSection$ | async) === 'pages'"
   class="mask mask-pages"
-></div>
+></div> -->
+</div>

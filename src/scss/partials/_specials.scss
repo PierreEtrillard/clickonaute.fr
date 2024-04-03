@@ -1,3 +1,4 @@
+@use './colors' as *;
 .messages {
   font-family: Galactic-Font;
   font-weight: 100;
@@ -38,83 +39,5 @@
   &-wul {
     width: fit-content;
     background-color: white;
-  }
-}
-.mask {
-  z-index: -50;
-  @include blue-mask;
-  position: fixed;
-  transition: all ease-out 500ms;
-  width: 500px;
-  height: 300px;
-  &-header {
-    @include dark-mask;
-    z-index: -10;
-    transform: rotate(68deg) translate(-74%, -63%) scale(1.5, 3.5);
-    @include mobile-only {
-      transform: rotate(65deg) translate(-71%, 18%) scaleY(1.5);
-    }
-    @include tablet-only {
-      transform: rotate(65deg) translate(-60%, 25%) scaleY(4.5);
-    }
-  }
-  &-menu {
-    right: 0;
-    transform: rotate(35deg) translate(4%, -79%);
-    @include mobile-only {
-      transform: rotate(25deg) translate(7%, -75%);
-    }
-    @include tablet-only {
-      transform: rotate(25deg) translate(22%, -91%);
-    }
-    &-opened {
-      transform: rotate(310deg) skewY(20deg) translate(35%, 153%) scale(3.5);
-      border-top-left-radius: 30px;
-      right: 0;
-      @include mobile-only {
-        transform: rotate(295deg) translate(10%, 35%) scale(1.5);
-      }
-      @include tablet-only {
-        transform: rotate(298deg) skewY(-9deg) translate(34%, 148%) scale(2);
-      }
-    }
-  }
-  &-accueil {
-    transform: translate(-42%, 213%) skew(-62deg, 33deg) scale(3);
-    border-top-right-radius: 30px;
-    @include mobile-only {
-      transform: translate(-66%, 126%) skew(307deg, 18deg) scale(1.5);
-    }
-    @include tablet-only {
-      transform: translate(-56%, 196%) skew(316deg, 21deg) scale(2, 3);
-    }
-  }
-  &-pages {
-    animation: maskPagesOpening 0.3s ease-in forwards;
-    border-radius: 30px;
-    height: 100%;
-    width: 100%;
-  }
-  &-faq {
-    right: 0;
-    bottom: 0;
-    transform: rotate(320deg) translate(16%, 79%);
-
-    @include mobile-only {
-      transform: rotate(320deg) translate(11%, 101%);
-    }
-    @include tablet-only {
-      transform: rotate(320deg) translate(16%, 104%);
-    }
-    &-opened {
-      transform: translate(-53%, 140%) scale(3) skew(304deg, 45deg);
-      border-top-right-radius: 30px;
-      @include mobile-only {
-        transform: rotate(318deg) translate(-72%, 76%) scaleY(1.5);
-      }
-      @include tablet-only {
-        transform: translate(-53%, 140%) scale(2) skew(304deg, 45deg);
-      }
-    }
   }
 }

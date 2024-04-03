@@ -17,19 +17,3 @@ $bg-section: (
   background-color: map-get($bg-section,bleu);
   opacity: 40%;
   }
-
-#space-background {
-  z-index: -100;
-  position: fixed;
-  min-width: 100%;
-  width: fit-content;
-  min-height: 100%;
-  height: auto;
-  background-image: url("../../assets/images/background.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  @include tablet-only{background-image: url("../../assets/images/background-mobile.webp");}
-  @include tablet-only{background-image: url("../../assets/images/background-tablet.webp");}
-  animation: background-animator ease-in-out 60s both infinite alternate;
-}
