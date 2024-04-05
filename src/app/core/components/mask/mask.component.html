@@ -1,6 +1,6 @@
 <!-- masques d'arrière-plans -->
 <div id="mask-container">
-<!-- <div
+  <!-- <div
   *ngIf="(selectedSection$ | async) === 'accueil'"
   class="mask mask-accueil"
 ></div>
@@ -11,13 +11,19 @@
     (selectedSection$ | async) === 'menu' ? 'mask-menu-opened' : 'mask-menu'
   "
 ></div> -->
-<svg [attr.width]="svgWidth" [attr.height]="svgHeight">
-  <polygon class="mask2 mask-header2" points="00,00 00,250 550,0" />
-  <polygon class="mask2 mask-menu2" points="500,00 00,250 0,0" />
-  <polygon class="mask2 mask-faq2" points="00,92% 90%,0 100%,100%" />
-   <polygon class="mask2 mask-faq2" points="00,92% 90%,0 100%,100%" />
-</svg>
-<!-- 
+  <svg [attr.width]="svgWidth" [attr.height]="svgHeight">
+    <radialGradient id="radialGradient" [attr.cx]="middleGradient()+ '%'" [attr.cy]="middleGradient()+'%'"
+      [attr.r:]="middleGradient() +'%'" [attr.fx]="middleGradient()+'%'" [attr.fy]="middleGradient()+'%'">
+      <stop [attr.offset]="middleGradient()-50 +'%'" />
+      <stop [attr.offset]="middleGradient()+'%'" />
+      <stop [attr.offset]="middleGradient()+50 +'%'" />
+    </radialGradient>
+    <path class="mask mask-header2" [attr.d]= maskHeaderCoor().getPath() />
+    <path class="mask mask-menu2" [attr.d]= maskMenuCoor().getPath() />
+    <path class="mask mask-faq2" [attr.d]= maskFaqCoor().getPath() />
+    <!-- <polygon class="mask2 mask-faq2" points="00,92% 90%,0 100%,100%" /> -->
+  </svg>
+  <!-- 
 <div
 *ngIf="(selectedSection$ | async) !== 'pages'"
   class="mask"

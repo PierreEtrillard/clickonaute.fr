@@ -20,35 +20,39 @@ main {
 nav {
   position: fixed;
   margin: 3rem;
-  height: 60%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   h2 {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 0;
     svg {
       fill: white;
       height: 2rem;
       width: 2rem;
     }
   }
-  ul {
-    height: 75%;
-  }
 }
 #menu {
   top: 0;
   right: 0;
   align-items: flex-end;
+
 }
 #sectionMenuBtn {
   position: fixed;
-  top: 10px;
-  right: 40px;
+  top: 2rem;
+  right: 2rem;
   fill: white;
   font-size: 0.75rem;
   cursor: pointer;
+  @include mobile-only {
+    top: 1rem;
+    right: 1rem;
+  }
 }
 #faq {
   bottom: 0;
@@ -57,11 +61,22 @@ nav {
   margin: 0;
 }
 #faqBtn {
+  z-index: 10;
   position: fixed;
   bottom: 0;
-  right: 20px;
+  right: 0.75rem;
   font-size: 1rem;
+  font-weight: bolder;
   cursor: pointer;
+  svg {
+    fill: white;
+    height: 2rem;
+    width: 2rem;
+    @include mobile-only {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
 }
 .reducer {
   margin-top: 1rem;

@@ -1,15 +1,39 @@
 @use "/src/scss/partials/breakpoints" as * ;
 @use "/src/scss/partials/colors" as * ;
 #mask-container {
-    .mask2{
-        fill: darkviolet
+    /* Dégradé radial */
+    radialGradient {
+      id: radialGradient;
+      cx: 50%;
+      cy: 50%;
+      r: 50%;
+      fx: 50%;
+      fy: 50%;
+    }    
+    stop:first-child {
+      stop-color: #FFCC70;
+      stop-opacity: 1;
+    }    
+    stop:nth-child(2) {
+      stop-color: #C850C0;
+      stop-opacity: 1;
+    }  
+    stop:last-child {
+      stop-color: #4158D0;
+      stop-opacity: 1;
+    }
+    .mask{
+        fill: black;
+        stroke: url(#radialGradient);
+        stroke-width: 0.1rem;
+        opacity: 0.7;
     }
     position: fixed;
     width: 100%;
     height: 100vh;
     z-index: -5;
-    .mask {
-        z-index: -50;
+
+    .oldMmask {
     @include dark-mask;
     position: fixed;
     transition: all ease-out 500ms;
