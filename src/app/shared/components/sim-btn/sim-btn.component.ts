@@ -9,11 +9,11 @@ import { SectionSelService } from 'src/app/core/services/section-sel.service';
   styleUrls: ['./sim-btn.component.scss']
 })
 export class SimBtnComponent {
-  selectedSection$!:Observable<string>;
+  selectedSection!:string;
 
   constructor(private sectionSelService: SectionSelService, private router:Router) {}
   ngOnInit(): void {
-    this.selectedSection$ = this.sectionSelService.sectionSelected
+    this.selectedSection = this.sectionSelService.sectionSelected()
   }  
   goToSimulator(sectionName: string) {
     this.sectionSelService.sectionSwitcher(sectionName);

@@ -7,7 +7,7 @@
   margin: 0;
 }
 .table-of-content {
-  @include light-mask;
+  // @include light-mask;
   border-radius: 20px;
   padding: 2rem;
   li {
@@ -16,7 +16,7 @@
   }
 }
 .summary {
-  @include light-mask;
+  // @include light-mask;
   padding: 2rem;
   li {
     list-style: square;
@@ -24,7 +24,7 @@
   }
 }
 .info {
-  @include light-mask;
+  // @include light-mask;
   font-style: italic;
 }
 .card {

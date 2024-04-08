@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, Input, Output } from '@angular/core';
+import { EventEmitter, Injectable, Input, Output, signal } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -6,13 +6,11 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class SectionSelService {
 
-private _sectionSelected$= new BehaviorSubject<string>("page")
+// private _sectionSelected$= new BehaviorSubject<string>("page")
+sectionSelected = signal("page")
 
-get sectionSelected(): Observable<string>
-{
-  return this._sectionSelected$.asObservable()
-}
+
 sectionSwitcher(sectionName: string) {
-    this._sectionSelected$.next(sectionName);
+    this.sectionSelected.set(sectionName);
   }
 }

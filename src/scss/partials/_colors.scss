@@ -1,19 +1,81 @@
 $primary-color: white;
 $secondary-color: aqua;
-$bg-section: (
+$other-colors: (
   dark: black,
-  light: rgba(102, 102, 102, 0.95),
-  bleu:rgb(7, 1, 36)
+  light: rgba(231, 226, 226, 0.95),
+  custom-orange: #ffcc70,
+  custom-yellow: #d9ff70,
+  custom-pink: #c850c0,
+  custom-green: #07af47,
+  custom-blue: #3632f1,
+  custom-red: #bb0101,
+  custom-purple: #8601bb,
 );
-@mixin dark-mask {
-  background-color: map-get($bg-section, dark);
-  opacity: 60%;
+@mixin border-mask {
+  stop:first-child {
+    stop-color: map-get($other-colors, custom-orange);
+    stop-opacity: 1;
+  }
+  stop:nth-child(2) {
+    stop-color: map-get($other-colors, custom-pink);
+    stop-opacity: 1;
+  }
+  stop:last-child {
+    stop-color: map-get($other-colors, custom-blue);
+    stop-opacity: 1;
+  }
 }
-@mixin light-mask {
-  background-color: map-get($bg-section, light);
-  border: double 3px black;
+@mixin border-mask-red {
+  stop:first-child {
+    stop-color: map-get($other-colors, custom-orange);
+    stop-opacity: 1;
   }
-  @mixin blue-mask {
-  background-color: map-get($bg-section,bleu);
-  opacity: 40%;
+  stop:nth-child(2) {
+    stop-color: map-get($other-colors, custom-pink);
+    stop-opacity: 1;
   }
+  stop:last-child {
+    stop-color: map-get($other-colors, custom-red);
+    stop-opacity: 1;
+  }
+}
+@mixin border-mask-purple{
+  stop:first-child {
+    stop-color: map-get($other-colors, light);
+    stop-opacity: 1;
+  }
+  stop:nth-child(2) {
+    stop-color: map-get($other-colors, custom-red);
+    stop-opacity: 1;
+  }
+  stop:last-child {
+    stop-color: map-get($other-colors, custom-purple);
+    stop-opacity: 1;
+  }
+}
+@mixin border-mask-green {
+  stop:first-child {
+    stop-color: map-get($other-colors, custom-yellow);
+    stop-opacity: 1;
+  }
+  stop:nth-child(2) {
+    stop-color: map-get($other-colors, custom-orange);
+    stop-opacity: 1;
+  }
+  stop:last-child {
+    stop-color: map-get($other-colors, custom-green);
+    stop-opacity: 1;
+  }
+}
+// @mixin dark-mask {
+//   background-color: map-get($bg-section, dark);
+//   opacity: 60%;
+// }
+// @mixin light-mask {
+//   background-color: map-get($bg-section, light);
+//   border: double 3px black;
+//   }
+//   @mixin blue-mask {
+//   background-color: map-get($bg-section,bleu);
+//   opacity: 40%;
+//   }

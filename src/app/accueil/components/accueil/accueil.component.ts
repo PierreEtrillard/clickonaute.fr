@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SectionSelService } from 'src/app/core/services/section-sel.service';
 
@@ -8,11 +8,11 @@ import { SectionSelService } from 'src/app/core/services/section-sel.service';
   styleUrls: ['./accueil.component.scss'],
 })
 export class AccueilComponent implements OnInit {
-  selectedSection$!: Observable<string>;
+  selectedSection!: WritableSignal<string>;
 
   constructor(private sectionSelService: SectionSelService) {}
   ngOnInit(): void {
-    this.selectedSection$ = this.sectionSelService.sectionSelected;
+    this.selectedSection = this.sectionSelService.sectionSelected;
     this.sectionSelService.sectionSwitcher('accueil');
   }
 

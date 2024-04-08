@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, WritableSignal, computed, signal } from '@angular/core';
 import { Observable, tap, map, interval, take } from 'rxjs';
 import { SectionSelService } from '../../services/section-sel.service';
 import { SvgPath } from '../models/svgPath';
@@ -11,22 +11,23 @@ import { Curve } from '../models/Curve';
 })
 export class MaskComponent {
   middleGradient = signal(-50);
-  selectedSection$!: Observable<string>;
+  selectedSection!: WritableSignal<string>;
+  maskMod = computed(() => this.maskModifier(this.selectedSection()));
   svgWidth: number = window.innerWidth;
   svgHeight: number = window.innerHeight;
   initMaskFaqPoints!: SvgPath;
   initMaskHeaderPoints!: SvgPath;
   initMaskMenuPoints!: SvgPath;
-  maskHeaderCoor = signal(this.initMaskHeaderPoints);
-  maskMenuCoor = signal(this.initMaskMenuPoints);
-  maskFaqCoor = signal(this.initMaskFaqPoints);
+  initMaskPagesPoints!: SvgPath;
+  maskHeaderCoor!:string;
+  maskMenuCoor!:string
+  maskFaqCoor!:string
+  maskPagesCoor!:string
+
   constructor(private sectionSelService: SectionSelService) {}
   ngOnInit(): void {
     this.initMaskPositions();
-    this.selectedSection$ = this.sectionSelService.sectionSelected;
-    this.selectedSection$
-      .pipe(map((section) => this.maskModifier(section)))
-      .subscribe();
+    this.selectedSection = this.sectionSelService.sectionSelected;
     // animation des bordures de masques
     interval(20)
       .pipe(
@@ -44,41 +45,53 @@ export class MaskComponent {
   maskModifier(section: string) {
     switch (section) {
       case 'menu':
+        console.log(`Sélection de la section: '${section}'`);
         interval(30)
           .pipe(
             take(5),
-            map((count) => {
-              this.maskMenuCoor.update((initPath) => {
+            map(() => {
+              
                 let targetCoor = new SvgPath(
-                  initPath.start,
-                  initPath.line,
-                  initPath.curve
+                  this.initMaskMenuPoints.start,
+                  this.initMaskMenuPoints.line,
+                  this.initMaskMenuPoints.curve
                 );
                 targetCoor.line.y += this.svgHeight * 0.1;
-                targetCoor.curve.finish.x += this.svgWidth * 0.06
-                targetCoor.curve.poigne1.x -= this.svgWidth * 0.086;
-                targetCoor.curve.poigne1.y += this.svgHeight * 0.066;
-                // targetCoor.line.y + * 0.75
-                // targetCoor.curve.finish.x + *0.45;
-                // targetCoor.curve.poigne1.x + *0.65;
-                // targetCoor.curve.poigne1.y +  *0.5;
-               return targetCoor;
-              });
-            })
-          )
+                targetCoor.curve.finish.x += this.svgWidth * 1.06;
+                targetCoor.curve.poigne1.x -= this.svgWidth * 1.086;
+                targetCoor.curve.poigne1.y += this.svgHeight * 1.066;
+                return targetCoor.getPath();
+              }
+          ))
           .subscribe();
-        console.log(`Sélection de la section: '${section}'`);
         break;
       case 'faq':
         console.log(`Sélection de la section: '${section}'`);
-        this.maskFaqCoor.set(this.initMaskFaqPoints);
+        interval(30)
+        .pipe(
+          take(5),
+          map(() => {
+            
+              let targetCoor = new SvgPath(
+                this.initMaskFaqPoints.start,
+                this.initMaskFaqPoints.line,
+                this.initMaskFaqPoints.curve
+              );
+              targetCoor.line.y += this.svgHeight * 0.1;
+              targetCoor.curve.finish.x += this.svgWidth * 1.06;
+              targetCoor.curve.poigne1.x -= this.svgWidth * 1.086;
+              targetCoor.curve.poigne1.y += this.svgHeight * 1.066;
+              return targetCoor.getPath();
+            }
+        ))
+        .subscribe();
         break;
       case 'pages':
         console.log(`Sélection de la section: '${section}'`);
         break;
       case 'accueil':
         console.log(`Sélection de la section: '${section}'`);
-        this.maskMenuCoor.update(() => this.initMaskMenuPoints);
+        this.initMaskPositions();
         break;
       default:
         break;
@@ -107,9 +120,19 @@ export class MaskComponent {
         new Coor(this.svgWidth * 0.9, this.svgHeight * 1.3),
         new Coor(this.svgWidth, this.svgHeight * 0.75)
       )
-    );
-    this.maskHeaderCoor = signal(this.initMaskHeaderPoints);
-    this.maskMenuCoor = signal(this.initMaskMenuPoints);
-    this.maskFaqCoor = signal(this.initMaskFaqPoints);
+    )
+    this.initMaskPagesPoints = new SvgPath(
+      new Coor(this.svgWidth, this.svgHeight),
+      new Coor(this.svgWidth * 0.3, this.svgHeight),
+      new Curve(
+        new Coor(this.svgWidth, this.svgHeight),
+        new Coor(this.svgWidth * 0.9, this.svgHeight * 1.3),
+        new Coor(this.svgWidth, this.svgHeight * 0.75)
+      )
+    )
+    this.maskHeaderCoor= this.initMaskHeaderPoints.getPath();
+    this.maskMenuCoor= this.initMaskMenuPoints.getPath();
+    this.maskFaqCoor= this.initMaskFaqPoints.getPath();
+    this.maskPagesCoor= this.initMaskPagesPoints.getPath();
   }
 }

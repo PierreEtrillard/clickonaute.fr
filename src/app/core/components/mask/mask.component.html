@@ -1,38 +1,16 @@
 <!-- masques d'arrière-plans -->
-<div id="mask-container">
-  <!-- <div
-  *ngIf="(selectedSection$ | async) === 'accueil'"
-  class="mask mask-accueil"
-></div>
-<div
-*ngIf="(selectedSection$ | async) !== 'pages'"
-  class="mask"
-  [ngClass]="
-    (selectedSection$ | async) === 'menu' ? 'mask-menu-opened' : 'mask-menu'
-  "
-></div> -->
+<div id="mask-container" class={{selectedSection()}}>
   <svg [attr.width]="svgWidth" [attr.height]="svgHeight">
-    <radialGradient id="radialGradient" [attr.cx]="middleGradient()+ '%'" [attr.cy]="middleGradient()+'%'"
-      [attr.r:]="middleGradient() +'%'" [attr.fx]="middleGradient()+'%'" [attr.fy]="middleGradient()+'%'">
-      <stop [attr.offset]="middleGradient()-50 +'%'" />
-      <stop [attr.offset]="middleGradient()+'%'" />
-      <stop [attr.offset]="middleGradient()+50 +'%'" />
+    <radialGradient id="radialGradientStroke" [attr.cx]="middleGradient()+ '%'" [attr.cy]="middleGradient()+'%'"
+      [attr.r:]="middleGradient() +'%'" [attr.fx]="middleGradient()+'%'" [attr.fy]="middleGradient()+'%'"
+      class="radialGradientStroke-{{selectedSection()}}">
+      <stop [attr.offset]="middleGradient()-50 +'%'"/>
+      <stop [attr.offset]="middleGradient()+'%'"/>
+      <stop [attr.offset]="middleGradient()+50 +'%'"/>
     </radialGradient>
-    <path class="mask mask-header2" [attr.d]= maskHeaderCoor().getPath() />
-    <path class="mask mask-menu2" [attr.d]= maskMenuCoor().getPath() />
-    <path class="mask mask-faq2" [attr.d]= maskFaqCoor().getPath() />
-    <!-- <polygon class="mask2 mask-faq2" points="00,92% 90%,0 100%,100%" /> -->
+    <path class="mask" [attr.d]= maskHeaderCoor class={{selectedSection()}}/>
+    <path *ngIf="(selectedSection() !== 'pages')" class="mask" [ngClass]="{'mask-menu' : (selectedSection() === 'menu')}" [attr.d]= maskMenuCoor/>
+    <path *ngIf="(selectedSection() !== 'pages')" class="mask" [ngClass]="{'mask-faq' : (selectedSection() === 'faq')}" [attr.d]= maskFaqCoor/>
+    <path *ngIf="(selectedSection() === 'pages')" class="mask" [ngClass]="{'mask-pages' : (selectedSection() === 'pages')}" [attr.d]= maskPagesCoor/>
   </svg>
-  <!-- 
-<div
-*ngIf="(selectedSection$ | async) !== 'pages'"
-  class="mask"
-  [ngClass]="
-    (selectedSection$ | async) === 'faq' ? 'mask-faq-opened' : 'mask-faq'
-  "
-></div>
-<div
-  *ngIf="(selectedSection$ | async) === 'pages'"
-  class="mask mask-pages"
-></div> -->
 </div>
