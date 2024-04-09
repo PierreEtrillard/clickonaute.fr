@@ -3,15 +3,15 @@ import { Curve } from './Curve';
 
 export class SvgPath {
   start: Coor;
-  line: Coor;
-  curve: Curve;
+  curves: Curve[];
 
-  constructor(start: Coor, line: Coor, curve: Curve) {
+  constructor(start: Coor, curves: Curve[]) {
     this.start = start;
-    this.line = line;
-    this.curve = curve;
+    this.curves = curves;
   }
   public getPath() {
-    return `M ${this.start.x} ${this.start.y} L ${this.line.x} ${this.line.y} C ${this.curve.getCurve()} Z`;
+    const startPoint = `M ${this.start.x} ${this.start.y} `;
+    const curvesPoints = this.curves.map(curve => curve.getCurve()).join(" C ");
+    return `${startPoint}${curvesPoints} Z`;
   }
 }

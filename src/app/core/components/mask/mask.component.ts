@@ -19,10 +19,10 @@ export class MaskComponent {
   initMaskHeaderPoints!: SvgPath;
   initMaskMenuPoints!: SvgPath;
   initMaskPagesPoints!: SvgPath;
-  maskHeaderCoor!:string;
-  maskMenuCoor!:string
-  maskFaqCoor!:string
-  maskPagesCoor!:string
+  maskHeaderCoor!: string;
+  maskMenuCoor!: string;
+  maskFaqCoor!: string;
+  maskPagesCoor!: string;
 
   constructor(private sectionSelService: SectionSelService) {}
   ngOnInit(): void {
@@ -50,41 +50,37 @@ export class MaskComponent {
           .pipe(
             take(5),
             map(() => {
-              
-                let targetCoor = new SvgPath(
-                  this.initMaskMenuPoints.start,
-                  this.initMaskMenuPoints.line,
-                  this.initMaskMenuPoints.curve
-                );
-                targetCoor.line.y += this.svgHeight * 0.1;
-                targetCoor.curve.finish.x += this.svgWidth * 1.06;
-                targetCoor.curve.poigne1.x -= this.svgWidth * 1.086;
-                targetCoor.curve.poigne1.y += this.svgHeight * 1.066;
-                return targetCoor.getPath();
-              }
-          ))
+              let targetCoor = new SvgPath(
+                this.initMaskMenuPoints.start,
+                this.initMaskMenuPoints.curves
+              );
+              targetCoor.curves[0].finish.y += this.svgHeight * 0.1;
+              targetCoor.curves[1].finish.x += this.svgWidth * 1.06;
+              targetCoor.curves[1].poigne1.x -= this.svgWidth * 1.086;
+              targetCoor.curves[1].poigne1.y += this.svgHeight * 1.066;
+              return targetCoor.getPath();
+            })
+          )
           .subscribe();
         break;
       case 'faq':
         console.log(`Sélection de la section: '${section}'`);
         interval(30)
-        .pipe(
-          take(5),
-          map(() => {
-            
+          .pipe(
+            take(5),
+            map(() => {
               let targetCoor = new SvgPath(
                 this.initMaskFaqPoints.start,
-                this.initMaskFaqPoints.line,
-                this.initMaskFaqPoints.curve
+                this.initMaskFaqPoints.curves
               );
-              targetCoor.line.y += this.svgHeight * 0.1;
-              targetCoor.curve.finish.x += this.svgWidth * 1.06;
-              targetCoor.curve.poigne1.x -= this.svgWidth * 1.086;
-              targetCoor.curve.poigne1.y += this.svgHeight * 1.066;
+              targetCoor.curves[0].finish.y += this.svgHeight * 0.1;
+              targetCoor.curves[1].finish.x += this.svgWidth * 1.06;
+              targetCoor.curves[1].poigne1.x -= this.svgWidth * 1.086;
+              targetCoor.curves[1].poigne1.y += this.svgHeight * 1.066;
               return targetCoor.getPath();
-            }
-        ))
-        .subscribe();
+            })
+          )
+          .subscribe();
         break;
       case 'pages':
         console.log(`Sélection de la section: '${section}'`);
@@ -99,40 +95,63 @@ export class MaskComponent {
   }
   initMaskPositions() {
     this.initMaskHeaderPoints = new SvgPath(
-      new Coor(this.svgWidth * 0.75, 0),
-      new Coor(0, this.svgHeight * 0.2),
-      new Curve(new Coor(0, 0), new Coor(0, 0), new Coor(0, 0))
-    );
-    this.initMaskMenuPoints = new SvgPath(
-      new Coor(this.svgWidth, 0),
-      new Coor(this.svgWidth, this.svgHeight * 0.15),
+      new Coor(this.svgWidth * 0.75, 0), [
+      new Curve(
+        new Coor(0, this.svgHeight * 0.2),
+        new Coor(0, this.svgHeight * 0.2),
+        new Coor(0, this.svgHeight * 0.2)
+      ),
+      new Curve(
+        new Coor(0, 0),
+        new Coor(0, 0),
+        new Coor(0, 0)
+      ),
+    ]);
+    this.initMaskMenuPoints = new SvgPath(new Coor(this.svgWidth, 0), [
+      new Curve(
+        new Coor(this.svgWidth, this.svgHeight * 0.15),
+        new Coor(this.svgWidth, this.svgHeight * 0.15),
+        new Coor(this.svgWidth, this.svgHeight * 0.15)
+      ),
       new Curve(
         new Coor(this.svgWidth * 0.5, 0),
         new Coor(this.svgWidth * 0.5, 0),
         new Coor(this.svgWidth * 0.5, 0)
-      )
-    );
+      ),
+    ]);
     this.initMaskFaqPoints = new SvgPath(
       new Coor(this.svgWidth, this.svgHeight),
-      new Coor(this.svgWidth * 0.3, this.svgHeight),
-      new Curve(
-        new Coor(this.svgWidth, this.svgHeight),
-        new Coor(this.svgWidth * 0.9, this.svgHeight * 1.3),
-        new Coor(this.svgWidth, this.svgHeight * 0.75)
-      )
-    )
+      [
+        new Curve(
+          new Coor(this.svgWidth * 0.3, this.svgHeight),
+          new Coor(this.svgWidth * 0.3, this.svgHeight),
+          new Coor(this.svgWidth * 0.3, this.svgHeight)
+        ),
+        new Curve(
+          new Coor(this.svgWidth, this.svgHeight),
+          new Coor(this.svgWidth * 0.9, this.svgHeight * 1.3),
+          new Coor(this.svgWidth, this.svgHeight * 0.75)
+        ),
+      ]
+    );
     this.initMaskPagesPoints = new SvgPath(
       new Coor(this.svgWidth, this.svgHeight),
-      new Coor(this.svgWidth * 0.3, this.svgHeight),
-      new Curve(
-        new Coor(this.svgWidth, this.svgHeight),
-        new Coor(this.svgWidth * 0.9, this.svgHeight * 1.3),
-        new Coor(this.svgWidth, this.svgHeight * 0.75)
-      )
-    )
-    this.maskHeaderCoor= this.initMaskHeaderPoints.getPath();
-    this.maskMenuCoor= this.initMaskMenuPoints.getPath();
-    this.maskFaqCoor= this.initMaskFaqPoints.getPath();
-    this.maskPagesCoor= this.initMaskPagesPoints.getPath();
+      [
+        new Curve(
+          new Coor(this.svgWidth * 0.3, this.svgHeight),
+          new Coor(this.svgWidth * 0.3, this.svgHeight),
+          new Coor(this.svgWidth * 0.3, this.svgHeight)
+        ),
+        new Curve(
+          new Coor(this.svgWidth, this.svgHeight),
+          new Coor(this.svgWidth * 0.9, this.svgHeight * 1.3),
+          new Coor(this.svgWidth, this.svgHeight * 0.75)
+        ),
+      ]
+    );
+    this.maskHeaderCoor = this.initMaskHeaderPoints.getPath();
+    this.maskMenuCoor = this.initMaskMenuPoints.getPath();
+    this.maskFaqCoor = this.initMaskFaqPoints.getPath();
+    this.maskPagesCoor = this.initMaskPagesPoints.getPath();
   }
 }
