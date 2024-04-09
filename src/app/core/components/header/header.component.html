@@ -1,4 +1,4 @@
-<a (click)="retourAccueil()" id="logo-wrapper" [ngClass]="(hideHeader$ | async) ? 'hide' : 'reveal'">
+<a (click)="retourAccueil()" id="logo-wrapper" [ngClass]="{'hide' :hideHeader(), 'reveal': !hideHeader(), 'loading': isLoading()}">
     <img
       id="logo"
       src="assets/images/logo-Clickonaute.svg"
@@ -17,8 +17,8 @@
 <div
   id="go-top"
   (click)="onTheTop()"
-  [ngClass]="(hideHeader$ | async) ? 'reveal' : 'hide'"
-  [class.take-off]="takeOff$ | async"
+  [ngClass]="hideHeader() ? 'reveal' : 'hide'"
+  [class.take-off]="takeOff()"
 >
   <img id="rocket" src="assets/images/rocket.svg" alt="fusée" />
   <img

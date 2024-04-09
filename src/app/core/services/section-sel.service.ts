@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 export class SectionSelService {
 
 // private _sectionSelected$= new BehaviorSubject<string>("page")
-sectionSelected = signal("page")
+sectionSelected = signal("loading")
 
 
 sectionSwitcher(sectionName: string) {

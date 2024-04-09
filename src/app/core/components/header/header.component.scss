@@ -14,6 +14,11 @@
     transform: scale(0.5) translate(-50%, -25%);
   }  
 }
+.loading{
+ transform: rotateY(-2turn) scale(2.5);
+ top: center;
+ left: center;
+}
 
 #logo {
   margin: 2rem;
