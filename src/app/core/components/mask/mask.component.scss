@@ -7,7 +7,7 @@
   z-index: -5;
   .mask{
     fill: map-get($other-colors, dark);
-    transition: all ease-in 500ms;
+    transition: all ease-out 500ms;
     stroke: url(#radialGradientStroke);
     stroke-width: 0.1rem;
         opacity: 0.7;

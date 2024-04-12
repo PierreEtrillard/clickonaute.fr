@@ -1,24 +1,24 @@
+@use "./colors" as *;
 button {
   font-size: 1.5rem;
   border-radius: 15px;
-  border-top: #092145;
-  border-left: #011028;
+  border: double 0.5rem map-get($other-colors,dark); 
+  border-spacing: 1rem;
+  border-width: 0.5rem;
   padding: 0.5rem;
   transition: all 150ms;
+  background-color:$secondary-color;
   cursor: pointer;
   &:hover {
     transform: scale(0.95);
-    box-shadow: grey -1px -1px;
+    box-shadow: $secondary-color -1px;
+    background-color:map-get($other-colors,dark);
+    color: $secondary-color;
   }
 }
 .space-button {
-  background: radial-gradient(
-    circle at left,
-    #092145 0,
-    #3632f1 57.81%,
-    #011028 100%
-  );
-  color: white;
+  color: map-get($other-colors,dark);
+
   border-radius: 10px;
   &-disabled {
     filter: grayscale(1);

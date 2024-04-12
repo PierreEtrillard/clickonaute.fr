@@ -11,7 +11,7 @@ export class SvgPath {
   }
   public getPath() {
     const startPoint = `M ${this.start.x} ${this.start.y} `;
-    const curvesPoints = this.curves.map(curve => curve.getCurve()).join(" C ");
+    const curvesPoints = this.curves.map(curve => curve.getCurve()).join(" S ");
     return `${startPoint}${curvesPoints} Z`;
   }
 }
