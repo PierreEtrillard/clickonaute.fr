@@ -23,7 +23,8 @@
   .radialGradientStroke{
     &-accueil{  @include border-mask;}
     &-pages{  @include border-mask-purple;}
+    &-agenda{ @include border-mask-red}
     &-menu{@include border-mask-green;}
-    &-faq{@include border-mask-red;}
+    &-contact{@include border-mask;}
     &-loading{@include border-mask-purple;}
   }

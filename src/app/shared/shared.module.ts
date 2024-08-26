@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SimBtnComponent } from './components/sim-btn/sim-btn.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [
-    SimBtnComponent,
+    SimBtnComponent
   ],
   imports: [
     CommonModule,

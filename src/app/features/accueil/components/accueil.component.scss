@@ -1,0 +1,106 @@
+@import "/src/scss/partials/breakpoints";
+@import "/src/scss/partials/keyframes";
+@import "/src/scss/partials/colors";
+main {
+  position: fixed;
+  bottom: 25%;
+  left: 0%;
+  @include mobile-only {
+   position: absolute;
+    margin: 0;
+    padding-top: 140px;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  li {
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+  }
+}
+nav {
+  position: fixed;
+  margin: 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 0;
+    svg {
+      fill: white;
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+}
+#menu {
+  top: 0;
+  right: 0;
+  align-items: flex-end;
+
+}
+#sectionMenuBtn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  fill: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+  @include mobile-only {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+#footer-icon-wrapper{
+  z-index: 11;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  align-items: flex-end;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  &>a{
+    border: solid 0.2rem $secondary-color ;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+    &::after{
+      content: "";
+      width: 100%; /* Recouvre toute la largeur de l'image */
+      animation: rotate ease-in-out 1s infinite;    
+      border-top: $secondary-color 0.2rem solid ;
+      border-radius: 50%;
+      z-index: 100;
+    }
+  }
+  .icon-spacer{
+    width:1rem
+  }
+}
+.reducer {
+  margin-top: 1rem;
+  &:hover {
+    box-shadow: aqua 0px 0px 10px;
+  }
+}
+button.space-button{
+  position: fixed;
+  bottom: 15%;
+  left: 10%;
+  @include mobile-only {
+    position: absolute;
+}
+}

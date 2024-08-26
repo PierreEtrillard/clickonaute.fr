@@ -1,10 +1,9 @@
-# ClickonauteFr
+# Clickonaute.fr
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+projet démarré en version 15 d'angular il fonctionne avec l'ancienne architecture modulaire (NgModules impbriqués sans standalone components)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## styles
+aucune librairie n'est utilisé, seulement des régles css. le workflow est surement à paufiné, actuellement j'ai un main.scss et ses partials global en plus des fichiers de styles inhérent à chaques composants
 
 ## Code scaffolding
 

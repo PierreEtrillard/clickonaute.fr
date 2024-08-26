@@ -1,0 +1,94 @@
+@import "/src/scss/partials/breakpoints";
+h2 {
+  text-align: center;
+  animation: rotateNfade 0.5s 2s linear reverse forwards;
+  position: relative;
+  &#resultTitle {
+    animation: rotateNfade 0.5s linear both;
+  }
+}
+nav {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  animation: rotateNfade 0.5s 2.2s linear both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+//Progress Bar
+ul {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0;
+  .step {
+    min-width: 33%;
+    height: 5px;
+    background-color: aqua;
+    cursor: pointer;
+  }
+  .stepUnFilled {
+    min-width: 33%;
+    height: 5px;
+    background-color: grey;
+    cursor: pointer;
+  }
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 3rem;
+}
+fieldset {
+  display: flex;
+  width: 85%;
+  margin-top: 20px;
+  flex-direction: column;
+  border-radius: 10px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
+  .sel-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 1rem 0;
+    #pages {
+      font-size: 1rem;
+      padding-left: 1rem;
+      line-height: 2;
+      border: double 0.2rem;
+      border-radius: 0.2rem;
+    }
+  }
+  a {
+    color: aqua;
+  }
+  .radio-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  button {
+    position: absolute;
+    bottom: -25px;
+    &.preview {
+      left: -15px;
+    }
+    &.next {
+      right: -15px;
+    }
+  }
+
+}
+#result,
+app-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100%;
+}
