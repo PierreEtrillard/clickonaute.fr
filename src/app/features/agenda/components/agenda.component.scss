@@ -1,6 +1,7 @@
-:host {
-    --fc-today-bg-color: purple;
-    --fc-sat-color: grey;
-    --fc-sun-color: grey;
-    --fc-day-hover-border-color: purple;
-  }
+h1{
+  font-size: 1.5rem;
+}
+// le css pour le reste du callendrier est codé dans la partial spécials
+full-calendar{
+    max-width: 90%;
+}

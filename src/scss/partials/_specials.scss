@@ -33,12 +33,11 @@
   border: solid white 2px;
   box-shadow: aqua 5px 5px 20px;
   display: flex;
-  &-creusard {
-    width: fit-content;
-    background-color: #ffd740;
-  }
-  &-wul {
-    width: fit-content;
-    background-color: white;
-  }
+}
+:root{
+  --fc-today-bg-color: darkslateblue;
+  --fc-event-text-color:black;
+}
+.fc-day-sat, .fc-day-sun{
+    filter:grayscale(1)
 }
