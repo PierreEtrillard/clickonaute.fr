@@ -3,7 +3,7 @@ import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
-import { addDays, startOfDay, endOfMonth, parseISO } from 'date-fns';
+import { addDays, startOfDay, endOfMonth, parseISO, format } from 'date-fns';
 
 @Component({
   selector: 'app-agenda',
@@ -12,41 +12,49 @@ import { addDays, startOfDay, endOfMonth, parseISO } from 'date-fns';
 })
 export class AgendaComponent {
   myEvents: any[] = [];
-  year = '2024';
+  year = '2025';
+  weeksRange: number = 52;
+  startDate = new Date();
+  endDate = endOfMonth(addDays(this.startDate, 7 * this.weeksRange)); // 7j * n semaines à partir d'aujourd'hui
+
   unavailableDates = [
     `${this.year}-01-01`, // Jour de l'An
     `${this.year}-05-01`, // Fête du Travail
     `${this.year}-05-08`, // Victoire 1945
     `${this.year}-07-14`, // Fête nationale
     `${this.year}-08-15`, // Assomption
-    `${this.year}-09-25`, // Vaccances
-    `${this.year}-09-26`, // Vaccances
-    `${this.year}-09-27`, // Vaccances
-    `${this.year}-09-28`, // Vaccances
-    `${this.year}-09-29`, // Vaccances
-    `${this.year}-09-30`, // Vaccances
-    `${this.year}-10-01`, // Vaccances
-    `${this.year}-10-02`, // Vaccances
-    `${this.year}-10-03`, // Vaccances
-    `${this.year}-10-04`, // Vaccances
-    `${this.year}-10-05`, // Vaccances
-    `${this.year}-10-06`, // Vaccances
-    `${this.year}-10-07`, // Vaccances
-    `${this.year}-10-08`, // Vaccances
-    `${this.year}-10-09`, // Vaccances
-    `${this.year}-10-10`, // Vaccances
-    `${this.year}-10-11`, // Vaccances
-    `${this.year}-10-12`, // Vaccances
-    `${this.year}-10-13`, // Vaccances
-    `${this.year}-10-14`, // Vaccances
-    `${this.year}-10-15`, // Vaccances
+    `2024-09-25`, // Vaccances
+    `2024-09-26`, // Vaccances
+    `2024-09-27`, // Vaccances
+    `2024-09-28`, // Vaccances
+    `2024-09-29`, // Vaccances
+    `2024-09-30`, // Vaccances
+    `2024-10-01`, // Vaccances
+    `2024-10-02`, // Vaccances
+    `2024-10-03`, // Vaccances
+    `2024-10-04`, // Vaccances
+    `2024-10-05`, // Vaccances
+    `2024-10-06`, // Vaccances
+    `2024-10-07`, // Vaccances
+    `2024-10-08`, // Vaccances
+    `2024-10-09`, // Vaccances
+    `2024-10-10`, // Vaccances
+    `2024-10-11`, // Vaccances
+    `2024-10-12`, // Vaccances
+    `2024-10-13`, // Vaccances
+    `2024-10-14`, // Vaccances
+    `2024-10-15`, // Vaccances
     `${this.year}-11-01`, // Toussaint
     `${this.year}-11-11`, // Armistice 1918
     `${this.year}-12-25`, // Noël
-  
   ];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth', // vue au mois
+    validRange: {
+      start: this.startDate,
+      end: this.endDate,
+    },
+    weekends:false,
     locale: frLocale,
     plugins: [dayGridPlugin, interactionPlugin],
     selectable: true, // Permet la sélection des dates
@@ -57,25 +65,25 @@ export class AgendaComponent {
   };
 
   constructor() {
-    this.generateWeekdayEvents(52); // Génère toutes mes dates de dispo pour les n semaines à venir
+    this.generateWeekdayEvents(); // Génère toutes mes dates de dispo pour les n semaines à venir
   }
 
   // Génère des événements pour tous les jours du lundi au vendredi pour les n semaines à venir
-  generateWeekdayEvents(semaines: number) {
-    const startDate = new Date();
-    const endDate = endOfMonth(addDays(startDate, 7 * semaines)); // 7j * n semaines à partir d'aujourd'hui
-
-    for (let _date = startDate; _date <= endDate; _date = addDays(_date, 1)) {
+  generateWeekdayEvents() {
+    for (let _date = this.startDate; _date <= this.endDate; _date = addDays(_date, 1)) {
       const dayOfWeek = _date.getDay();
       if (dayOfWeek !== 0 && dayOfWeek !== 6) {
         // Exclure les week-ends
         this.myEvents.push({
-          title: 'dispo',
-          start: startOfDay(_date).toISOString(),
+          title: 'disponible',
+          start: format(_date, 'yyyy-MM-dd'),
+          backgroundColor: 'aqua',
+          textColor: 'black'
         });
       }
     }
     this.removeEventsByDates(this.unavailableDates);
+    console.table(this.myEvents)
   }
 
   // Supprimer les événements correspondant à une liste de dates
@@ -103,8 +111,8 @@ export class AgendaComponent {
 
     if (
       selectedEvents.length ===
-      (new Date(selectInfo.endStr).getDate() -
-        new Date(selectInfo.startStr).getDate())
+      new Date(selectInfo.endStr).getDate() -
+        new Date(selectInfo.startStr).getDate()
     ) {
       alert(`Selected range: ${selectInfo.startStr} to ${selectInfo.endStr}`);
     } else {

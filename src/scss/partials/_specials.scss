@@ -36,8 +36,30 @@
 }
 :root{
   --fc-today-bg-color: darkslateblue;
-  --fc-event-text-color:black;
 }
 .fc-day-sat, .fc-day-sun{
     filter:grayscale(1)
+}
+/* Fixer la largeur et la hauteur du calendrier */
+.fc {
+  width: 90%;  /* Largeur maximale du calendrier */
+  height: 80vh;      /* Hauteur fixe du calendrier */
+  margin: 0 auto;     /* Centrer le calendrier horizontalement */
+}
+/* Réduire la taille de la police du titre du mois dans la toolbar */
+.fc-toolbar {
+  font-size: 1.5rem;  /* Taille de la police réduite pour le titre du mois */
+}
+/* Réduire la taille de la police des titres des événements */
+.fc-event-title {
+  font-size: 1rem;    /* Taille de la police réduite */
+  white-space: nowrap; /* Empêcher le retour à la ligne pour les titres longs */
+  overflow: hidden;   /* Masquer le débordement des titres trop longs */
+  text-overflow: ellipsis; /* Afficher des points de suspension pour les titres trop longs */
+}
+
+/* Optionnel : Ajuster la taille des cellules pour s'adapter à la hauteur du calendrier */
+.fc-daygrid-day 
+.fc-daygrid-body tr {
+  height: 2rem; /* Hauteur fixe pour chaque ligne de jours */
 }
