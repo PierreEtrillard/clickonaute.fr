@@ -1,4 +1,5 @@
 <main *ngIf="selectedSection() === 'accueil'">
+  <app-message-displayer [message]="introductionMessage"></app-message-displayer>
   <h1>Créateur Web indépendant</h1>
   <ul>
     <li>Conception de sites internet</li>
@@ -42,11 +43,11 @@
 <!-- accès au simulateur -->
 <!-- <app-sim-btn *ngIf="selectedSection() === 'accueil'" (click)="sectionSelector('pages')"></app-sim-btn> -->
 <button class="space-button" *ngIf="selectedSection() === 'accueil'" (click)="consultAgenda()">mes disponibilités</button>
-<div id="footer-icon-wrapper">
+<footer id="footer-icon-wrapper">
   <a href="https://github.com/PierreEtrillard">
     <img src="../../../../../assets/images/gitHub.svg" alt="lien vers le compte github de pierre Etrillard"></a>
   <div class="icon-spacer"></div>
   <a href="https://linkedin.com/in/pierre-etrillard-clickonaute">
     <img src="../../../../../assets/images/linkedIn.svg" alt="lien vers le compte linkedIn de pierre Etrillard"></a>
 
-</div>
+</footer>

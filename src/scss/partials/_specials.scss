@@ -4,25 +4,26 @@
   font-weight: 100;
   color: aqua;
   font-size: 1rem;
-  margin: 0;
+  transition: 500ms;
 }
-.table-of-content {
+.hidden{
+  transform: scaleX(0);
+}
+.summary {
   // @include light-mask;
   border-radius: 20px;
   padding: 2rem;
   li {
-    list-style: inside;
+    list-style: square;
     padding: 0.5rem;
   }
 }
-.summary {
-  // @include light-mask;
-  padding: 2rem;
-  li {
-    list-style: square;
-    margin: 0.5rem;
-  }
+.section-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .info {
   // @include light-mask;
   font-style: italic;

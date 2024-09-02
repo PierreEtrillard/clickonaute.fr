@@ -1,0 +1,17 @@
+.msg-wrapper{
+    position: fixed;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+        padding: 1rem;
+        overflow: hidden;
+        width: 90vw;
+        border-radius: 10px;
+        border: gray ridge 2px;
+        background-color: black;
+    }
+}

@@ -1,6 +1,6 @@
-import { Component, OnInit, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, timer} from 'rxjs';
+import { map, take, timer } from 'rxjs';
 import { SectionSelService } from 'src/app/core/services/section-sel.service';
 
 @Component({
@@ -10,18 +10,48 @@ import { SectionSelService } from 'src/app/core/services/section-sel.service';
 })
 export class AccueilComponent implements OnInit {
   selectedSection!: WritableSignal<string>;
-  
-  constructor(private sectionSelService: SectionSelService, private router: Router) {}
+  introductionMessage = signal('');
+  constructor(
+    private sectionSelService: SectionSelService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.selectedSection = this.sectionSelService.sectionSelected;
-    timer(1500).pipe(map(()=> this.sectionSelService.sectionSwitcher('accueil'))).subscribe();
-    
+    timer(1500)
+      .pipe(
+        map(() => {
+          this.sectionSelService.sectionSwitcher('accueil');
+          this.sectionSelService.landingPageVisited.set(true);
+        }),
+        take(1)
+      )
+      .subscribe();
+    if (!this.sectionSelService.landingPageVisited()) {
+      timer(2000)
+        .pipe(
+          map(() => {
+            this.introductionMessage.set(
+              "Bonjour et bienvenu à bord ! Je suis Pierre, développeur fullstack freelance. Toujours ouvert pour de nouveaux projet ! Consultez mes disponibilitées et n'hesitez surtout pas à me contacter pour en discuter. Bonne navigation !!!"
+            );
+            console.log('injection');
+          }),
+          take(1)
+        )
+        .subscribe();
+
+      timer(15000)
+        .pipe(
+          map(() => this.introductionMessage.set('')),
+          take(1)
+        )
+        .subscribe();
+    }
   }
   sectionSelector(sectionName: string) {
     this.sectionSelService.sectionSwitcher(sectionName);
   }
   consultAgenda() {
     this.sectionSelService.sectionSwitcher('agenda');
-    this.router.navigateByUrl('agenda')
+    this.router.navigateByUrl('agenda');
   }
 }

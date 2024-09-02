@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { __values } from 'tslib';
 import { prestation } from '../../quote.model';
 import { QuoteService } from '../../services/quote.service';
-import { Observable, from, interval, map, scan, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ResultComponent implements OnInit {
   quote!: prestation[];
   message: string =
     ' La simulation suivante ne constitue pas un devis officiel, merci de me contacter pour une estimation plus précise de votre projet';
-    progressiveMessage$!: Observable<string>;
+  progressiveMessage$!: Observable<string>;
   @Output() backToSimulator$ = new EventEmitter<number>();
 
   constructor(

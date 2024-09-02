@@ -6,6 +6,7 @@
   top: 0;
   left: 0;
   height: 0.5rem;
+  z-index: 10;
   transition: all 1s;
   cursor: pointer;
   @include tablet-only {
@@ -16,9 +17,7 @@
   }  
 }
 .loading{
- transform: rotateY(-2turn) scale(2.5);
- top: center;
- left: center;
+ transform: rotateY(-2turn) scale(2.5) translate(50%,50%);
 }
 
 #logo {

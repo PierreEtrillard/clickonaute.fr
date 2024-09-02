@@ -1,30 +1,43 @@
-@use "/src/scss/partials/breakpoints" as * ;
-@use "/src/scss/partials/colors" as * ;
+@use "/src/scss/partials/breakpoints" as *;
+@use "/src/scss/partials/colors" as *;
 #mask-container {
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: -5;
-  .mask{
+  .mask {
     fill: map-get($other-colors, dark);
     transition: all ease-out 500ms;
     stroke: url(#radialGradientStroke);
     stroke-width: 0.1rem;
-        opacity: 0.7;
-        &-menu{
-          transform-origin: center center ;
-          transform: rotate(1.3turn) scale(5, 8) translate(-43%, 41%);
-        }
-        &-faq {
-          transform-origin: center center;
-          transform: rotate(2.1turn) scale(-8, 8) translate(-46%, -45%);        }
-      }
+    opacity: 0.7;
+    &-menu {
+      transform-origin: right center;
+      transform: rotate(90deg) scale(1.75, 11) translate(21%, 48%);
+    }
+    &-faq {
+      transform-origin: center center; // centre du view-port car la svg prend tout celui-ci
+      transform: rotate(2.1turn) scale(-8, 8) translate(-46%, -45%);
+    }
   }
-  .radialGradientStroke{
-    &-accueil{  @include border-mask;}
-    &-pages{  @include border-mask-purple;}
-    &-agenda{ @include border-mask-red}
-    &-menu{@include border-mask-green;}
-    &-contact{@include border-mask;}
-    &-loading{@include border-mask-purple;}
+}
+.radialGradientStroke {
+  &-accueil {
+    @include border-mask;
   }
+  &-pages {
+    @include border-mask-purple;
+  }
+  &-agenda {
+    @include border-mask-red;
+  }
+  &-menu {
+    @include border-mask-green;
+  }
+  &-contact {
+    @include border-mask;
+  }
+  &-loading {
+    @include border-mask-purple;
+  }
+}
