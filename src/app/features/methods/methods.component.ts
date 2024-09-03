@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-methods',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./methods.component.scss']
 })
 export class MethodsComponent {
+messageToDisplay=signal("Independant mais pas solitaire, j'intégre facilement une équipe de développement web pour des projet de toute tailles");
 
 }
