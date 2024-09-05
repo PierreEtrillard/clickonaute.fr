@@ -18,7 +18,7 @@ export class AccueilComponent implements OnInit {
   ngOnInit(): void {
     this.selectedSection = this.sectionSelService.sectionSelected;
     timer(1500)
-      .pipe(
+    .pipe(
         map(() => {
           this.sectionSelService.sectionSwitcher('accueil');
           this.sectionSelService.landingPageVisited.set(true);
@@ -26,8 +26,8 @@ export class AccueilComponent implements OnInit {
         take(1)
       )
       .subscribe();
-    if (!this.sectionSelService.landingPageVisited()) {
-      timer(2000)
+      if (!this.sectionSelService.landingPageVisited()) {
+        timer(2000)
         .pipe(
           map(() => {
             this.introductionMessage.set(
@@ -40,11 +40,11 @@ export class AccueilComponent implements OnInit {
         .subscribe();
 
       timer(15000)
-        .pipe(
-          map(() => this.introductionMessage.set('')),
-          take(1)
-        )
-        .subscribe();
+      .pipe(
+        map(() => this.introductionMessage.set('')),
+        take(1)
+      )
+      .subscribe();
     }
   }
   sectionSelector(sectionName: string) {
@@ -53,5 +53,8 @@ export class AccueilComponent implements OnInit {
   consultAgenda() {
     this.sectionSelService.sectionSwitcher('agenda');
     this.router.navigateByUrl('agenda');
+  }
+  closeMsg() {
+    this.introductionMessage.set("");
   }
 }

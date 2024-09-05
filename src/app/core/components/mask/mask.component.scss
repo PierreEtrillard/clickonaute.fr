@@ -2,8 +2,9 @@
 @use "/src/scss/partials/colors" as *;
 #mask-container {
   position: fixed;
+  top: 0;
   width: 100%;
-  height: 100vh;
+  min-height:100vh;
   z-index: -5;
   .mask {
     fill: map-get($other-colors, dark);

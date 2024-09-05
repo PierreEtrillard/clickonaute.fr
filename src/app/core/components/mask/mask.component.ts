@@ -1,11 +1,9 @@
 import {
   Component,
   WritableSignal,
-  computed,
-  effect,
   signal,
 } from '@angular/core';
-import { Observable, tap, map, interval, take, timer } from 'rxjs';
+import { map, interval, timer } from 'rxjs';
 import { SectionSelService } from '../../services/section-sel.service';
 import { SvgPath } from '../models/svgPath';
 import { Coor } from '../models/Coor';
@@ -19,7 +17,7 @@ export class MaskComponent {
   middleGradient = signal(-50);
   selectedSection!: WritableSignal<string>;
   svgWidth: number = window.innerWidth;
-  svgHeight: number = window.innerHeight;
+  svgHeight: number = document.body.scrollHeight;
   initMaskFaqPoints!: SvgPath;
   initMaskHeaderPoints!: SvgPath;
   initMaskMenuPoints!: SvgPath;

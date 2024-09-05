@@ -1,4 +1,5 @@
 @use "./colors" as *;
+@use "./breakpoints" as *;
 .messages {
   font-family: Galactic-Font;
   font-weight: 100;
@@ -22,6 +23,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @include mobile-only {
+    transform: scale(0.8);
+  }
   img {
     margin-left: 1rem;
     margin-right: 1rem;

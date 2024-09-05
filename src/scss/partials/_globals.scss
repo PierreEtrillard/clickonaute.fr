@@ -11,6 +11,16 @@ body {
   font-size: 2rem;
   @include mobile-only{ font-size: 1rem;}
 }
+main{
+  padding: 90px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+section{
+  width: -webkit-fill-available;
+}
 h1{
   font-size: 4rem;
   margin: 2rem;
@@ -26,13 +36,6 @@ h3{
 }
 li{
   list-style: none;
-}
-main{
-  padding: 90px 15px 15px 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 a {
   text-decoration: none;

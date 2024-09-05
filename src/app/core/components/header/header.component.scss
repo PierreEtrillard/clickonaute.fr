@@ -1,10 +1,11 @@
 @import "../../../../scss/partials/breakpoints";
 
+
 #logo-wrapper {
-  position: fixed;
-  width: min-content;
-  top: 0;
+  position: absolute;
   left: 0;
+  top: 0;
+  width: min-content;
   height: 0.5rem;
   z-index: 10;
   transition: all 1s;
@@ -14,10 +15,19 @@
   }
   @include mobile-only {
     transform: scale(0.5) translate(-50%, -25%);
-  }  
+  }
 }
-.loading{
- transform: rotateY(-2turn) scale(2.5) translate(50%,50%);
+#sectionMenuBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  fill: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.loading {
+  transform: rotateY(-2turn) scale(2.5) translate(50%, 50%);
 }
 
 #logo {
@@ -55,6 +65,8 @@
   right: 5px;
   animation: clickMe ease-in 400ms both infinite alternate;
   transition: all 0.5s;
+  opacity: 0;
+  transform: scale(0);
   cursor: pointer;
   #rocket {
     position: absolute;
@@ -69,15 +81,10 @@
     left: 9.5px;
     animation: fire linear 800ms both infinite alternate;
   }
-}
-.hide {
-  opacity: 0;
-  transform: scale(0);
-}
-.reveal {
-  opacity: 1;
-}
-.take-off {
-  // animation: takeOff ease-in 400ms backwards;
-  animation: fire linear 800ms both infinite alternate;
+&.reveal {
+    opacity: 1;
+  }
+  &.take-off {
+    animation: takeOff 1s forwards;
+  }
 }

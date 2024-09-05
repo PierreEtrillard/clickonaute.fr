@@ -18,7 +18,6 @@ button {
 }
 .space-button {
   color: map-get($other-colors,dark);
-
   border-radius: 10px;
   &-disabled {
     filter: grayscale(1);

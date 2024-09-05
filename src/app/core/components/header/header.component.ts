@@ -1,7 +1,7 @@
-import { Component, HostListener, Input, OnInit, signal } from '@angular/core';
+import { Component, HostListener, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SectionSelService } from '../../services/section-sel.service';
-import { BehaviorSubject, Subject, map, timer } from 'rxjs';
+import { map, take, timer } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +10,36 @@ import { BehaviorSubject, Subject, map, timer } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   hideHeader = signal(false);
+  revealTakeOfBtn = signal(false);
   isLoading = signal(true);
   takeOff = signal(false);
 
-  @HostListener('document:scroll', ['$event'])
-  onScroll(e: Event) {
-    window.scrollY > 60
+  @HostListener('document:scroll')
+  onScroll() {
+    window.scrollY > window.innerHeight * 0.1
       ? this.hideHeader.set(true)
       : this.hideHeader.set(false);
+
+    window.scrollY > document.body.scrollHeight * 0.4 &&
+    window.scrollY > window.innerHeight * 1.2
+      ? this.revealTakeOfBtn.set(true)
+      : this.revealTakeOfBtn.set(false);
   }
   constructor(
     private router: Router,
     private sectionSelService: SectionSelService
   ) {}
   ngOnInit(): void {
-    timer(1500).pipe(map(()=> this.isLoading.set(false))).subscribe()
+    timer(1500)
+      .pipe(map(() => this.isLoading.set(false)))
+      .subscribe();
   }
 
+  sectionSelector(pageName: string) {
+    console.log(pageName);
+    
+    this.sectionSelService.sectionSwitcher(pageName);
+  }
   getYPosition(e: Event): number {
     return (e.target as Element).scrollTop;
   }
@@ -37,6 +50,12 @@ export class HeaderComponent implements OnInit {
       left: 0,
       behavior: 'smooth',
     });
+    timer(1000)
+      .pipe(
+        map(() => this.takeOff.set(false)),
+        take(1)
+      )
+      .subscribe();
   }
   retourAccueil() {
     this.sectionSelService.sectionSwitcher('accueil');

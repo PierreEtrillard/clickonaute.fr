@@ -19,36 +19,40 @@
 //animations de la fusée:
 @keyframes fire {
   from {
-    transform: scale(0.5, 0.5)  ;
+    transform: scale(0.5, 0.5);
   }
   20% {
-    transform: scale(0.25, 1) ;
+    transform: scale(0.25, 1);
   }
   40% {
-    transform: scale(0.5, 1.5) ;
+    transform: scale(0.5, 1.5);
   }
   60% {
-    transform: scale(0.75, 1) ;
+    transform: scale(0.75, 1);
   }
   80% {
-    transform: scale(0.5, 2.5) ;
+    transform: scale(0.5, 2.5);
   }
   to {
-    transform: scale(0.5, 0.5) ;
+    transform: scale(0.5, 0.5);
   }
 }
 @keyframes takeOff {
   from {
-    transform:  scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
   }
-  5%{
-    transform: scale(1.2, 0.98) translateY(-3px);
+  5% {
+    transform: scale(1.2, 0.8) translateY(20px);
+    opacity: 1;
   }
   98% {
-    transform: scale(1, 1,2) translateY(350px);
+    transform: scale(0.7, 1, 3) translateY(-90vh);
+    opacity: 1;
   }
   to {
-    transform: scale(3, 0) translateY(350px);
+    transform: scale(1, 1) translateY(-120vh);
+    opacity: 0;
   }
 }
 @keyframes clickMe {
@@ -107,10 +111,10 @@
   }
 }
 @keyframes rotate {
-  from{
+  from {
     transform: rotate();
   }
-  to{
+  to {
     transform: rotate(1turn);
   }
 }
