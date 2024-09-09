@@ -31,17 +31,15 @@ export class HeaderComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     timer(1500)
-      .pipe(map(() => this.isLoading.set(false)))
+      .pipe(map(() => {this.isLoading.set(false);
+        this.sectionSelService.sectionSwitcher('accueil')
+      }),take(1))
       .subscribe();
   }
 
-  sectionSelector(pageName: string) {
-    console.log(pageName);
-    
-    this.sectionSelService.sectionSwitcher(pageName);
-  }
-  getYPosition(e: Event): number {
-    return (e.target as Element).scrollTop;
+  menuOpener() {    
+    this.router.navigateByUrl('');
+    this.sectionSelService.sectionSwitcher('menu');
   }
   onTheTop() {
     this.takeOff.set(true);
