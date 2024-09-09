@@ -1,6 +1,14 @@
 <main>
     <h1>Je travail en présentiel sur les zones de Dinan - St Malo - St Brieuc ou à distance</h1>
-    <full-calendar [options]="calendarOptions" class="card calendar"></full-calendar>
+   <div id="calendar-contenair">
+    <full-calendar
+     [options]="calendarOptions"
+     class="card calendar"
+     #calendar
+     (swiperight)="nextMounth()"
+     (swipeleft)="prevMounth()">
+    </full-calendar>
+</div>
     <p>tjm: 320€ pour les missions de moins de deux semaine</p>
     <p>tjm:300€ pour toutes missions de deux semaines ou plus</p>
     <p>retrouvez moi sur :</p>

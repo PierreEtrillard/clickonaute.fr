@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, HostListener, ViewChild } from '@angular/core';
 import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { addDays, startOfDay, endOfMonth, parseISO, format } from 'date-fns';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss'],
 })
-export class AgendaComponent {
+export class AgendaComponent implements AfterViewInit{
+  @ViewChild('calendar') calendar!: FullCalendarComponent;
+  ngAfterViewInit(): void {
+    let xEnterPosition:number= 0;
+    let xOutPosition:number
+    const calendarRef = document.getElementById('calendarContenair');
+    calendarRef?.addEventListener('touchstart',(e)=>{xEnterPosition=e.changedTouches[0].screenX;});
+    calendarRef?.addEventListener('touchend',(e)=>{
+      xOutPosition=e.changedTouches[0].screenX;
+    xEnterPosition<xOutPosition?
+    this.nextMounth():
+    this.prevMounth()
+    })
+  }
+
+  // hammer = new Hammer(this.calendarRef);
   myEvents: any[] = [];
-  year = '2025';
   weeksRange: number = 52;
   startDate = new Date();
   endDate = endOfMonth(addDays(this.startDate, 7 * this.weeksRange)); // 7j * n semaines à partir d'aujourd'hui
-
+  year = '2025';
   unavailableDates = [
     `${this.year}-01-01`, // Jour de l'An
     `${this.year}-05-01`, // Fête du Travail
@@ -54,7 +69,7 @@ export class AgendaComponent {
       start: this.startDate,
       end: this.endDate,
     },
-    weekends:false,
+    weekends: false,
     locale: frLocale,
     plugins: [dayGridPlugin, interactionPlugin],
     selectable: true, // Permet la sélection des dates
@@ -67,10 +82,14 @@ export class AgendaComponent {
   constructor() {
     this.generateWeekdayEvents(); // Génère toutes mes dates de dispo pour les n semaines à venir
   }
-
+  //    INITIALIZATION DU CALENDRIER AVEC LES DISPONIBILITE
   // Génère des événements pour tous les jours du lundi au vendredi pour les n semaines à venir
   generateWeekdayEvents() {
-    for (let _date = this.startDate; _date <= this.endDate; _date = addDays(_date, 1)) {
+    for (
+      let _date = this.startDate;
+      _date <= this.endDate;
+      _date = addDays(_date, 1)
+    ) {
       const dayOfWeek = _date.getDay();
       if (dayOfWeek !== 0 && dayOfWeek !== 6) {
         // Exclure les week-ends
@@ -78,14 +97,13 @@ export class AgendaComponent {
           title: 'disponible',
           start: format(_date, 'yyyy-MM-dd'),
           backgroundColor: 'aqua',
-          textColor: 'black'
+          textColor: 'black',
         });
       }
     }
     this.removeEventsByDates(this.unavailableDates);
-    console.table(this.myEvents)
+    console.table(this.myEvents);
   }
-
   // Supprimer les événements correspondant à une liste de dates
   removeEventsByDates(datesToRemove: string[]) {
     // Itérer sur chaque date à supprimer
@@ -102,7 +120,16 @@ export class AgendaComponent {
     // Mise à jour des événements dans le calendrier
     this.calendarOptions.events = this.myEvents;
   }
-
+  //  EVENEMENT AU SWIPE GAUCHE ET DROITE
+  
+  nextMounth() {
+    console.log('calendar swipeRight');
+    this.calendar.getApi().next();
+  }
+  prevMounth() {
+    console.log('calendar swipeLeft');
+    this.calendar.getApi().prev();
+  }
   handleDateSelect(selectInfo: DateSelectArg) {
     const selectedEvents = this.myEvents.filter(
       (event) =>
