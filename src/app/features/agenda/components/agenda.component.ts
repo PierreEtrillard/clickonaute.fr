@@ -1,33 +1,17 @@
-import { AfterViewInit, Component, HostListener, ViewChild } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { addDays, startOfDay, endOfMonth, parseISO, format } from 'date-fns';
-import { FullCalendarComponent } from '@fullcalendar/angular';
 
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss'],
 })
-export class AgendaComponent implements AfterViewInit{
-  @ViewChild('calendar') calendar!: FullCalendarComponent;
-  ngAfterViewInit(): void {
-    let xEnterPosition:number= 0;
-    let xOutPosition:number
-    const calendarRef = document.getElementById('calendarContenair');
-    calendarRef?.addEventListener('touchstart',(e)=>{xEnterPosition=e.changedTouches[0].screenX;});
-    calendarRef?.addEventListener('touchend',(e)=>{
-      xOutPosition=e.changedTouches[0].screenX;
-    xEnterPosition<xOutPosition?
-    this.nextMounth():
-    this.prevMounth()
-    })
-  }
-
-  // hammer = new Hammer(this.calendarRef);
-  myEvents: any[] = [];
+export class AgendaComponent {
+  myDispos: any[] = [];
   weeksRange: number = 52;
   startDate = new Date();
   endDate = endOfMonth(addDays(this.startDate, 7 * this.weeksRange)); // 7j * n semaines à partir d'aujourd'hui
@@ -38,6 +22,7 @@ export class AgendaComponent implements AfterViewInit{
     `${this.year}-05-08`, // Victoire 1945
     `${this.year}-07-14`, // Fête nationale
     `${this.year}-08-15`, // Assomption
+    `2024-09-12`, // Vaccances
     `2024-09-25`, // Vaccances
     `2024-09-26`, // Vaccances
     `2024-09-27`, // Vaccances
@@ -63,19 +48,24 @@ export class AgendaComponent implements AfterViewInit{
     `${this.year}-11-11`, // Armistice 1918
     `${this.year}-12-25`, // Noël
   ];
+  selectedDates:WritableSignal<string[]>=signal([]);
+  currentSelection!: DateSelectArg;
+  price = signal(0);
   calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth', // vue au mois
+    locale: frLocale,
     validRange: {
       start: this.startDate,
       end: this.endDate,
     },
+    events: this.myDispos,
     weekends: false,
-    locale: frLocale,
+    initialView: 'dayGridMonth', // vue au mois
     plugins: [dayGridPlugin, interactionPlugin],
-    selectable: true, // Permet la sélection des dates
-    select: this.handleDateSelect.bind(this),
+    selectable: true, // Permet la sélection des
     selectOverlap: (event) => !!event, // Permet de sélectionner uniquement les dates ayant des événements
-    events: this.myEvents,
+    longPressDelay: 200, // tps en ms de maintien du click ou du touché sur une date avant le déclaenchement de l'event
+    select: (selectInfo) => this.handleDateSelect(selectInfo),
+    unselect:()=>this.resetSelection(),
     displayEventTime: false, // Masque complètement l'heure dans l'affichage des événements
   };
 
@@ -93,7 +83,7 @@ export class AgendaComponent implements AfterViewInit{
       const dayOfWeek = _date.getDay();
       if (dayOfWeek !== 0 && dayOfWeek !== 6) {
         // Exclure les week-ends
-        this.myEvents.push({
+        this.myDispos.push({
           title: 'disponible',
           start: format(_date, 'yyyy-MM-dd'),
           backgroundColor: 'aqua',
@@ -101,14 +91,13 @@ export class AgendaComponent implements AfterViewInit{
         });
       }
     }
-    this.removeEventsByDates(this.unavailableDates);
-    console.table(this.myEvents);
+    this.removeUnavailableDates(this.unavailableDates);
   }
   // Supprimer les événements correspondant à une liste de dates
-  removeEventsByDates(datesToRemove: string[]) {
+  removeUnavailableDates(datesToRemove: string[]) {
     // Itérer sur chaque date à supprimer
     datesToRemove.forEach((dateToRemove) => {
-      this.myEvents = this.myEvents.filter((event) => {
+      this.myDispos = this.myDispos.filter((event) => {
         // Compare les dates sans prendre en compte l'heure
         return (
           startOfDay(parseISO(event.start)).toISOString() !==
@@ -118,35 +107,38 @@ export class AgendaComponent implements AfterViewInit{
     });
 
     // Mise à jour des événements dans le calendrier
-    this.calendarOptions.events = this.myEvents;
+    this.calendarOptions.events = this.myDispos;
   }
-  //  EVENEMENT AU SWIPE GAUCHE ET DROITE
-  
-  nextMounth() {
-    console.log('calendar swipeRight');
-    this.calendar.getApi().next();
-  }
-  prevMounth() {
-    console.log('calendar swipeLeft');
-    this.calendar.getApi().prev();
-  }
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const selectedEvents = this.myEvents.filter(
-      (event) =>
-        event.start >= selectInfo.startStr && event.start < selectInfo.endStr
-    );
 
-    if (
-      selectedEvents.length ===
-      new Date(selectInfo.endStr).getDate() -
-        new Date(selectInfo.startStr).getDate()
-    ) {
-      alert(`Selected range: ${selectInfo.startStr} to ${selectInfo.endStr}`);
-    } else {
-      alert(
-        `Cannot select range: ${selectInfo.startStr} to ${selectInfo.endStr}`
-      );
-      selectInfo.view.calendar.unselect();
+  handleDateSelect(selectInfo: DateSelectArg) {
+    this.currentSelection = selectInfo;
+    const selectedDatesRange = this.getDateRangeArray(
+      selectInfo.start,
+      selectInfo.end
+    );
+    const selectedDates = selectedDatesRange.filter((date) =>
+      this.myDispos.some((dateDispo) => dateDispo.start === date)
+    );
+    this.selectedDates.set(selectedDates)
+    selectedDates.length >= 10 ?
+    this.price.set(selectedDates.length*300):
+    this.price.set(selectedDates.length*320)
+  }
+  // Méthode pour générer un tableau de toutes les dates entre deux dates
+  getDateRangeArray(start: Date, end: Date): string[] {
+    const dateArray: string[] = [];
+
+    let currentDate = start;
+    while (currentDate < end) {
+      dateArray.push(format(currentDate, 'yyyy-MM-dd'));
+      currentDate = addDays(currentDate, 1); // Passer au jour suivant
     }
+
+    return dateArray;
+  }
+  resetSelection() {
+    this.currentSelection.view.calendar.unselect(); //deselection des dates
+    this.selectedDates.set([]);
+    this.price.set(0);
   }
 }

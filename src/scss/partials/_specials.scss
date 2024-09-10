@@ -26,9 +26,9 @@
   @include mobile-only {
     transform: scale(0.8);
   }
-  
-    max-width: 80%;
-  
+
+  max-width: 80%;
+
   img {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -53,7 +53,8 @@
 }
 //      **************    FULL-CALENDAR   **************
 :root {
-  --fc-today-bg-color: darkslateblue;
+  --fc-today-bg-color: darkmagenta;
+  --fc-highlight-color: darkslateblue;
 }
 .fc-day-sat,
 .fc-day-sun {
