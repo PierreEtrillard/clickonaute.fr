@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { SectionSelService } from '../../services/section-sel.service';
+import { StateService } from '../../services/state.service';
 import { map, take, timer } from 'rxjs';
 
 @Component({
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   }
   constructor(
     private router: Router,
-    private sectionSelService: SectionSelService
+    private sectionSelService: StateService
   ) {}
   ngOnInit(): void {
     timer(1500)

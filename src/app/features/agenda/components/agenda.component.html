@@ -6,7 +6,7 @@
     <p *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{currentSelection.start | date:'mediumDate':'FR'}}.</p>
     <p> Souhaitez-vous bloquer ce créneau ? </p>
     <p> total estimé: <span>{{price()| currency:'EUR'}}TTC</span></p>
-    <button class="space-button" routerLink="/contact">Contact</button>
+    <button class="space-button" routerLink="/contact">Reserver</button>
 </div>
 <full-calendar
      [options]="calendarOptions"

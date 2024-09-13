@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { SectionSelService } from 'src/app/core/services/section-sel.service';
+import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
   selector: 'app-sim-btn',
@@ -11,7 +10,7 @@ import { SectionSelService } from 'src/app/core/services/section-sel.service';
 export class SimBtnComponent {
   selectedSection!:string;
 
-  constructor(private sectionSelService: SectionSelService, private router:Router) {}
+  constructor(private sectionSelService: StateService, private router:Router) {}
   ngOnInit(): void {
     this.selectedSection = this.sectionSelService.sectionSelected()
   }  

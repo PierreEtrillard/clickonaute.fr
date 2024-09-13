@@ -1,9 +1,12 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { addDays, startOfDay, endOfMonth, parseISO, format } from 'date-fns';
+import { AgendaService } from '../services/agenda.service';
+import { Observable } from 'rxjs';
+import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
   selector: 'app-agenda',
@@ -48,7 +51,7 @@ export class AgendaComponent {
     `${this.year}-11-11`, // Armistice 1918
     `${this.year}-12-25`, // Noël
   ];
-  selectedDates:WritableSignal<string[]>=signal([]);
+  selectedDates: WritableSignal<string[]> = this.appState.datesSelection;
   currentSelection!: DateSelectArg;
   price = signal(0);
   calendarOptions: CalendarOptions = {
@@ -65,11 +68,11 @@ export class AgendaComponent {
     selectOverlap: (event) => !!event, // Permet de sélectionner uniquement les dates ayant des événements
     longPressDelay: 200, // tps en ms de maintien du click ou du touché sur une date avant le déclaenchement de l'event
     select: (selectInfo) => this.handleDateSelect(selectInfo),
-    unselect:()=>this.resetSelection(),
+    unselect: () => this.resetSelection(),
     displayEventTime: false, // Masque complètement l'heure dans l'affichage des événements
   };
-
-  constructor() {
+  datesOnDb$: Observable<Date[]> = this.agendaService.getUnavailableDates();
+  constructor(private agendaService: AgendaService, private appState: StateService) {
     this.generateWeekdayEvents(); // Génère toutes mes dates de dispo pour les n semaines à venir
   }
   //    INITIALIZATION DU CALENDRIER AVEC LES DISPONIBILITE
@@ -95,6 +98,8 @@ export class AgendaComponent {
   }
   // Supprimer les événements correspondant à une liste de dates
   removeUnavailableDates(datesToRemove: string[]) {
+  this.datesOnDb$.subscribe(res=>console.table(res),err=>console.error(err));
+
     // Itérer sur chaque date à supprimer
     datesToRemove.forEach((dateToRemove) => {
       this.myDispos = this.myDispos.filter((event) => {
@@ -109,7 +114,6 @@ export class AgendaComponent {
     // Mise à jour des événements dans le calendrier
     this.calendarOptions.events = this.myDispos;
   }
-
   handleDateSelect(selectInfo: DateSelectArg) {
     this.currentSelection = selectInfo;
     const selectedDatesRange = this.getDateRangeArray(
@@ -119,21 +123,19 @@ export class AgendaComponent {
     const selectedDates = selectedDatesRange.filter((date) =>
       this.myDispos.some((dateDispo) => dateDispo.start === date)
     );
-    this.selectedDates.set(selectedDates)
-    selectedDates.length >= 10 ?
-    this.price.set(selectedDates.length*300):
-    this.price.set(selectedDates.length*320)
+    this.selectedDates.set(selectedDates);
+    selectedDates.length >= 10
+      ? this.price.set(selectedDates.length * 300)
+      : this.price.set(selectedDates.length * 320);
   }
   // Méthode pour générer un tableau de toutes les dates entre deux dates
   getDateRangeArray(start: Date, end: Date): string[] {
     const dateArray: string[] = [];
-
     let currentDate = start;
     while (currentDate < end) {
       dateArray.push(format(currentDate, 'yyyy-MM-dd'));
       currentDate = addDays(currentDate, 1); // Passer au jour suivant
     }
-
     return dateArray;
   }
   resetSelection() {

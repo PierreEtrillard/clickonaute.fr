@@ -4,7 +4,7 @@ import {
   signal,
 } from '@angular/core';
 import { map, interval, timer } from 'rxjs';
-import { SectionSelService } from '../../services/section-sel.service';
+import { StateService } from '../../services/state.service';
 import { SvgPath } from '../models/svgPath';
 import { Coor } from '../models/Coor';
 import { Curve } from '../models/Curve';
@@ -27,7 +27,7 @@ export class MaskComponent {
   maskFaqCoor!: string;
   maskPagesCoor!: string;
 
-  constructor(private sectionSelService: SectionSelService) {}
+  constructor(private sectionSelService: StateService) {}
   ngOnInit(): void {
     this.selectedSection = this.sectionSelService.sectionSelected;
     this.loadingMaskPositions();

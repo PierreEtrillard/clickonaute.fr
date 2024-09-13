@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, take, timer } from 'rxjs';
-import { SectionSelService } from 'src/app/core/services/section-sel.service';
+import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
   selector: 'app-accueil',
@@ -12,7 +12,7 @@ export class AccueilComponent implements OnInit {
   selectedSection!: WritableSignal<string>;
   introductionMessage = signal('');
   constructor(
-    private sectionSelService: SectionSelService,
+    private sectionSelService: StateService,
     private router: Router
   ) {}
   ngOnInit(): void {
