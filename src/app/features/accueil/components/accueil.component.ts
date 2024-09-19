@@ -23,7 +23,7 @@ export class AccueilComponent implements OnInit {
         .pipe(
           map(() => {
             this.introductionMessage.set(
-              "Bonjour et bienvenu à bord ! Je suis Pierre, développeur fullstack freelance. Toujours ouvert pour de nouveaux projet ! Consultez mes disponibilitées et n'hesitez surtout pas à me contacter pour en discuter. Bonne navigation !!!"
+              "Bonjour et bienvenu à bord ! Je suis Pierre, développeur fullstack freelance. Toujours ouvert pour de nouveaux projets ! Consultez mes disponibilitées et n'hesitez surtout pas à me contacter pour en discuter. Bonne navigation !!!"
             );
             this.sectionSelService.landingPageVisited.set(true);
           }),

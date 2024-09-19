@@ -1,26 +1,25 @@
 @use "./colors" as *;
-button {
+
+.space-button {
   font-size: 1.5rem;
   border-radius: 15px;
-  border: double 0.5rem map-get($other-colors,dark); 
+  border: double 0.5rem map-get($other-colors, dark);
   border-spacing: 1rem;
   border-width: 0.5rem;
   padding: 0.5rem;
   transition: all 150ms;
-  background-color:$secondary-color;
-  cursor: pointer;
-  &:hover {
-    transform: scale(0.95);
-    box-shadow: $secondary-color -1px;
-    background-color:map-get($other-colors,dark);
-    color: $secondary-color;
-  }
-}
-.space-button {
-  color: map-get($other-colors,dark);
+  background-color: $secondary-color;
+  color: map-get($other-colors, dark);
   border-radius: 10px;
   &-disabled {
     filter: grayscale(1);
     cursor: not-allowed;
+  }
+  cursor: pointer;
+  &:hover {
+    transform: scale(0.95);
+    box-shadow: $secondary-color -1px;
+    background-color: map-get($other-colors, dark);
+    color: $secondary-color;
   }
 }

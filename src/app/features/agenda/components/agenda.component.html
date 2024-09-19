@@ -1,18 +1,12 @@
 <main>
     <h1>Je travail en présentiel sur les zones de Dinan - St Malo - St Brieuc ou à distance</h1>
-   <div id="calendar-contenair">
+    <app-calendar></app-calendar>
 <div class="reservation message" *ngIf="selectedDates().length > 0">
-    <p *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}} journées du {{currentSelection.start | date:'mediumDate':'FR'}} au {{currentSelection.end | date}}.</p>
-    <p *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{currentSelection.start | date:'mediumDate':'FR'}}.</p>
+    <p *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}} journées du {{selectedDates()[0] | date:'mediumDate':'FR'}} au {{selectedDates()[selectedDates().length -1] | date}}.</p>
+    <p *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{ selectedDates()[0]| date:'mediumDate':'FR'}}.</p>
     <p> Souhaitez-vous bloquer ce créneau ? </p>
     <p> total estimé: <span>{{price()| currency:'EUR'}}TTC</span></p>
-    <button class="space-button" routerLink="/contact">Reserver</button>
-</div>
-<full-calendar
-     [options]="calendarOptions"
-     class="card calendar"
-    >
-    </full-calendar>
+    <a class="space-button" routerLink="/contact">Reserver</a>
 </div>
     <p>tjm: 320€ pour les missions de moins de deux semaine</p>
     <p>tjm:300€ pour toutes missions de deux semaines ou plus</p>

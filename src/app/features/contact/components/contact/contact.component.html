@@ -1,4 +1,6 @@
 <main>
+  <h1>Contact</h1>
+  <p>Laissez moi un message via ce formulaire et je vous recontacterais dans les plus brefs délais</p>
   <form #messangerForm="ngForm" (ngSubmit)="sendMessage(messangerForm)" class="card" novalidate>
     <label for="message">Votre message :</label>
     <textarea 
@@ -7,8 +9,9 @@
       id="message"
       [(ngModel)]="message"
       required
-      #msgInput="ngModel"></textarea>
-    <p *ngIf="msgInput.invalid"></p>
+      #msgInput="ngModel"
+      class="message"
+      placeholder="votre message"></textarea>
     <label for="email">email requis :</label>
     <input
      type="email"
@@ -16,11 +19,12 @@
      id="email"
      [(ngModel)]="email"
      required
-     #emailInput="ngModel">
+     #emailInput="ngModel"
+     class="message">
     <p *ngIf="emailInput.invalid && emailInput.touched">un email valid est requis</p>
     <button [disabled]="messangerForm.invalid" class="space-button">Envoyer</button>
   </form>
-  <h2>me contacter</h2>
+  <hr class="section-separator">
   <div class="card">
     <ul>
       <li>

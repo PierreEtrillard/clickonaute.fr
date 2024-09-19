@@ -11,3 +11,20 @@
     fill: aqua;
   }
 }
+form{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 2rem;
+  width: 90%;
+  align-items: center;
+  textarea, input{
+    color: aqua;
+    font-family: Galactic-Font;
+    background: none;
+    margin: 1rem;
+  }
+  button{
+    max-width:20rem;
+  }
+}
