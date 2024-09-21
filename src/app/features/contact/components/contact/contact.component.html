@@ -1,6 +1,7 @@
 <main>
   <h1>Contact</h1>
   <p>Laissez moi un message via ce formulaire et je vous recontacterais dans les plus brefs délais</p>
+  <app-message-displayer [message]="fetchState"></app-message-displayer>
   <form #messangerForm="ngForm" (ngSubmit)="sendMessage(messangerForm)" class="card" novalidate>
     <label for="message">Votre message :</label>
     <textarea 
@@ -13,16 +14,18 @@
       class="message"
       placeholder="votre message"></textarea>
     <label for="email">email requis :</label>
+    <!--ajout d'une regex car le type email ne verifie pas ce qui est après l'@ -->
     <input
-     type="email"
+    ngModel
+    email
+     required
+     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
      name="email"
      id="email"
-     [(ngModel)]="email"
-     required
      #emailInput="ngModel"
      class="message">
-    <p *ngIf="emailInput.invalid && emailInput.touched">un email valid est requis</p>
-    <button [disabled]="messangerForm.invalid" class="space-button">Envoyer</button>
+    <p *ngIf="emailInput.invalid && emailInput.touched" class="invalid">cet email n'est pas valide</p>
+    <button [ngClass]="{disabled: messangerForm.invalid}" [disabled]="messangerForm.invalid" class="space-button">Envoyer</button>
   </form>
   <hr class="section-separator">
   <div class="card">

@@ -10,6 +10,30 @@
 .hidden {
   transform: scaleX(0);
 }
+.info {
+  // @include light-mask;
+  font-style: italic;
+}
+.invalid{
+  color: map-get($other-colors, custom-orange );
+  font-size: 1.5rem;
+  animation: shaked 100ms 3;
+}
+.disabled{
+  filter: grayscale(1);
+  cursor:not-allowed;
+}
+.section-separator {
+  border: solid white 2px;
+  width: 100%;
+  margin: 3rem;
+}
+.card {
+  background-color: black;
+  border-radius: 10px;
+  border: solid white 2px;
+  box-shadow: aqua 5px 5px 20px;
+}
 .summary {
   // @include light-mask;
   border-radius: 20px;
@@ -25,31 +49,14 @@
   align-items: center;
   @include mobile-only {
     transform: scale(0.8);
+    flex-direction: column;
   }
-
-  max-width: 80%;
-
   img {
     margin-left: 1rem;
     margin-right: 1rem;
     height: 100%;
     max-width: 50%;
   }
-}
-.section-separator {
-  border: solid white 2px;
-  width: 100%;
-  margin: 3rem;
-}
-.info {
-  // @include light-mask;
-  font-style: italic;
-}
-.card {
-  background-color: black;
-  border-radius: 10px;
-  border: solid white 2px;
-  box-shadow: aqua 5px 5px 20px;
 }
 //      **************    FULL-CALENDAR   **************
 :root {

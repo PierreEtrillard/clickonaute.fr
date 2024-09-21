@@ -10,6 +10,9 @@
     height: 2rem;
     fill: aqua;
   }
+  p{
+    margin: 1rem;
+  }
 }
 form{
   display: flex;
@@ -21,8 +24,14 @@ form{
   textarea, input{
     color: aqua;
     font-family: Galactic-Font;
+    font-size: 1rem;
     background: none;
     margin: 1rem;
+    width: 90%;
+  }
+  textarea{
+    min-height: 10rem;
+
   }
   button{
     max-width:20rem;

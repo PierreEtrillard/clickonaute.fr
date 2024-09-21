@@ -118,3 +118,8 @@
     transform: rotate(1turn);
   }
 }
+@keyframes shaked {
+  from{transform: rotate(0) translateX(0);}
+  50%{transform: rotate(5deg) translateX(1rem);}
+  to{transform: rotate(-5deg) translateX(-1rem);}
+}

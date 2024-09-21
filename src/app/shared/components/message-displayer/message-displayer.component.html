@@ -1,4 +1,4 @@
 <div class="msg-wrapper">
-<p [ngClass]="{hidden:!message()}" class='messages'>{{messageEmit()|async}}
+<p [ngClass]="{hidden:!message()}" class='messages' (click)="closeMsg()">{{messageEmit()|async}}
 </p>
 </div>

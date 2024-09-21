@@ -31,7 +31,7 @@ export class AccueilComponent implements OnInit {
         )
         .subscribe();
 
-      timer(15000)
+      timer(20000)
       .pipe(
         map(() => this.introductionMessage.set('')),
         take(1)
@@ -45,8 +45,5 @@ export class AccueilComponent implements OnInit {
   consultAgenda() {
     this.sectionSelService.sectionSwitcher('agenda');
     this.router.navigateByUrl('agenda');
-  }
-  closeMsg() {
-    this.introductionMessage.set("");
   }
 }

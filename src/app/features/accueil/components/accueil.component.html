@@ -1,9 +1,7 @@
 <main *ngIf="selectedSection()!== 'loading'">
   <div *ngIf="selectedSection() !=='menu';else menu">
-    <div id="msg-section">
-      <app-message-displayer [message]="introductionMessage" (click)="closeMsg()"></app-message-displayer>
-    </div>
     <section>
+      <app-message-displayer [message]="introductionMessage" id="msgComponent"></app-message-displayer>
       <h1>Créateur Web indépendant</h1>
       <ul>
         <li>Conception de sites internet</li>
@@ -32,7 +30,7 @@
         <li><a routerLink="/contact" (click)="sectionSelector('pages')">Contact</a></li>
         <!-- <li><a routerLink="/jeux" (click)="sectionSelector('pages')">Mini-jeux</a></li> -->
         <li>
-          <button class="reducer" (click)="sectionSelector('accueil')">
+          <button class="reducer space-button" (click)="sectionSelector('accueil')">
             retour à l'accueil
           </button>
         </li>

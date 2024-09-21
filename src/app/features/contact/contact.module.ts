@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactRoutingModule } from './contact-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -13,7 +15,11 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ContactRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
+  ],
+  providers:[
+    ProgressiveDisplayService
   ]
 })
 export class ContactModule { }

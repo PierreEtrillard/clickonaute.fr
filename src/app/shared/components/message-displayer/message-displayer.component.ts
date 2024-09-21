@@ -11,8 +11,11 @@ export class MessageDisplayerComponent {
   @Input()
   message = signal("");
   messageEmit = computed(()=>
-  this.messageDisplayerService.progressiveMessage$(
-    this.message()
-  ));
-  constructor(private messageDisplayerService: ProgressiveDisplayService) {}
+    this.messageDisplayerService.progressiveMessage$(
+      this.message()
+    ));
+    constructor(private messageDisplayerService: ProgressiveDisplayService) {}
+    closeMsg() {
+    this.message.set('');
+    }
 }

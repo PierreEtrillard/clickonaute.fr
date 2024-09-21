@@ -1,0 +1,8 @@
+{
+    "available_periodes":[ {
+        "start": "2024-11-20","stop": "2025-11-20"
+    }],
+    "unavailble_periodes":[
+    {"start": "2024-09-12","stop": "2025-10-20"},
+    {"start": "2024-09-12","stop": "2025-10-20"}]
+}
