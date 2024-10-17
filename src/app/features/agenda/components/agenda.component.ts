@@ -7,7 +7,7 @@ import { StateService } from 'src/app/core/services/state.service';
   styleUrls: ['./agenda.component.scss'],
 })
 export class AgendaComponent implements OnInit{
-  selectedDates  = this.stateService.datesSelection
+ selectedDates  = this.stateService.datesSelection
  price = this.stateService.price
   constructor(private stateService:StateService){}
   ngOnInit(): void {
