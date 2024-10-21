@@ -25,23 +25,39 @@ nav {
   position: fixed;
   top: 0;
   right: 0;
-  align-items: flex-end;
+  align-items: flex-start;
   margin: 3rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: right;
   h2 {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     margin-top: 0;
-    svg {
-      fill: white;
-      height: 2rem;
-      width: 2rem;
+    &>svg {
+      fill:white;
+      stroke:white;
+      stroke-width:0.417999;
+      height: 3rem;
+      width: 5rem;
+      transform: translateY(1rem);
+      cursor: pointer;
+      &:hover{
+        fill:aqua;
+        stroke: aqua;
+      }
     }
   }
+  ul>li>a{
+  cursor: pointer;
+  filter: invert(50%);
+  &:hover{
+    filter: invert(0%);
+  }
+}
 }
 
 footer {

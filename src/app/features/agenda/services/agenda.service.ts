@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { addDays, startOfDay, endOfMonth, parseISO, format } from 'date-fns';
 import { Disponibility } from '../disponibility.model';
+import { ApiService } from 'src/app/core/services/api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,11 @@ export class AgendaService {
   weeksRange: number = 52;
   startDate = new Date();
   endDate = endOfMonth(addDays(this.startDate, 7 * this.weeksRange)); // 7j * n semaines à partir d'aujourd'hui
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
   
   getDates(): Observable<string[]> {
     const dateArray: string[] = [];
-    return this.http.get<Disponibility>('assets/dates.json').pipe(
+    return this.apiService.availabilities$.pipe(
       switchMap((dispo) => {
         
         const unavailableDates:string[]=[];

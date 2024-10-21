@@ -11,7 +11,7 @@
       <img id="flamme" src="assets/images/flamme.svg" alt="flamme de la fusée" />
     </div>
   </a>
-  <h2 id="sectionMenuBtn" (click)="menuOpener()">
+  <h2 id="sectionMenuBtn" (click)="menuOpener()" *ngIf="!this.openedMenu()">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
       <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
       <path

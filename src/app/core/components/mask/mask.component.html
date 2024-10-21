@@ -8,9 +8,8 @@
       <stop [attr.offset]="middleGradient()+'%'"/>
       <stop [attr.offset]="middleGradient()+50 +'%'"/>
     </radialGradient>
-    <path class="mask" [attr.d]= maskHeaderCoor class={{selectedSection()}}/>
-    <path *ngIf="(selectedSection() !== 'pages')" class="mask" [ngClass]="{'mask-menu' : (selectedSection() === 'menu')}" [attr.d]= maskMenuCoor/>
-    <path *ngIf="(selectedSection() !== 'pages')" class="mask" [ngClass]="{'mask-faq' : (selectedSection() === 'faq')}" [attr.d]= maskFaqCoor/>
-    <path *ngIf="(selectedSection() === 'pages')" class="mask" [ngClass]="{'mask-pages' : (selectedSection() === 'pages')}" [attr.d]= maskPagesCoor/>
+    <path class="mask" [attr.d]= maskHeaderCoor />
+    <path class="mask" [ngClass]="{'mask-menu' : (selectedSection() === 'menu')}" [attr.d]= maskMenuCoor/>
+    <path *ngIf="selectedSection() === 'loading' ||selectedSection() ===  'accueil'" class="mask" [attr.d]= maskFaqCoor/>
   </svg>
 </div>

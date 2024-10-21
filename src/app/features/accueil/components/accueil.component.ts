@@ -23,7 +23,7 @@ export class AccueilComponent implements OnInit {
         .pipe(
           map(() => {
             this.introductionMessage.set(
-              "Bonjour et bienvenu à bord ! Je suis Pierre, développeur fullstack freelance. Toujours ouvert pour de nouveaux projets ! Consultez mes disponibilitées et n'hesitez surtout pas à me contacter pour en discuter. Bonne navigation !!!"
+              "Bonjour et bienvenue à bord ! Je suis Pierre, développeur fullstack freelance. Toujours partant pour propulser vos projets ! Contactez-moi et discutons de vos besoins. Bonne navigation !!!"
             );
             this.sectionSelService.landingPageVisited.set(true);
           }),
@@ -39,8 +39,14 @@ export class AccueilComponent implements OnInit {
       .subscribe();
     }
   }
+  menuCloser(){
+    this.sectionSelService.sectionSwitcher(this.sectionSelService.lastPage());
+    this.router.navigateByUrl(this.sectionSelService.lastPage());
+  }
   sectionSelector(sectionName: string) {
     this.sectionSelService.sectionSwitcher(sectionName);
+    if(this.sectionSelService.sectionSelected()!== 'menu'){this.sectionSelService.lastPage.set(sectionName)}
+    this.router.navigateByUrl(sectionName)
   }
   consultAgenda() {
     this.sectionSelService.sectionSwitcher('agenda');

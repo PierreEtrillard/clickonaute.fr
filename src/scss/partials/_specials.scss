@@ -82,11 +82,15 @@
   }
 }
 /* Réduire la taille de la police des titres des événements */
-.fc-event-title {
+.fc-event{
+z-index: -1;// les evenement masquaient la date je les ai mis en arrière pla
+pointer-events:none;
+  &-title {
   font-size: 1rem; /* Taille de la police réduite */
   white-space: nowrap; /* Empêcher le retour à la ligne pour les titres longs */
   overflow: hidden; /* Masquer le débordement des titres trop longs */
   text-overflow: ellipsis; /* Afficher des points de suspension pour les titres trop longs */
+}
 }
 
 /* Optionnel : Ajuster la taille des cellules pour s'adapter à la hauteur du calendrier */

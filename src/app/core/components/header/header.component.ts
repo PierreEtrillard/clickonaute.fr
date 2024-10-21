@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, signal } from '@angular/core';
+import { Component, computed, HostListener, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { StateService } from '../../services/state.service';
 import { map, take, timer } from 'rxjs';
@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   revealTakeOfBtn = signal(false);
   isLoading = signal(true);
   takeOff = signal(false);
+  openedMenu =computed(()=> this.sectionSelService.sectionSelected() === 'menu')
 
   @HostListener('document:scroll')
   onScroll() {

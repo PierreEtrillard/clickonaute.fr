@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, signal, computed, OnInit } from '@angular/core';
-import { catchError, delay, map, of, tap, throwError } from 'rxjs';
+import { Component, signal, OnInit } from '@angular/core';
+import { catchError, delay, of, tap } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { StateService } from 'src/app/core/services/state.service';
 
@@ -13,7 +12,7 @@ export class ContactComponent implements OnInit {
   message =
     'résumez ici en quelques mots votre projets, les compétences que vous rechercher pour le mener à bien ainsi que les dates que vous aimeriez réserver.';
   email: string = '';
-  selectedDate = this.stateService.datesSelection;
+  selectedDate = this.stateService.datesFormated;
   fetchState = signal('');
   constructor(
     private stateService: StateService,

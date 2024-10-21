@@ -16,27 +16,29 @@
       transform-origin: right center;
       transform: rotate(90deg) scale(1.75, 11) translate(15%, 48%);
     }
-    &-faq {
-      transform-origin: center center; // centre du view-port car la svg prend tout celui-ci
-      transform: rotate(2.1turn) scale(-8, 8) translate(-46%, -45%);
-    }
   }
 }
 .radialGradientStroke {
   &-accueil {
     @include border-mask;
   }
-  &-pages {
+  &-front {
     @include border-mask-purple;
   }
-  &-agenda {
+  &-back {
     @include border-mask-red;
+  }
+  &-agenda {
+    @include border-mask;
   }
   &-menu {
     @include border-mask-green;
   }
+  &-methods {
+    @include border-mask-green;
+  }
   &-contact {
-    @include border-mask;
+    @include border-mask-purple;
   }
   &-loading {
     @include border-mask-purple;

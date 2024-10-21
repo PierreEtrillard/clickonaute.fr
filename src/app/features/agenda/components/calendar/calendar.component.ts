@@ -6,7 +6,11 @@ import {
   ViewChild,
   WritableSignal,
 } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventClickArg } from '@fullcalendar/core';
+import {
+  CalendarOptions,
+  DateSelectArg,
+  EventClickArg,
+} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
@@ -24,7 +28,7 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 export class CalendarComponent implements OnInit {
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent; // Permet de manipuler le calendrier
   availableDates$: Observable<string[]> = this.agendaService.getDates();
-
+  availableDates: string[] = [];
   selectedDates: WritableSignal<Date[]> = this.appState.datesSelection;
   calendarOptions: CalendarOptions = {
     locale: frLocale,
@@ -38,9 +42,7 @@ export class CalendarComponent implements OnInit {
     selectable: true, // Permet la sélection  dates
     selectOverlap: (event) => !!event, // Permet de sélectionner uniquement les dates ayant des événements
     longPressDelay: 200, // tps en ms de maintien du click ou du touché sur une date avant le déclaenchement de l'event
-    select:(selectInfo) => this.handleDateSelect(selectInfo),
-    dateClick: (selectInfo) => this.oneClick(selectInfo),
-    eventClick:(selectInfo)=> this.oneClick(selectInfo),
+    select: (selectInfo) => this.handleDateSelect(selectInfo),
     // unselect: () => this.resetSelection(),
     displayEventTime: false, // Masque complètement l'heure dans l'affichage des événements
   };
@@ -59,19 +61,15 @@ export class CalendarComponent implements OnInit {
       .pipe(
         map((dates) => {
           dates.forEach((date) =>
-            this.calendarComponent.getApi().addEvent(
-              ({
-                title: 'disponible',
-                start: date,
-                backgroundColor: 'aqua',
-                textColor: 'black',
-              })
-            )
+            this.calendarComponent.getApi().addEvent({
+              title: 'disponible',
+              start: date,
+              backgroundColor: 'aqua',
+              textColor: 'black',
+            })
           );
-          ;
-
+          this.availableDates = dates;
           // Mise à jour des événements dans le calendrier
-          
         }),
         catchError((error: Error) => {
           console.error(error.message);
@@ -82,19 +80,17 @@ export class CalendarComponent implements OnInit {
       )
       .subscribe();
   }
-oneClick(click :EventClickArg | DateClickArg){
-  console.log(click.view.activeStart);
-
-}
   handleDateSelect(selectInfo: DateSelectArg) {
-    
     const selectedDatesRange = this.getDateRangeArray(
       selectInfo.start,
       selectInfo.end
     );
     const selectedDates = selectedDatesRange.filter((date) =>
-      this.calendarComponent.getApi().getEvents().some((dateDispo) => dateDispo.start === date)
+      this.availableDates.some(
+        (dateDispo) => dateDispo === format(date, 'yyyy-MM-dd')
+      )
     );
+
     this.selectedDates.set(selectedDates);
     selectedDates.length >= 10
       ? this.appState.price.set(selectedDates.length * 300)
