@@ -14,15 +14,14 @@
   // @include light-mask;
   font-style: italic;
 }
-.invalid{
-  color: map-get($other-colors, custom-orange );
-  font-size: 1.5rem;
-  animation: shaked 100ms 3;
-}
-.disabled{
-  filter: grayscale(1);
-  cursor:not-allowed;
-}
+.tools-list>li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem;
+  &>img{margin: 1rem;
+  height: 5rem;}
+  }
 .section-separator {
   border: solid white 2px;
   width: 100%;

@@ -1,3 +1,20 @@
+@use "./colors" as *;
+.slideFromLeft{
+  animation: slideFromLeft 1s forwards;
+}
+.slideFromRight{
+  animation: slideFromRight 1s forwards;
+}
+.invalid{
+  color: map-get($other-colors, custom-orange );
+  font-size: 1.5rem;
+  animation: shaked 100ms 3;
+}
+.disabled{
+  filter: grayscale(1);
+  cursor:not-allowed;
+}
+//      ***     KEYFRAMES     ***
 @keyframes background-animator {
   from {
     transform: scale(1.25);
@@ -88,7 +105,10 @@
 }
 @keyframes slideFromLeft {
   from {
-    transform: translateX(-1000%);
+    transform: translateX(-100%);
+  }
+  70%{
+    transform: translateX(20%)
   }
   to {
     transform: translateX(0);
@@ -96,7 +116,10 @@
 }
 @keyframes slideFromRight {
   from {
-    transform: translateX(1000%);
+    transform: translateX(100%);
+  }
+  70%{
+    transform: translateX(-20%)
   }
   to {
     transform: translateX(0);

@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { SimBtnComponent } from './components/sim-btn/sim-btn.component';
 import { RouterModule } from '@angular/router';
 import { MessageDisplayerComponent } from './components/message-displayer/message-displayer.component';
+import { ViewportEntranceDirective } from './directives/viewport-entrance.directive';
 
 @NgModule({
   declarations: [
     SimBtnComponent,
-    MessageDisplayerComponent
+    MessageDisplayerComponent,
+    ViewportEntranceDirective
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { MessageDisplayerComponent } from './components/message-displayer/messag
   ],
   exports:[
     SimBtnComponent,
-    MessageDisplayerComponent
+    MessageDisplayerComponent,
+    ViewportEntranceDirective
   ]
 })
 export class SharedModule { }

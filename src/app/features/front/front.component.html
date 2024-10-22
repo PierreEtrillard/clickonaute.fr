@@ -1,12 +1,13 @@
 <main>
     <h1>Prestations Front-End</h1>
+    <app-message-displayer [message]="messageToDisplay"></app-message-displayer>
     <ul class="summary card">
         <li><a href="front#angular">Développement d'applications SOLID avec Angular</a></li>
         <li><a href="front#css">Intégration de composants UI-friendly</a></li>
         <li><a href="front#SEO">Des sites plus accessibles et mieux référencés</a></li>
     </ul>
     <section id="angular">
-        <h2 class="section-title">L'univers <img src="../../../assets/images/angular_icon.webp"
+        <h2 class="section-title" viewportEntrance="slideFromRight">L'univers <img src="../../../assets/images/angular_icon.webp"
                 alt="logo d'Angular">
         </h2>
         <ul class="summary card">
@@ -29,8 +30,8 @@
     </section>
     <hr class="section-separator">
     <section id="css">
-        <h2 class="section-title">Intégration UI</h2>
-        <ul class="card">
+        <h2 class="section-title" viewportEntrance="slideFromLeft">La galaxie UI</h2>
+        <ul class="card tools-list">
             <li><img src="../../../assets/images/material_icon.webp" alt="logo de Material">
                 <p>
                     Intégration des composants Material et personalisation de ceux-ci dans vos projets web.
@@ -46,7 +47,7 @@
     </section>
     <hr class="section-separator">
     <section id="SEO">
-        <h2 class="section-title">Optimisation de sites</h2>
+        <h2 class="section-title" viewportEntrance="slideFromRight">L'hyperpropulsion de vos sites</h2>
 
         <ul class="summary card">
             <li>Vos sites passent à la vitesse lumière via l'optimisation de vos ressources graphiques (redimensionnement,
@@ -56,12 +57,12 @@
                     back-end</a>).</li>
             <li>Du contenu accessible dans le respect des standards du <a
                     href="https://www.w3.org/WAI/WCAG22/quickref/?versions=2.0" alt="lien vers le référentiel WCAG">
-                    WCAG 2.0</a> dans mes projets.</li>
+                    WCAG 2.0</a>.</li>
         </ul>
     </section>
     <hr class="section-separator">
     <button class="space-button" routerLink="/contact">Contactez moi</button>
-    <blockquote>
+    <blockquote class="info">
         Un projet web en vue ? Ou simplement envie d'échanger sur les thèmes abordés sur cette page ? Je
         serais ravi d'en discuter.</blockquote>
 

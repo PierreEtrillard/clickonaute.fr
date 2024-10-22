@@ -1,24 +1,25 @@
 <main>
-    <h1>Compétences Back-End</h1>
+    <h1>Prestations Back-End</h1>
+    <app-message-displayer [message]="messageToDisplay"></app-message-displayer>
     <ul class="summary card">
         <li><a href="back#spring">Production d'API REST avec Spring Boot</a></li>
         <li><a href="back#BDD">Montage et connexion de bases de données SQL ou NoSQL</a></li>
         <li><a href="back#OAuth">Gestion des authentifications utilisateurs à l'aide d'OAuth2</a></li>
     </ul>
     <section id="spring">
-        <blockquote class="info">Je conçois des API en JavaScript avec Express ou en Java avec Spring Boot. Spring Web
-            est ma bibliothèque de prédilection, je vous explique pourquoi.</blockquote>
-        <h2 class="section-title">Pourquoi <img src="../../../assets/images/spring_icon.webp" alt="logo de Spring"> ?
+        <h2 class="section-title">La constellation <img src="../../../assets/images/spring_icon.webp" alt="logo de Spring">
         </h2>
-        <p>Créer des API avec Spring est la garantie d'exploiter au mieux la robustesse et la performance de Java.</p>
-        <p>Les classes utilitaires fournies par Spring Web facilitent la production.</p>
-        <p>Spring jouit d'une documentation fournie et d'une grande communauté d'utilisateurs (60 % des développeurs Java
-            utilisent Spring).</p>
-        <p>La stabilité du framework a fait ses preuves au fil des années. Aujourd'hui, Spring détient 48 % des parts
-            de marché parmi les frameworks Java d'entreprise.</p>
-    </section>
+        <ul class="card ">
+            <li><p>Création d'API stateless avec Spring Web.</p><img src="../../../assets/images/springBoot_logo.webp" alt=""></li>
+            <li><img src="../../../assets/images/spring_security_logo.webp" alt=""><p>Protection de vos données avec Spring Security.</p></li>
+            <li><p>Connexion à vos bases de données avec Spring Data JPA.</p><img src="../../../assets/images/spring_data_jpa_logo.webp" alt=""></li>
+        </ul>
+        <blockquote class="info">Spring c'est la garantie d'exploiter au mieux la robustesse et la performance de Java. La stabilité du framework a fait ses preuves au fil des années, si bien qu'aujourd'hui, Spring détient 48 % des parts
+            de marché parmi les frameworks Java d'entreprise et est utilisé par 60% des développeurs Java.</blockquote>
+            </section>
     <hr class="section-separator">
     <section id="BDD">
+        
         <blockquote class="info">J'effectue l'installation et la configuration de bases de données MySQL ou MongoDB
             localement, ou j'établis la connexion de vos API à des services distants comme Atlas.
         </blockquote>

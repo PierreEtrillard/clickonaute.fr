@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-back',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./back.component.scss']
 })
 export class BackComponent {
+messageToDisplay=signal("Je conçois des API Rest avec Spring pour lier vos appli à des bases de données sql ou noSql. Je simplifie la connexion des utilisateurs grâce au standart OIDC.");
 
 }
