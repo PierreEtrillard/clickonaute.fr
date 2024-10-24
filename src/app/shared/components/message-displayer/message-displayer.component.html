@@ -1,4 +1,10 @@
 <div class="msg-wrapper">
-<p [ngClass]="{hidden:!message()}" class='messages' (click)="closeMsg()">{{messageEmit()|async}}
+<p 
+#messageContainer
+[ngClass]="{hidden:!messageInput()}"
+class='messages'
+(click)="closeMsg()"
+>
 </p>
+{{messageEmit()}}
 </div>

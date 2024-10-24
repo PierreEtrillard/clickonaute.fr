@@ -1,11 +1,14 @@
 @use "./colors" as *;
 @use "./breakpoints" as *;
 .messages {
-  font-family: Galactic-Font;
-  font-weight: 100;
-  color: aqua;
-  font-size: 1rem;
-  transition: 500ms;
+    font-family: Galactic-Font;
+    
+    font-weight: 100;
+    color: aqua;
+    font-size: 1rem;
+    transition: 500ms;
+    display: flex;
+    flex-wrap: wrap;
 }
 .hidden {
   transform: scaleX(0);
@@ -14,6 +17,7 @@
   // @include light-mask;
   font-style: italic;
 }
+
 .tools-list>li{
   display: flex;
   justify-content: center;

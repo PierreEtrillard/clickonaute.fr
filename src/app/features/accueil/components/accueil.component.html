@@ -1,7 +1,7 @@
 <main *ngIf="selectedSection()!== 'loading'">
   <div *ngIf="selectedSection() !=='menu';else menu">
     <section>
-      <app-message-displayer [message]="introductionMessage" id="msgComponent"></app-message-displayer>
+      <app-message-displayer [messageInput]="introductionMessage" id="msgComponent"></app-message-displayer>
       <h1>Créateur Web indépendant</h1>
       <ul>
         <li>Conception de sites internet</li>

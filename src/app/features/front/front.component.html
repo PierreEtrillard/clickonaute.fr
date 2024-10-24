@@ -1,6 +1,6 @@
 <main>
     <h1>Prestations Front-End</h1>
-    <app-message-displayer [message]="messageToDisplay"></app-message-displayer>
+    <app-message-displayer [messageInput]="messageToDisplay"></app-message-displayer>
     <ul class="summary card">
         <li><a href="front#angular">Développement d'applications SOLID avec Angular</a></li>
         <li><a href="front#css">Intégration de composants UI-friendly</a></li>
@@ -32,16 +32,16 @@
     <section id="css">
         <h2 class="section-title" viewportEntrance="slideFromLeft">La galaxie UI</h2>
         <ul class="card tools-list">
-            <li><img src="../../../assets/images/material_icon.webp" alt="logo de Material">
+            <li><img src="../../../assets/images/material_icon.webp" alt="logo de Material" viewportEntrance="turn">
                 <p>
                     Intégration des composants Material et personalisation de ceux-ci dans vos projets web.
                 </p>
             </li>
             <li>
                 <p>Création de composants réutilisables et d'animations poussées grâce à CSS3.</p><img
-                    src="../../../assets/images/css3.webp" alt="logo css3">
+                    src="../../../assets/images/css3.webp" alt="logo css3" viewportEntrance="turn">
             </li>
-            <li><img src="../../../assets/images/svg_icon.webp" alt="icon SVG">
+            <li><img src="../../../assets/images/svg_icon.webp" alt="icon SVG" viewportEntrance="turn">
                 Implémentation de balises svg pour un contrôle réactif de toutes les formes et couleurs imaginables.</li>
         </ul>
     </section>
