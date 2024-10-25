@@ -10,7 +10,7 @@ import {
   ViewChild,
   WritableSignal,
 } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { concatMap, from, map, Observable, of, take, tap } from 'rxjs';
 import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
 
 @Component({
@@ -20,31 +20,53 @@ import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-d
 })
 export class MessageDisplayerComponent {
   @ViewChild('messageContainer') messageContainer!: ElementRef;
-  @Input({required:true}) messageInput=signal('');
- messageEmit= computed(()=>this.msgRenderer(this.messageInput()))
+  @Input({ required: true }) messageInput = signal('');
+  messageEmit = computed(() =>
+    this.msgRenderer(this.messageInput().split(' '))
+  );
   constructor(
     private messageDisplayerService: ProgressiveDisplayService,
     private renderer: Renderer2
-  ) {
-  }
-  msgRenderer(msg:string): void {
-    this.messageDisplayerService.progressiveMessage$(msg)
-    .pipe(
-        map((letter) => {
-        console.log('lettre reçu: ' + letter);
-        const divElement = this.renderer.createElement('div');
-        let divLetter = this.renderer.createText(letter);
-        // Appliquer le style white-space pour préserver les espaces
-        this.renderer.setStyle(divElement, 'white-space', 'pre');
-        this.renderer.appendChild(divElement, divLetter);
-        this.renderer.addClass(divElement, 'animated-letter');
-        // Ajouter la lettre au container
-        return this.renderer.appendChild(
+  ) {}
+  msgRenderer(msg: string[]): void {
+    // Transformer le tableau de mots en Observable
+    from(msg)
+      .pipe(
+        // Traiter chaque mot de manière séquentielle pour garantir l'ordre
+        concatMap((word) => {
+          console.log('Mot reçu = ' + word);
+          // Création d'un conteneur pour chaque mot
+          const wordContainer = this.renderer.createElement('span');
+          this.renderer.appendChild(
             this.messageContainer.nativeElement,
-            divElement
+            wordContainer
           );
-        })
-    ).subscribe();
+          // Injecter chaque lettre du mot en utilisant le flux de `progressiveMessage$`
+          return this.messageDisplayerService.progressiveMessage$(word).pipe(
+            map((letter) => {
+              console.log('Lettre reçue : ' + letter);
+              const letterElement = this.renderer.createElement('span');
+              const letterText = this.renderer.createText(letter);
+              this.renderer.appendChild(letterElement, letterText);
+              this.renderer.addClass(letterElement, 'animated-letter');
+              // Ajouter chaque lettre au conteneur du mot pour préserver l'ordre des lettres
+              this.renderer.appendChild(wordContainer, letterElement);
+            })
+          );
+        }),
+        take(msg.length)
+      )
+      .subscribe(() => {
+        // Ajout d'un espace après chaque mot
+        const spaceContainer = this.renderer.createElement('span');
+        const spaceText = this.renderer.createText(' ');
+        this.renderer.setStyle(spaceContainer, 'white-space', 'pre');
+        this.renderer.appendChild(spaceContainer, spaceText);
+        spaceContainer.this.renderer.appendChild(
+          this.messageContainer.nativeElement,
+          spaceContainer
+        );
+      });
   }
   closeMsg() {
     this.messageInput.set('');
