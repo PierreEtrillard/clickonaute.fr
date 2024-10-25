@@ -41,6 +41,15 @@ export class MessageDisplayerComponent {
             this.messageContainer.nativeElement,
             wordContainer
           );
+          // Ajout d'un espace après chaque mot
+          const spaceContainer = this.renderer.createElement('span');
+          const spaceText = this.renderer.createText(' ');
+          this.renderer.setStyle(spaceContainer, 'white-space', 'pre');
+          this.renderer.appendChild(spaceContainer, spaceText);
+          spaceContainer.this.renderer.appendChild(
+            this.messageContainer.nativeElement,
+            spaceContainer
+          );
           // Injecter chaque lettre du mot en utilisant le flux de `progressiveMessage$`
           return this.messageDisplayerService.progressiveMessage$(word).pipe(
             map((letter) => {
@@ -56,17 +65,7 @@ export class MessageDisplayerComponent {
         }),
         take(msg.length)
       )
-      .subscribe(() => {
-        // Ajout d'un espace après chaque mot
-        const spaceContainer = this.renderer.createElement('span');
-        const spaceText = this.renderer.createText(' ');
-        this.renderer.setStyle(spaceContainer, 'white-space', 'pre');
-        this.renderer.appendChild(spaceContainer, spaceText);
-        spaceContainer.this.renderer.appendChild(
-          this.messageContainer.nativeElement,
-          spaceContainer
-        );
-      });
+      .subscribe(() => {});
   }
   closeMsg() {
     this.messageInput.set('');
