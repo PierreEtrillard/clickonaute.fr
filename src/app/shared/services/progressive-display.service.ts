@@ -6,10 +6,10 @@ export class ProgressiveDisplayService {
   progressiveMessage$(message: string):Observable<string> {
    return  interval(30).pipe(
       map((i) => message[i]),
-      take(message.length)
-//       scan((sentence, letter) => {
-//         return sentence + letter;
-//       })
+      take(message.length),
+      // scan((sentence, letter) => {
+      //   return sentence + letter;
+      // })
     );
   }
 }
