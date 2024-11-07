@@ -93,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "clickonaute.fr:build:production"
+              "buildTarget": "clickonaute.fr:build:production"
             },
             "development": {
-              "browserTarget": "clickonaute.fr:build:development"
+              "buildTarget": "clickonaute.fr:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clickonaute.fr:build"
+            "buildTarget": "clickonaute.fr:build"
           }
         },
         "test": {
