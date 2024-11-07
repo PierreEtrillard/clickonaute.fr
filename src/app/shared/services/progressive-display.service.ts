@@ -7,9 +7,9 @@ export class ProgressiveDisplayService {
    return  interval(30).pipe(
       map((i) => message[i]),
       take(message.length),
-      // scan((sentence, letter) => {
-      //   return sentence + letter;
-      // })
+      scan((sentence, letter) => {
+        return sentence + letter;
+      })
     );
   }
 }

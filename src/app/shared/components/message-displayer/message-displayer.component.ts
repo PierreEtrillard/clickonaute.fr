@@ -13,6 +13,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import {
+  BehaviorSubject,
   concatMap,
   from,
   interval,
@@ -29,48 +30,21 @@ import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-d
   templateUrl: './message-displayer.component.html',
   styleUrls: ['./message-displayer.component.scss'],
 })
-export class MessageDisplayerComponent implements AfterViewInit {
-  @ViewChild('wordContainer') wordContainers!: QueryList<ElementRef>;
+export class MessageDisplayerComponent {
   @Input({ required: true }) messageInput!: WritableSignal<string>;
-  messageEmit = computed(() => this.messageInput().split(' '));
-
+  messageEmitSubject$$ = new BehaviorSubject( this.messageInput().split(' '));
+messageEmit$:Observable<string[]>=this.messageEmitSubject$$.asObservable()
   constructor(
     private messageDisplayerService: ProgressiveDisplayService,
-    private renderer: Renderer2
-  ) {}
-  ngAfterViewInit(): void {
-    this.wordContainers.changes
-      .pipe(
-        take(this.wordContainers.length),
-        map((wordContainers: QueryList<ElementRef>) => {
-          wordContainers.forEach((wordContainer, index) => {
-            console.log(index);
-            const word = this.messageEmit()[index];
-            this.messageDisplayer(word, wordContainer);
-          });
-        })
-      )
-      .subscribe();
+  ) {
+    effect(()=>{this.messageEmitSubject$$.next(this.messageInput().split(" "))})
   }
-
-  messageDisplayer(word: string, wordContainer: ElementRef) {
+  messageDisplayer(word: string):Observable<string> {
     console.log('word= ' + word);
 
-    this.messageDisplayerService
+  return this.messageDisplayerService
       .progressiveMessage$(word)
-      .pipe(
-        tap((letter) => {
-          const spanElmt = this.renderer.createElement('span');
-          const spanText = this.renderer.createText(letter);
-          this.renderer.appendChild(spanElmt, spanText);
-          this.renderer.addClass(spanElmt, 'animated-letter');
-          return this.renderer.appendChild(
-            wordContainer.nativeElement,
-            spanElmt
-          );
-        })
-      )
-      .subscribe();
+  
   }
   closeMsg() {
     this.messageInput.set('');

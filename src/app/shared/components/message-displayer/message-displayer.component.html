@@ -1,6 +1,9 @@
 <div class="msg-wrapper">
   <p [ngClass]="{hidden: !messageInput()}" class="messages" (click)="closeMsg()">
    
-    <span #wordContainer *ngFor="let word of messageEmit(); let _index = index">{{_index}}</span>
+   <span *ngFor="let word of messageEmit$ |async; track $index">
+    <span class="animated-letter">
+    {{word}}</span>
+   </span>
   </p>
 </div>
