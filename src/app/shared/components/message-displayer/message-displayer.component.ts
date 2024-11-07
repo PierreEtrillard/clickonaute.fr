@@ -32,12 +32,11 @@ import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-d
 })
 export class MessageDisplayerComponent {
   @Input({ required: true }) messageInput!: WritableSignal<string>;
-  messageEmitSubject$$ = new BehaviorSubject( this.messageInput().split(' '));
-messageEmit$:Observable<string[]>=this.messageEmitSubject$$.asObservable()
+  messageEmit = computed(()=> this.messageInput().split(' '));
+  
   constructor(
     private messageDisplayerService: ProgressiveDisplayService,
   ) {
-    effect(()=>{this.messageEmitSubject$$.next(this.messageInput().split(" "))})
   }
   messageDisplayer(word: string):Observable<string> {
     console.log('word= ' + word);

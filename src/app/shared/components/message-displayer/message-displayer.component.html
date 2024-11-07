@@ -6,8 +6,9 @@ class='messages'
 (click)="closeMsg()"
 >
 </p>
-{{messageEmit()}}
-@for (word of messageInput().split(" "); track $index) {
-  <span class="animated-letter">{{word[$index]}}</span>
+@for (word of messageEmit(); track $index) {
+  @for (letter of messageDisplayer(word)|async; track $index) {
+  <span class="animated-letter">{{letter}}</span>
+}
 }
 </div>
