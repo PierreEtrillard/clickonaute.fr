@@ -14,25 +14,25 @@
   <!-- section menu -->
   <ng-template #menu>
     <nav>
-      <ul>
-        <h2>
-          <svg
-          (click)="menuCloser()"
-          viewBox="0 0 10 10"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:svg="http://www.w3.org/2000/svg">
-          <g>
-           <path
-              d="M 0.82927368,3.3570164 0.80690934,5.1235437 -1.5678985,2.7019515 0.84646039,0.54516437 l -0.015822,1.91077103 5.49670076,0.072676 0.020531,-5.3161212 -6.04367085,0.031601 -1.0149883,-0.8667268 c 1.1267565,0.01716 5.12626665,-0.043445 7.92566775,-0.024967 l -0.065077,6.9912729 z" />
-         </g>
-       </svg>          Menu
-        </h2>
-        <li><a (click)="sectionSelector('front')">Prestations front-end</a></li>
-        <li><a (click)="sectionSelector('back')">Prestations back-end</a></li>
-        <li><a (click)="sectionSelector('methods')">Methodes de travail</a></li>
-        <li><a (click)="sectionSelector('about')">Parcours</a></li>
-        <li><a (click)="sectionSelector('contact')">Contact</a></li>
+      <h2>
+        <svg
+        (click)="menuCloser()"
+        viewBox="0 0 10 10"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:svg="http://www.w3.org/2000/svg">
+        <g>
+          <path
+          d="M 0.82927368,3.3570164 0.80690934,5.1235437 -1.5678985,2.7019515 0.84646039,0.54516437 l -0.015822,1.91077103 5.49670076,0.072676 0.020531,-5.3161212 -6.04367085,0.031601 -1.0149883,-0.8667268 c 1.1267565,0.01716 5.12626665,-0.043445 7.92566775,-0.024967 l -0.065077,6.9912729 z" />
+        </g>
+      </svg>          Menu
+    </h2>
+    <ul>
+        <li class="menu-btn"><a (click)="sectionSelector('front')">Prestations front-end</a></li>
+        <li class="menu-btn"><a (click)="sectionSelector('back')">Prestations back-end</a></li>
+        <li class="menu-btn"><a (click)="sectionSelector('methods')">Methodes de travail</a></li>
+        <li class="menu-btn"><a (click)="sectionSelector('about')">Parcours</a></li>
+        <li class="menu-btn"><a (click)="sectionSelector('contact')">Contact</a></li>
         <!-- <li><a routerLink="/jeux" (click)="sectionSelector('pages')">Mini-jeux</a></li> -->
         <li>
           <button class="reducer space-button" (click)="sectionSelector('accueil')">

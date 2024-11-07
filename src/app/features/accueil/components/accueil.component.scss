@@ -25,7 +25,6 @@ nav {
   position: fixed;
   top: 0;
   right: 0;
-  align-items: flex-start;
   margin: 3rem;
   height: 100%;
   display: flex;
@@ -51,9 +50,13 @@ nav {
       }
     }
   }
-  ul>li>a{
+  .menu-btn{
   cursor: pointer;
   filter: invert(50%);
+  @media screen and (max-width :480px){
+    font-size: 1.5rem;
+    margin-bottom: .2rem;
+  }
   &:hover{
     filter: invert(0%);
   }

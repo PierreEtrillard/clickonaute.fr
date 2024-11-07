@@ -31,7 +31,6 @@ export class MessageDisplayerComponent {
     this.messageDisplayerService.progressiveMessage$(msg)
     .pipe(
         map((letter) => {
-        console.log('lettre reçu: ' + letter);
         const divElement = this.renderer.createElement('div');
         let divLetter = this.renderer.createText(letter);
         // Appliquer le style white-space pour préserver les espaces
