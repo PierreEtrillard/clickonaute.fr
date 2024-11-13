@@ -14,7 +14,7 @@ import { ViewportEntranceDirective } from './directives/viewport-entrance.direct
   imports: [
     CommonModule,
     RouterModule,
-  ],
+],
   exports:[
     SimBtnComponent,
     MessageDisplayerComponent,

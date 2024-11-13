@@ -1,14 +1,10 @@
 <div class="msg-wrapper">
-<p 
-#messageContainer
-[ngClass]="{hidden:!messageInput()}"
-class='messages'
-(click)="closeMsg()"
->
+  <p 
+  #messageContainer
+  [ngClass]="{hidden:!messageInput()}"
+  class='messages'
+  (click)="closeMsg()"
+  >
 </p>
-@for (word of messageEmit(); track $index) {
-  @for (letter of messageDisplayer(word)|async; track $index) {
-  <span class="animated-letter">{{letter}}</span>
-}
-}
 </div>
+<!-- <div (click)="subscribe()">subscriber</div> -->

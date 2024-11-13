@@ -1,14 +1,20 @@
 @use "./colors" as *;
 @use "./breakpoints" as *;
+@use "./animations" as *;
 .messages {
-    font-family: Galactic-Font;
-    
+    font-family: Galactic-Font;    
     font-weight: 100;
     color: aqua;
     font-size: 1rem;
     transition: 500ms;
     display: flex;
     flex-wrap: wrap;
+}
+.word-wrapper{
+  white-space:pre;
+}
+.animated-letter{
+  animation: letterInjection 50ms forwards;
 }
 .hidden {
   transform: scaleX(0);
