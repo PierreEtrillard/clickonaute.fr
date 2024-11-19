@@ -1,13 +1,18 @@
 <div class="msg-wrapper">
-<p 
-#messageContainer
-[ngClass]="{hidden:!messageInput()}"
-class='messages'
-(click)="closeMsg()"
->
-</p>
-{{messageEmit()}}
-@for (word of messageInput().split(" "); track $index) {
-  <span class="animated-letter">{{word[$index]}}</span>
-}
+  <div class="closer" [ngClass]="{hidden:!popUpOpen()}"(click)="closeMsg()">X</div>
+  <p [ngClass]="{hidden:!popUpOpen()}" class='messages'>
+    @for (word of wordArray(); track $index; let wordIndex= $index) {
+    <!-- <span style="white-space: pre;">&nbsp;</span> -->
+    <span class="word-wrapper">
+      @for (letter of word; track $index;let letterIndex=$index) {
+      @if ((wordIndex*10 + letterIndex)<=letterCounter()) { <span class="letter-wrapper">&nbsp;<!--le wrapper des lettre est relatif et posséde un espace,
+           cela evite a la propriété transform de l'animation des lettres de se retrouvée bridée aux dimensions
+            de la balise parente tout en concervant le décalage necessaire pour former la phrase-->
+        <span class="animated-letter">{{letter}}</span>
+    </span>
+    }
+    }
+    </span>
+    }
+  </p>
 </div>

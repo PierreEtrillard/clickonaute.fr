@@ -1,15 +1,29 @@
+
 .msg-wrapper{
     width: 100% ;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    p {
-        padding: 1rem;
-        overflow: hidden;
-        width: 90%;
-        border-radius: 10px;
+    position: relative;
+    animation:slideFromRight 0.5s both;
+    transition: 300ms ease-in;
+    .closer{        
+        cursor: pointer;
+        border-radius: 50%;
         border: gray ridge 2px;
+        width: 1.5rem;
+        height: 1.5rem;
         background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 3rem;
+        top:0;
+        color: gray;        
+        font-size: 1rem;
+        &:hover{
+            color: aqua;
+        }
     }
 }

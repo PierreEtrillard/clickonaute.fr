@@ -17,10 +17,7 @@
 .turn{
   animation: rotateNfade 500ms 6 alternate-reverse linear;
 }
-.animated-letter{
-  white-space:normal;
-  animation: letterInjection 500ms forwards;
-}
+
 //      ***     KEYFRAMES     ***
 @keyframes background-animator {
   from {
@@ -156,15 +153,15 @@
 @keyframes letterInjection {
   from{
     opacity: 0;
-    transform: translate(1500%,-1400%) scale(10);
+    transform: translate(500%,400%) scale(6);
   }
-  20%{
+  50%{
     opacity: 0.25;
-    transform: translate(300%,500%) scale(8);
+    transform: translate(400%,250%) scale(6);
   }
-  60%{
+  80%{
     opacity: 0.75;
-    transform: translate(20%,-10%) scale(1);
+    transform: translate(20%,0%) scale(1);
   }
 to{
   opacity: 1;
