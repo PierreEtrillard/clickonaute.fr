@@ -6,6 +6,6 @@ import { Component, signal } from '@angular/core';
   styleUrls: ['./methods.component.scss']
 })
 export class MethodsComponent {
-messageToDisplay=signal("Independant mais pas solitaire, j'intégre facilement une équipe de développement web pour des projet de toute tailles");
+messageToDisplay=signal("Independant mais pas solitaire, j'intégre facilement une équipe de développement web pour des projets de toutes tailles");
 
 }

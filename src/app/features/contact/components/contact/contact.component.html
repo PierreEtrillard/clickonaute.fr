@@ -16,8 +16,7 @@
     <label for="email">email requis :</label>
     <!--ajout d'une regex car le type email ne verifie pas ce qui est après l'@ -->
     <input
-    ngModel
-    email
+    [(ngModel)]="email"
      required
      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
      name="email"

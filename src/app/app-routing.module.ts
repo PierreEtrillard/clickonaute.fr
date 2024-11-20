@@ -8,6 +8,7 @@ const routes: Routes = [
 {path:'back', loadChildren: ()=>import('./features/back/back.module').then(m => m.BackModule)},
 {path:'methods', loadChildren: ()=>import('./features/methods/methods.module').then(m => m.MethodsModule)},
 {path:'contact', loadChildren: ()=>import('./features/contact/contact.module').then(m => m.ContactModule)},
+{path:'about', loadChildren: ()=>import('./features/about/about.module').then(m => m.AboutModule)},
 {path:'jeux', loadChildren: ()=>import('./features/games/games.module').then(m => m.GamesModule)},
 {path:'simulateur', loadChildren: ()=>import('./features/simulateur/simulateur.module').then(m => m.SimulateurModule)},
 {path: '**', redirectTo:''}

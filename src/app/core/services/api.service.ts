@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 import { Disponibility } from 'src/app/features/agenda/disponibility.model';
 
 @Injectable({
@@ -14,5 +15,4 @@ export class ApiService {
       responseType: 'text', 
     });
   }
-
 }

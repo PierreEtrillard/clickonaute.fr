@@ -15,7 +15,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { addDays, startOfDay, endOfMonth, parseISO, format } from 'date-fns';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, delay, map, of, tap } from 'rxjs';
 import { StateService } from 'src/app/core/services/state.service';
 import { AgendaService } from '../../services/agenda.service';
 import { FullCalendarComponent } from '@fullcalendar/angular';
@@ -27,6 +27,7 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 })
 export class CalendarComponent implements OnInit {
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent; // Permet de manipuler le calendrier
+  callendarReady=signal(false);
   availableDates$: Observable<string[]> = this.agendaService.getDates();
   availableDates: string[] = [];
   selectedDates: WritableSignal<Date[]> = this.appState.datesSelection;
@@ -77,6 +78,9 @@ export class CalendarComponent implements OnInit {
             "Désolé, une erreur technique empêche l'accession à mes dates de disponibilité, merci de me contacter directement"
           );
         })
+        ,
+        delay(2000),
+        tap(()=>this.callendarReady.set(true))
       )
       .subscribe();
   }
