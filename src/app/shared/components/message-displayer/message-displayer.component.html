@@ -1,6 +1,7 @@
+@if (messageInput()) {
 <div class="msg-wrapper">
-  <div class="closer" [ngClass]="{hidden:!popUpOpen()}"(click)="closeMsg()">X</div>
-  <p [ngClass]="{hidden:!popUpOpen()}" class='messages'>
+  <div class="message-closer" [ngClass]="{hidden:!popUpOpen()}" (click)="closeMsg()">X</div>
+  <p [ngClass]="{hidden:!popUpOpen()}" class='message'>
     @for (word of wordArray(); track $index; let wordIndex= $index) {
     <!-- <span style="white-space: pre;">&nbsp;</span> -->
     <span class="word-wrapper">
@@ -16,3 +17,4 @@
     }
   </p>
 </div>
+}

@@ -7,23 +7,55 @@
     position: relative;
     animation:slideFromRight 0.5s both;
     transition: 300ms ease-in;
-    .closer{        
-        cursor: pointer;
-        border-radius: 50%;
-        border: gray ridge 2px;
-        width: 1.5rem;
-        height: 1.5rem;
-        background-color: black;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        right: 3rem;
-        top:0;
-        color: gray;        
-        font-size: 1rem;
-        &:hover{
-            color: aqua;
-        }
+}
+
+.message{
+  font-family: Galactic-Font;
+  font-weight: 100;
+  color: aqua;
+  font-size: 1rem;
+  transition: 500ms;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  overflow: hidden;
+  width: 90%;
+  border-radius: 10px;
+  border: gray ridge 2px;
+  background-color: black;
+  position: relative;
+  .word-wrapper {
+    margin-right: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .letter-wrapper {
+    position: relative;
+
+    .animated-letter {
+      position: absolute;
+      left: 0;
+      animation: letterInjection 314ms forwards ease-in;
     }
+  }
+  &-closer{        
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+    border: gray ridge 2px;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 3rem;
+    top:0;
+    color: gray;        
+    font-size: 1rem;
+    &:hover{
+        color: aqua;
+    }
+}
 }

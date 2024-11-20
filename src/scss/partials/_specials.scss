@@ -1,35 +1,6 @@
 @use "./colors" as *;
 @use "./breakpoints" as *;
-@use "./animations" as *;
-.messages {
-  font-family: Galactic-Font;
-  font-weight: 100;
-  color: aqua;
-  font-size: 1rem;
-  transition: 500ms;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1rem;
-        overflow: hidden;
-        width: 90%;
-        border-radius: 10px;
-        border: gray ridge 2px;
-        background-color: black;
-  .word-wrapper {
-    margin-right: 1rem;
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  .letter-wrapper {
-    position: relative;
 
-    .animated-letter {
-      position: absolute;
-      left: 0;
-      animation: letterInjection 314ms  forwards ease-in;
-    }
-  }
-}
 .hidden {
   transform: scaleX(0);
 }
