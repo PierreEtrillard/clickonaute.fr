@@ -1,4 +1,4 @@
-import { Component, computed, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { StateService } from 'src/app/core/services/state.service';
 export class AgendaComponent implements OnInit{
  selectedDates  = this.stateService.datesSelection
  price = this.stateService.price
+messageToDisplay=signal("Je travail en présentiel sur les zones de Dinan - St Malo - St Brieuc ou à distance");
   constructor(private stateService:StateService){}
   ngOnInit(): void {
       this.selectedDates.set([])

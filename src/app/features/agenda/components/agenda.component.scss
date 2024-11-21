@@ -1,8 +1,12 @@
 h1{
   font-size: 1.5rem;
 }
-#calendar-contenair{
+#calendar-container{
   width: 100%;
-  height: 100%;
+  position: relative;
 }
 // le css pour le callendrier est codé dans la partial spécials
+#reservation{
+  width: 100%;
+  margin: 2rem;
+}

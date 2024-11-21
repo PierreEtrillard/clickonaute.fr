@@ -1,7 +1,11 @@
-<div id="calendar-contenair">
-    <full-calendar [options]="calendarOptions" class="card calendar" #calendar>
+<div id="calendar-wrapper">
+    <full-calendar 
+        [options]="calendarOptions"
+        class="card calendar"
+        #calendar>
     </full-calendar>
-    <!-- <div [ngClass]="{'hidden': callendarReady()}"  class="card calendar">
-        <p class="await-message"> chargement en cours <br> Veuillez patienter...</p>
-    </div> -->
+    <div class="card await" [ngClass]="{'hidden': callendarReady()}">
+        <p class="await-message" > chargement en cours <br> Veuillez
+            patienter...</p>
+    </div>
 </div>

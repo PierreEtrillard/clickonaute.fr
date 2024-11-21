@@ -69,8 +69,9 @@ export class CalendarComponent implements OnInit {
               textColor: 'black',
             })
           );
-          this.availableDates = dates;
           // Mise à jour des événements dans le calendrier
+          this.availableDates = dates;
+          this.calendarComponent.getApi().render()
         }),
         catchError((error: Error) => {
           console.error(error.message);

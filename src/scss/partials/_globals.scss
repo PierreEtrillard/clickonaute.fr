@@ -1,9 +1,13 @@
 @use './breakpoints' as * ;
 html,
 body {
-  height: 100%;
+  height: 100dvh;
+  background-color: black;
+  background-image: linear-gradient(27deg, #4158D0 0%, #2c2939 16%, #292424 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
-
 body {
   margin: 0;
   font-family: Oxygen, sans-serif;
@@ -11,7 +15,13 @@ body {
   font-size: 2rem;
   @include mobile-only{ font-size: 1rem;}
 }
+header{
+  position: relative;
+  z-index: 2;
+}
 main{
+  position: relative;
+  z-index: 1;
   padding: 90px 15px 15px 15px;
   display: flex;
   flex-direction: column;

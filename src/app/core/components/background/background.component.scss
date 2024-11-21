@@ -1,16 +1,11 @@
 #stars-container {
-	z-index: -10;
 	position: fixed;
 	left: 0;
 	top: 0;
 	height: 100vh;
 	width: 100%;
 	overflow: hidden;
-	background-image: linear-gradient(27deg, #4158D0 0%, #2c2939 16%, #292424 100%);
-    // background-image: url("/src/assets/images/background.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+
     // @include tablet-only{background-image: url("../../assets/images/background-mobile.webp");}
     // @include tablet-only{background-image: url("../../assets/images/background-tablet.webp");}
   

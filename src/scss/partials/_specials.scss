@@ -1,12 +1,15 @@
 @use "./colors" as *;
 @use "./breakpoints" as *;
-
+@use "./animations" as *;
 .hidden {
   transform: scaleX(0);
 }
 .info {
-  // @include light-mask;
+  font-family: Galactic-Font;
   font-style: italic;
+  font-size: 1rem;
+  color: aqua;
+  // animation: fadeIn infinite backwards 3s ease-in;
 }
 
 .tools-list > li {

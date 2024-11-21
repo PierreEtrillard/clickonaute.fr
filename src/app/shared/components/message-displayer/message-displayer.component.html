@@ -3,7 +3,6 @@
   <div class="message-closer" [ngClass]="{hidden:!popUpOpen()}" (click)="closeMsg()">X</div>
   <p [ngClass]="{hidden:!popUpOpen()}" class='message'>
     @for (word of wordArray(); track $index; let wordIndex= $index) {
-    <!-- <span style="white-space: pre;">&nbsp;</span> -->
     <span class="word-wrapper">
       @for (letter of word; track $index;let letterIndex=$index) {
       @if ((wordIndex*10 + letterIndex)<=letterCounter()) { <span class="letter-wrapper">&nbsp;<!--le wrapper des lettre est relatif et posséde un espace,

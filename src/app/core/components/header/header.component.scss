@@ -1,13 +1,11 @@
 @import "../../../../scss/partials/breakpoints";
 
-
 #logo-wrapper {
   position: fixed;
   left: 0;
   top: 0;
   width: min-content;
   height: 0.5rem;
-  z-index: 10;
   transition: all 1s;
   cursor: pointer;
   @include tablet-only {
@@ -47,11 +45,9 @@
   #rocket-core {
     right: 3px;
     position: absolute;
-    z-index: -10;
     width: 30px;
   }
   #flamme {
-    z-index: -100;
     width: 16px;
     position: absolute;
     top: 30px;
@@ -78,7 +74,6 @@
     top: 0;
   }
   #fire {
-    z-index: -10;
     width: 16px;
     position: absolute;
     bottom: -70px;

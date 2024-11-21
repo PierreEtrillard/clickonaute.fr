@@ -1,9 +1,20 @@
-.await-message{
-    color: aqua;
-    font-family: Galactic-Font;
-    font-size: large;
-    font-style: italic;
-    height: 40vh;
-    padding-top: 15rem;
-    animation: fadeIn 1s both infinite;
-  }
+#calendar-wrapper{
+  position: relative;
+.await {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    &-message {
+      color: aqua;
+      font-family: Galactic-Font;
+      font-size: large;
+      font-style: italic;
+      animation: fadeIn 1s both infinite;
+    }
+  }}

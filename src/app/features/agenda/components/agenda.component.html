@@ -1,15 +1,24 @@
 <main>
-    <h1>Je travaille en présentiel sur les zones de Dinan - St Malo - St Brieuc ou à distance</h1>
-    <app-calendar id="calendar-contenair"></app-calendar>
-<div class="reservation message" *ngIf="selectedDates().length > 0">
-    <p *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}} journées du {{selectedDates()[0] | date:'mediumDate':'FR'}} au {{selectedDates()[selectedDates().length -1] | date}}.</p>
-    <p *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{ selectedDates()[0]| date:'mediumDate':'FR'}}.</p>
-    <p> Souhaitez-vous bloquer ce créneau ? </p>
-    <p> total estimé: <span>{{price()| currency:'EUR'}}TTC</span></p>
-    <a class="space-button" routerLink="/contact">Réserver</a>
-</div>
-    <p>TJM: 320€ pour les missions de moins de deux semaines</p>
-    <p>TJM:300€ pour toutes missions de deux semaines ou plus</p>
-    <p>retrouvez moi sur :</p>
-    <a href="https://www.malt.fr/profile/pierreetrillard"><img src="../../../../assets/images/malt-logo-red.svg" alt="logo Malt.fr"></a>
+    <app-message-displayer [messageInput]="messageToDisplay"></app-message-displayer>
+    <h1>Consultez mes disponibilitées, sélectionnez vos dates et reservez un creneau en trois cliques:</h1>
+    <app-calendar id="calendar-container"></app-calendar>
+    <p class="info">TJM: 320€ missions courtes / 300€ plus de deux semaines</p>
+    <div id="reservation" class="card ">
+        @if (selectedDates().length) {
+        <p class="invalid" *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}}
+            journées du {{selectedDates()[0] | date:'mediumDate':'FR'}} au {{selectedDates()[selectedDates().length -1]
+            | date}}.</p>
+        <p class="invalid" *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{
+            selectedDates()[0]| date:'mediumDate':'FR'}}.</p>
+        <p> Souhaitez-vous bloquer ce créneau ? </p>
+        <p> total estimé: <span>{{price()| currency:'EUR'}}TTC</span></p>
+        <a class="space-button" routerLink="/contact">Réserver</a>
+        }@else {
+        <p>Sélectionnez vos dates sur le calendrier.</p>
+        }
+    </div>
+    <p viewportEntrance="slideFromRight">retrouvez moi aussi sur :
+        <a href="https://www.malt.fr/profile/pierreetrillard"><img src="../../../../assets/images/malt-logo-red.svg"
+                alt="logo Malt.fr"></a>
+    </p>
 </main>
