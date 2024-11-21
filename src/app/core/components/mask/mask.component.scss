@@ -46,4 +46,7 @@
   &-loading {
     @include border-mask-purple;
   }
+  &-about {
+    @include border-mask;
+  }
 }
