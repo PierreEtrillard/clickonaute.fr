@@ -41,33 +41,26 @@ export class MessageDisplayerComponent {
     });
   }
   lettersFlux(wordArray: string[]) {
-    let wordIndex = 0;
-    let letterIndex = 0;
-    from(wordArray)
+    // creation d'un array contenant les index des lettres à diffusé dans la vue
+    const _indexArray: number[] = [];
+    wordArray.forEach((word, wordIndex) => {
+      for (let index = 0; index < word.length; index++) {
+        _indexArray.push(wordIndex * 10 + index);
+      }
+    });
+    // mis à jour du signal déclanchant l'injection des lettres dans la vue
+    let counter = 0;
+    interval(30)
       .pipe(
-        take(wordArray.length),
-        concatMap((word) => {
-          wordIndex++;
-          // pour chaque emission de mot transforme celui-ci en flux observable
-          return from(word).pipe(
-            take(word.length),
-            concatMap((letter) => {
-              // pour chaque emission de lettre transforme celle-ci en flux observable
-              return of(letter).pipe(
-                delay(40),
-                tap(() => {
-                  letterIndex++;
-                 this.letterCounter.set(wordIndex * 10 + letterIndex);
-                })
-              );
-            })
-          );
-        })
+        tap((n) => {
+          this.letterCounter.set(_indexArray[counter]);
+          counter++;
+        }),
+        take(_indexArray.length)
       )
       .subscribe();
   }
-
   closeMsg() {
-    this.popUpOpen.set(false)
+    this.popUpOpen.set(false);
   }
 }
