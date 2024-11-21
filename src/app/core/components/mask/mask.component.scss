@@ -14,7 +14,10 @@
     opacity: 0.7;
     &-menu {
       transform-origin: right center;
-      transform: rotate(90deg) scale(1.75, 11) translate(15%, 48%);
+      transform: rotate(228deg) skew(-17deg) scale(7) translate(5%, 41%);
+      @include mobile-only {
+      transform: rotate(228deg) skew(-17deg) scale(4) translate(22%, 41%);
+      }
     }
   }
 }
