@@ -7,6 +7,6 @@ import { Component, signal } from '@angular/core';
 })
 export class AboutComponent {
   messageToDisplay = signal(
-    ' Depuis tout petit, construire, dessiner et créer sont pour moi des moyens d’expression et de stimulation importants. Aujourd’hui le développement est un terrain de jeu qui me permet de satisfaire ces besoins.'
+    'Je ne vais pas vous raconter mon enfance heureuse dans la campagne de Vannes, ce serait joyeux mais un peu long. Vous préférez sans doute connaître quelques-uns des principaux projets qui illustrent mon parcours...'
   );
 }
