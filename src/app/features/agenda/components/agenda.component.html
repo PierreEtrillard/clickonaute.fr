@@ -2,7 +2,7 @@
     <app-message-displayer [messageInput]="messageToDisplay"></app-message-displayer>
     <h1>Consultez mes disponibilités, sélectionnez vos dates et réservez un créneau en trois clics:</h1>
     <app-calendar id="calendar-container"></app-calendar>
-    <p class="info">TJM: {{tjm}}€ </p>
+    <p class="info">TJM: {{tjm}}€ (minoré pour les missions de plus de 10 jours)</p>
     <div id="reservation" class="card ">
         @if (selectedDates().length) {
         <p class="invalid" *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}}

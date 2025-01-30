@@ -9,6 +9,7 @@ import { StateService } from 'src/app/core/services/state.service';
 export class AgendaComponent implements OnInit{
  selectedDates  = this.stateService.datesSelection
  price = this.stateService.price
+ tjm = this.stateService.tjm
 messageToDisplay=signal("Je travaille en présentiel sur les secteurs de Dinan - St Malo - St Brieuc ou à distance");
   constructor(private stateService:StateService){}
   ngOnInit(): void {
