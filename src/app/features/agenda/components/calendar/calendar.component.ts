@@ -98,8 +98,8 @@ export class CalendarComponent implements OnInit {
 
     this.selectedDates.set(selectedDates);
     selectedDates.length >= 10
-      ? this.appState.price.set(selectedDates.length * 300)
-      : this.appState.price.set(selectedDates.length * 320);
+      ? this.appState.price.set(selectedDates.length * (this.appState.tjm*0.95))// Dégrévement de 5% en mission de +10j
+      : this.appState.price.set(selectedDates.length * this.appState.tjm);
   }
   // Méthode pour générer un tableau de toutes les dates entre deux dates
   getDateRangeArray(start: Date, end: Date): Date[] {

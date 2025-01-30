@@ -17,6 +17,7 @@ export class StateService {
     );
   });
   price = signal(0);
+  tjm = 340
 
   sectionSwitcher(sectionName: string) {
     this.sectionSelected.set(sectionName);
