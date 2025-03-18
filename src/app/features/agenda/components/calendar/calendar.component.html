@@ -5,7 +5,6 @@
         #calendar>
     </full-calendar>
     <div class="card await" [ngClass]="{'hidden': callendarReady()}">
-        <p class="await-message" > chargement en cours <br> Veuillez
-            patienter...</p>
+        <p class="await-message" > {{calendarStatus()}}</p>
     </div>
 </div>
