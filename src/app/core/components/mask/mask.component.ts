@@ -9,9 +9,10 @@ import { SvgPath } from '../models/svgPath';
 import { Coor } from '../models/Coor';
 import { Curve } from '../models/Curve';
 @Component({
-  selector: 'app-mask',
-  templateUrl: './mask.component.html',
-  styleUrls: ['./mask.component.scss'],
+    selector: 'app-mask',
+    templateUrl: './mask.component.html',
+    styleUrls: ['./mask.component.scss'],
+    standalone: false
 })
 export class MaskComponent {
   middleGradient = signal(-50);

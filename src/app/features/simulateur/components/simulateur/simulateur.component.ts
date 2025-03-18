@@ -10,9 +10,10 @@ import { BehaviorSubject, map, Observable, of, take, tap } from 'rxjs';
 import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
 
 @Component({
-  selector: 'app-simulateur',
-  templateUrl: './simulateur.component.html',
-  styleUrls: ['./simulateur.component.scss'],
+    selector: 'app-simulateur',
+    templateUrl: './simulateur.component.html',
+    styleUrls: ['./simulateur.component.scss'],
+    standalone: false
 })
 export class SimulateurComponent implements OnInit {
   estimatorForm!: FormGroup;

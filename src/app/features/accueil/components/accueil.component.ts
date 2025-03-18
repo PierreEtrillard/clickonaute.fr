@@ -4,9 +4,10 @@ import { map, take, timer } from 'rxjs';
 import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
-  selector: 'app-accueil',
-  templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.scss'],
+    selector: 'app-accueil',
+    templateUrl: './accueil.component.html',
+    styleUrls: ['./accueil.component.scss'],
+    standalone: false
 })
 export class AccueilComponent implements OnInit {
   selectedSection!: WritableSignal<string>;

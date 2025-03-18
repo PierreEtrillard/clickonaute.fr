@@ -25,9 +25,10 @@ import {
 import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
 
 @Component({
-  selector: 'app-message-displayer',
-  templateUrl: './message-displayer.component.html',
-  styleUrls: ['./message-displayer.component.scss'],
+    selector: 'app-message-displayer',
+    templateUrl: './message-displayer.component.html',
+    styleUrls: ['./message-displayer.component.scss'],
+    standalone: false
 })
 export class MessageDisplayerComponent {
   @ViewChild('messageContainer') messageContainer!: ElementRef;

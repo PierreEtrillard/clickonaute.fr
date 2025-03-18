@@ -2,9 +2,10 @@ import { Component, computed, OnInit, signal } from '@angular/core';
 import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
-  selector: 'app-agenda',
-  templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss'],
+    selector: 'app-agenda',
+    templateUrl: './agenda.component.html',
+    styleUrls: ['./agenda.component.scss'],
+    standalone: false
 })
 export class AgendaComponent implements OnInit{
  selectedDates  = this.stateService.datesSelection

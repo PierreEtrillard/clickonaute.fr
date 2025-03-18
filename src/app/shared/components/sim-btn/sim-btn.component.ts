@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
-  selector: 'app-sim-btn',
-  templateUrl: './sim-btn.component.html',
-  styleUrls: ['./sim-btn.component.scss']
+    selector: 'app-sim-btn',
+    templateUrl: './sim-btn.component.html',
+    styleUrls: ['./sim-btn.component.scss'],
+    standalone: false
 })
 export class SimBtnComponent {
   selectedSection!:string;

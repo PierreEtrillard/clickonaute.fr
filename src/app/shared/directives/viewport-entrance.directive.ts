@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[viewportEntrance]',
+    selector: '[viewportEntrance]',
+    standalone: false
 })
 export class ViewportEntranceDirective implements OnDestroy {
   @Input('viewportEntrance') className: string = ''; // injection d'une classe defini en attribut

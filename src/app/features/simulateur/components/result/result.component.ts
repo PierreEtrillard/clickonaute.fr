@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
 import { ProgressiveDisplayService } from 'src/app/shared/services/progressive-display.service';
 
 @Component({
-  selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss'],
+    selector: 'app-result',
+    templateUrl: './result.component.html',
+    styleUrls: ['./result.component.scss'],
+    standalone: false
 })
 export class ResultComponent implements OnInit {
   @Input() formValues: any;

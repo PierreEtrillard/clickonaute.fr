@@ -5,9 +5,10 @@ import { ApiService } from 'src/app/core/services/api.service';
 import { StateService } from 'src/app/core/services/state.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    standalone: false
 })
 export class ContactComponent implements OnInit {
   @ViewChild('messangerForm') form!: NgForm
