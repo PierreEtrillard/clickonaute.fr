@@ -85,6 +85,8 @@
 .fc-event {
   z-index: -1; // les evenement masquaient la date je les ai mis en arrière pla
   pointer-events: none;
+  background-color: aqua;
+  color: black;
   &-title {
     font-size: 1rem; /* Taille de la police réduite */
     white-space: nowrap; /* Empêcher le retour à la ligne pour les titres longs */

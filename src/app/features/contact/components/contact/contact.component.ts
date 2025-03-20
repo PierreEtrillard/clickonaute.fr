@@ -28,11 +28,9 @@ export class ContactComponent implements OnInit {
   }
   sendMessage(form: any) {
     if (form.valid) {
-      const formData = new FormData();
-      formData.set('from', this.email);
-      formData.set('message', this.message);
+      const message = {'sender': this.email, 'content':this.message};
       this.apiService
-        .sendMail(formData)
+        .sendMail(message)
         .pipe(
           tap((res:string) => {
             this.fetchState.set(res);

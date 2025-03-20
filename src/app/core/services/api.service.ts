@@ -11,8 +11,8 @@ export class ApiService {
   apiUrl = environment.apiUrl
   constructor(private http: HttpClient) {}
   unavailabilities$ = this.http.get<Date[]>(`${this.apiUrl}/periods/indispos`);
-  sendMail(formData: FormData) {
-    return this.http.post(`${this.apiUrl}/message`, formData, {
+  sendMail(message: any) {
+    return this.http.post(`${this.apiUrl}/message`, message, {
       headers: new HttpHeaders({}),
       responseType: 'text', 
     });
