@@ -12,19 +12,18 @@ export class ApiService {
   constructor(private http: HttpClient) {}
   unavailabilities$ = this.http.get<Date[]>(`${this.apiUrl}/periods/indispos`);
   getBadge(senderName: string) {
-    return this.http.post(`${this.apiUrl}/auth/badge`, senderName, {
+    return this.http.post(`${this.apiUrl}/auth/badge`, senderName , {
       responseType: 'text',
-      withCredentials: true
-    });
+      withCredentials: true// ajoute le cookie de connexion);
+      })   
   }
   sendMail(message: any) {
     return this.getBadge(message.sender).pipe(
       switchMap(() => {
-        console.log('Switching to message API call');
         return this.http.post(`${this.apiUrl}/message`, message, {
           headers: new HttpHeaders({}),
           responseType: 'text',
-          withCredentials: true
+          withCredentials: true// ajoute le cookie de connexion
         })
       })
     );
