@@ -1,37 +1,62 @@
 <main>
     <h1>D'une passion un métier</h1>
     <app-message-displayer [messageInput]="messageToDisplay"></app-message-displayer>
-    <section>
-        <h2>Parcours de vie</h2>
+    
+    <section class="timeline">
+        <div class="card">
+            <h2 viewportEntrance="slideFromRight">Parcours de vie</h2>
+                <p>Dans mes débuts professionnels j'ai monté ma propre boîte de nettoyage. Une expérience formatrice qui m'a appris à :</p>
+                <ul class="summary">
+                    <li>Gérer une entreprise de A à Z</li>
+                    <li>Communiquer efficacement avec les clients</li>
+                    <li>Jongler entre missions techniques et administratives</li>
+                </ul>
+        </div>
+
+        <div >
+            <h2 viewportEntrance="slideFromLeft">Rénovation & Réalisation</h2>
+            <div class="content">
+                <p>En 2019, l'achat d'une maison à rénover m'a permis de :</p>
+                <ul class="summary">
+                    <li>Développer mes compétences en bricolage</li>
+                    <li>Travailler avec des professionnels passionnés</li>
+                    <li>Apprendre que tout s'apprend avec de la volonté</li>
+                </ul>
+            </div>
+        </div>
     </section>
-    <p>
-        Dans mes débuts professionnels j’ai monté ma propre boîte de nettoyage. Ça a l’air simple dit comme ça, mais c’était un vrai défi. Partir de zéro, apprendre à jongler entre missions techniques, communication, satisfaction des clients et administration…
-        <br>
-        Je ne le savais pas encore, mais cette expérience me serait utile pour un futur métier.
-    </p>
-    <p>En 2019, ma boîte étant bien lancée, ma femme et moi décidons d’acheter notre premier bien immobilier.<br>
-        Une jolie maison de campagne, des hortensias... et la nécessité de la rénover de A à Z !<br>
-        C’était le début d’une chouette aventure en autonomie mais bien entourés.<br>
-        Pendant ces deux années de rénovation, j’ai collaboré avec des gens passionnés et compétents qui m’ont transmis des savoirs utiles.<br>
-        Grâce à eux, j’ai pu réaliser la plupart des travaux de mes propres mains. De la maçonnerie aux ardoises à poser sur le toit, de la conception des placards en bois à la réfection du réseau électrique, j’ai adoré.<br>
-        Cette expérience m'a fait réaliser que tout s'apprend et que rien n'est hors de portée à qui a de la volonté et sait bien s'entourer.
-        C’est cette prise de conscience qui m’a poussé à m’interroger sur mes choix professionnels.
-    </p>
-    <h2>Un nouveau cap vers le web</h2>
-    <p>Voilà, mon entreprise ronronne, j’ai des clients fidèles depuis 15 ans et une maison toute belle. Une idée me trotte pourtant dans la tête depuis longtemps : faire de ma passion pour l’informatique mon métier.</p>
-    <p>J'ai sauté le pas en 2020 ! <br>
-        Épaulé par un entrepreneur de ma région, j'ai d'abord démarré en tant qu'installateur de matériels et réseaux, puis en me spécialisant dans ma véritable vocation : le développement web.</p>
-    <p>Formé par OpenClassrooms, j'ai décroché un<a href="../../../assets/titre-a-finalite-professionnelle_OpenClassrooms_Pierre_Etrillard_20221230-2.pdf"> diplôme de développeur web </a>à la suite de quoi j'ai décidé de me
-        spécialiser dans ce qui a toujours été mon cœur de métier : travailler pour les pros.</p>
-    <div class="card">
-        <h2 viewportEntrance="slideFromLeft">Pourquoi le Web ?</h2>
-        <p>Le développement web est pour moi le terrain de jeu idéal pour exploiter mon goût pour la manipulation des flux de données,
-            mon sens du service client et ma créativité.</p>
-    </div>
+
+        <section viewportEntrance="slideFromRight">
+            <h2 >Un nouveau cap vers le web</h2>
+            <div class="card">
+                <p>En 2021, j'ai décidé de transformer ma passion pour l'informatique en métier :</p>
+                <ul class="summary">
+                    <li>Installateur de matériels et réseaux</li>
+                    <li>Développeur web diplômé d'OpenClassrooms</li>
+                    <li>Spécialisation dans le développement pour les professionnels</li>
+                </ul>
+                <a href="https://clickonaute.fr/assets/titre-a-finalite-professionnelle_OpenClassrooms_Pierre_Etrillard_20221230-2.pdf" 
+                   target="_blank">
+                    Voir mon diplôme
+                </a>
+            </div>
+    </section>
     <hr class="section-separator">
-    <blockquote>
-        Un projet web en vue ? Ou simplement envie d'échanger sur les thèmes abordés sur cette page ? Je
-        serais ravi d'en discuter.
-    </blockquote>
-    <button class="space-button" routerLink="/contact">Contactez-moi</button>
+    <section class="card">
+        <h2 viewportEntrance="slideFromLeft">Pourquoi le Web ?</h2>
+        <p>Le développement web est pour moi le terrain de jeu idéal pour exploiter :</p>
+        <ul>
+            <li>Mon goût pour la manipulation des flux de données</li>
+            <li>Mon sens du service client</li>
+            <li>Ma créativité</li>
+        </ul>
+    </section>
+
+    <section class="cta-section">
+        <blockquote>
+            Un projet web en vue ? Ou simplement envie d'échanger sur les thèmes abordés sur cette page ? Je
+            serais ravi d'en discuter.
+        </blockquote>
+        <button class="space-button" routerLink="/contact">Contactez-moi</button>
+    </section>
 </main>

@@ -41,14 +41,17 @@ export class CalendarComponent implements AfterViewInit {
       start: this.now,
       end: this.endCalendar,
     },
-    weekends: false, // Affiche les week-ends
-    initialView: 'dayGridMonth', // Vue mensuelle
+    weekends: false,
+    initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
-    selectable: true, // Permet la sélection des dates
-    selectOverlap: (event) => !!event, // Sélection uniquement sur les dates avec événements
-    longPressDelay: 200, // Temps de maintien avant déclenchement d'événement
+    selectable: true,
+    selectOverlap: (event) => !!event,
+    longPressDelay: 50,
     select: (selectInfo) => this.handleDateSelect(selectInfo),
-    displayEventTime: false, // Masque l'heure dans les événements
+    displayEventTime: false,
+    selectMirror: true,
+    selectMinDistance: 0,
+    unselectAuto: false
   };
 
   constructor(

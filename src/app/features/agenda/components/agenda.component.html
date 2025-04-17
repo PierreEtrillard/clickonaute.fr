@@ -1,21 +1,25 @@
 <main>
     <app-message-displayer [messageInput]="messageToDisplay"></app-message-displayer>
     <h1>Consultez mes disponibilités, sélectionnez vos dates et réservez un créneau en trois clics:</h1>
-    <app-calendar id="calendar-container"></app-calendar>
-    <p class="info">TJM: {{tjm}}€ (minoré pour les missions de plus de 10 jours)</p>
-    <div id="reservation" class="card ">
-        @if (selectedDates().length) {
-        <p class="invalid" *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}}
-            journées du {{selectedDates()[0] | date:'mediumDate':'FR'}} au {{selectedDates()[selectedDates().length -1]
-            | date}}.</p>
-        <p class="invalid" *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{
-            selectedDates()[0]| date:'mediumDate':'FR'}}.</p>
-        <p> Souhaitez-vous bloquer ce créneau ? </p>
-        <p> total estimé: <span>{{price()| currency:'EUR'}}TTC</span></p>
-        <a class="space-button" routerLink="/contact">Réserver</a>
-        }@else {
-        <p>Sélectionnez vos dates sur le calendrier.</p>
-        }
+    <div class="calendar-wrapper">
+        <app-calendar id="calendar-container"></app-calendar>
+        <p class="info">TJM: {{tjm}}€ (minoré pour les missions de plus de 10 jours)</p>
+    </div>
+    <div class="reservation-wrapper">
+        <section id="reservation" class="card">
+            @if (selectedDates().length) {
+            <p class="invalid" *ngIf="selectedDates().length > 1">Vous venez de sélectionner {{selectedDates().length}}
+                journées du {{selectedDates()[0] | date:'mediumDate':'FR'}} au {{selectedDates()[selectedDates().length -1]
+                | date}}.</p>
+            <p class="invalid" *ngIf="selectedDates().length === 1">Vous venez de sélectionner la journée du {{
+                selectedDates()[0]| date:'mediumDate':'FR'}}.</p>
+            <p> Souhaitez-vous bloquer ce créneau ? </p>
+            <p> total estimé: <span>{{price()| currency:'EUR'}}TTC</span></p>
+            <button class="space-button" (click)="navigateToContact()">Réserver</button>
+            } @else {
+            <p>Sélectionnez vos dates sur le calendrier.</p>
+            }
+        </section>
     </div>
     <p viewportEntrance="slideFromRight">Retrouvez-moi aussi sur :
         <a href="https://www.malt.fr/profile/pierreetrillard"><img src="../../../../assets/images/malt-logo-red.svg"
